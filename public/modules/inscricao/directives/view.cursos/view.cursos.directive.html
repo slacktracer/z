@@ -1,0 +1,60 @@
+<dl>
+    <dt
+        data-ng-if="view.inscricao.curso_matutino"
+        >
+        Curso Matutino
+    </dt>
+    <dd
+        data-ng-if="view.inscricao.curso_matutino"
+        >
+        <span
+            data-ng-if="view.inscricao.curso_matutino === 'ENTADPDHIV'"
+            >
+            Especialidades no tratamento ambulatorial de portadores de HIV.
+        </span>
+        <span
+            data-ng-if="view.inscricao.curso_matutino === 'NEC'"
+            >
+            Nutrição e câncer.
+        </span>
+        <span
+            data-ng-if="view.inscricao.curso_matutino === 'CCAPPPT'"
+            >
+            Cuidados com a pele periestomal: prevenção e tratamento. <strong>Parte I</strong>.
+        </span>
+        <span
+            data-ng-if="view.inscricao.curso_matutino === 'AMDI'"
+            >
+            Avaliação multidimensional do idoso. <strong>Parte I</strong>.
+        </span>
+    </dd>
+    <dt
+        data-ng-if="view.inscricao.curso_vespertino"
+        >
+        Curso Vestertino
+    </dt>
+    <dd
+        data-ng-if="view.inscricao.curso_vespertino"
+        >
+        <span
+            data-ng-if="view.inscricao.curso_vespertino === 'CCOPD'"
+            >
+            Cuidados com o paciente diabético.
+        </span>
+        <span
+            data-ng-if="view.inscricao.curso_vespertino === 'SNEEP'"
+            >
+            Suporte nutricional enteral e parenteral.
+        </span>
+        <span
+            data-ng-if="view.inscricao.curso_vespertino === 'CCAPPPT'"
+            >
+            Cuidados com a pele periestomal: prevenção e tratamento. <strong>Parte II</strong>.
+        </span>
+        <span
+            data-ng-if="view.inscricao.curso_vespertino === 'AMDI'"
+            >
+            Avaliação multidimensional do idoso. <strong>Parte II</strong>.
+        </span>
+    </dd>
+</dl>

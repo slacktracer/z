@@ -1,0 +1,20 @@
+#view.ng-enter {
+    opacity: 0;
+    transition: 0.45s linear all;
+    -moz-transition: 0.45s linear all;
+    -o-transition: 0.45s linear all;
+    -webkit-transition: 0.45s linear all;
+}
+#view.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+.if.ng-enter {
+    opacity: 0;
+    transition: 0.45s linear all;
+    -moz-transition: 0.45s linear all;
+    -o-transition: 0.45s linear all;
+    -webkit-transition: 0.45s linear all;
+}
+.if.ng-enter.ng-enter-active {
+    opacity: 1;
+}

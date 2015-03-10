@@ -1,0 +1,15 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Thiago F
+
+# THANKS
+
+    Zana Ribeiro
+
+# TECHNOLOGY COLOPHON
+
+    HTML, CSS, JS
+    AngularJS, Bootstrap, jQuery

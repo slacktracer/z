@@ -1,0 +1,30 @@
+{
+    "ecmaFeatures": {
+        "blockBindings": false,
+        "generators": false,
+        "templateStrings": false
+    },
+    "env": {
+        "browser": true,
+        "node": false
+    },
+    "globals": {
+        "angular": false
+    },
+    "rules": {
+        "generator-star": 0,
+        "new-cap": 2,
+        "no-use-before-define": [2, "nofunc"],
+        "no-unused-vars": [
+            1,
+            {
+                "vars": "all",
+                "args": "none"
+            }
+        ],
+        "no-var": 0,
+        "quotes": [2, "single"],
+        "vars-on-top": 2,
+        "wrap-iife": [2, "outside"]
+    }
+}

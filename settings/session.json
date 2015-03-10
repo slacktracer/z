@@ -1,0 +1,11 @@
+{
+    "cookie": {
+        "ephemeral": false,
+        "httpOnly": true,
+        "path": "/api",
+        "secure": false
+    },
+    "cookieName": "session",
+    "duration": 86400000,
+    "secret": "Cdmg04FUuFVB17YGZPNi"
+}

@@ -1,0 +1,223 @@
+<div
+    data-state="view.state"
+    ez-envelope
+    >
+    <div
+        class="
+            row
+        "
+        >
+        <div
+            class="
+                col-md-12
+            "
+            >
+            <h1>
+                Inscrição
+            </h1>
+            <hr>
+            <div
+                class="
+                    row
+                "
+                >
+                <div
+                    class="
+                        col-md-4
+                    "
+                    >
+                    <dl>
+                        <dt>
+                            Nome
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.nome_completo}}
+                        </dd>
+                        <dt>
+                            Data de Nascimento
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.data_de_nascimento}}
+                        </dd>
+                        <dt>
+                            Sexo
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.sexo}}
+                        </dd>
+                        <dt>
+                            E-mail
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.email}}
+                        </dd>
+                        <dt
+                            data-ng-if="!view.inscricao.estrangeiro"
+                            >
+                            <abbr
+                                class="initialism"
+                                title="Cadastro de Pessoa Física"
+                                >
+                                CPF
+                            </abbr>
+                        </dt>
+                        <dd
+                            data-ng-if="!view.inscricao.estrangeiro"
+                            >
+                            {{::view.inscricao.cpf}}
+                        </dd>
+                        <dt
+                            data-ng-if="view.inscricao.estrangeiro"
+                            >
+                            Documento de Identificação
+                        </dt>
+                        <dd
+                            data-ng-if="view.inscricao.estrangeiro"
+                            >
+                            {{::view.inscricao.nome_do_documento}}
+                            <br>
+                            {{::view.inscricao.numero_do_documento}}
+                        </dd>
+                        <dt>
+                            Telefones
+                        </dt>
+                        <dd>
+                            +{{::view.inscricao.codigo_internacional_1}} ({{::view.inscricao.codigo_nacional_1}}) {{::view.inscricao.numero_1}}
+                        </dd>
+                        <dd
+                            data-ng-if="
+                                view.inscricao.codigo_internacional_2 &amp;&amp;
+                                view.inscricao.codigo_nacional_2 &amp;&amp;
+                                view.inscricao.numero_2
+                            "
+                            >
+                            +{{::view.inscricao.codigo_internacional_2}} ({{::view.inscricao.codigo_nacional_2}}) {{::view.inscricao.numero_2}}
+                        </dd>
+                        <dd
+                            data-ng-if="
+                                view.inscricao.codigo_internacional_3 &amp;&amp;
+                                view.inscricao.codigo_nacional_3 &amp;&amp;
+                                view.inscricao.numero_3
+                            "
+                            >
+                            +{{::view.inscricao.codigo_internacional_3}} ({{::view.inscricao.codigo_nacional_3}}) {{::view.inscricao.numero_3}}
+                        </dd>
+                        <dt>
+                            Endereço
+                        </dt>
+                        <dd>
+                            <address
+                                data-ng-if="!view.inscricao.estrangeiro"
+                                >
+                                <div>
+                                    {{::view.inscricao.logradouro}}, {{::view.inscricao.numero}}
+                                </div>
+                                <div
+                                    data-ng-if="view.inscricao.complemento"
+                                    >
+                                    {{::view.inscricao.complemento}}
+                                </div>
+                                <div>
+                                    {{::view.inscricao.bairro}}
+                                </div>
+                                <div>
+                                    {{::view.inscricao.localidade}}-{{::view.inscricao.uf}}
+                                </div>
+                                <div>
+                                    {{::view.inscricao.cep}}
+                                </div>
+                            </address>
+                            <address
+                                data-ng-bind-html="view.inscricao.endereco"
+                                data-ng-if="view.inscricao.estrangeiro"
+                                >
+                            </address>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>
+                            Nome no Crachá
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.nome_no_cracha}}
+                        </dd>
+                        <dt>
+                            Categoria
+                        </dt>
+                        <dd>
+                            <span
+                                data-ng-if="view.inscricao.categoria === 1"
+                                >
+                                Estudante de Graduação
+                            </span>
+                            <span
+                                data-ng-if="view.inscricao.categoria === 2"
+                                >
+                                Estudante de Pós-Graduação ou Residente
+                            </span>
+                            <span
+                                data-ng-if="view.inscricao.categoria === 3"
+                                >
+                                Docente ou Profissional
+                            </span>
+                        </dd>
+                        <dt>
+                            Curso ou Formação
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.curso_ou_formacao}}
+                        </dd>
+                        <dt
+                            data-ng-if="view.inscricao.acronimo_da_instituicao_ou_empresa"
+                            >
+                            Acrônimo da Instituição ou Empresa
+                        </dt>
+                        <dd
+                            data-ng-if="view.inscricao.acronimo_da_instituicao_ou_empresa"
+                            >
+                            {{::view.inscricao.acronimo_da_instituicao_ou_empresa}}
+                        </dd>
+                        <dt>
+                            Nome da Instituição ou Empresa
+                        </dt>
+                        <dd>
+                            {{::view.inscricao.nome_da_instituicao_ou_empresa}}
+                        </dd>
+                    </dl>
+                    <!-- Cursos Pré-Congresso [begin] -->
+                    <div
+                        data-ez-view-cursos
+                        >
+                    </div>
+                    <!-- Cursos Pré-Congresso [end] -->
+                    <a
+                        class="
+                            btn
+                            btn-primary
+                        "
+                        data-ng-href="inscricao/{{::view.inscricao.id}}/editar"
+                        >
+                        <span
+                            class="
+                                glyphicon
+                                glyphicon-pencil
+                            "
+                            >
+                        </span>
+                        Editar
+                    </a>
+                </div>
+                <div
+                    class="
+                        col-md-4
+                    "
+                    >
+                    <div
+                        data-ez-pagamento
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,191 @@
+<fieldset>
+    <legend>
+        Cursos Pré-Congresso
+    </legend>
+    <div
+        class="
+            form-group
+        "
+        >
+        <label
+            class="
+                control-label
+            "
+            for="8h-12h"
+            >
+            8h-12h
+        </label>
+        <div class="checkbox">
+            <label>
+                <input
+                    data-ng-change="cursos.setunset('curso_matutino')"
+                    data-ng-disabled="cursos.curso_matutino_noneditable"
+                    data-ng-model="cursos.curso_matutino"
+                    type="checkbox"
+                    >
+                    Quero participar de um curso <strong>matutino</strong>
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-model="edit.inscricao.curso_matutino"
+                    id="entadpdhiv"
+                    name="curso_matutino"
+                    type="radio"
+                    value="ENTADPDHIV"
+                    >
+                    Especialidades no tratamento ambulatorial de portadores de HIV.
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-model="edit.inscricao.curso_matutino"
+                    id="nec"
+                    name="curso_matutino"
+                    type="radio"
+                    value="NEC"
+                    >
+                    Nutrição e câncer.
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-model="edit.inscricao.curso_matutino"
+                    id="ccapppt"
+                    name="curso_matutino"
+                    type="radio"
+                    value="CCAPPPT"
+                    >
+                    Cuidados com a pele periestomal: prevenção e tratamento. <strong>Parte I</strong>.
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-model="edit.inscricao.curso_matutino"
+                    id="amdi"
+                    name="curso_matutino"
+                    type="radio"
+                    value="AMDI"
+                    >
+                    Avaliação multidimensional do idoso. <strong>Parte I</strong>.
+            </label>
+        </div>
+    </div>
+    <div
+        class="
+            form-group
+        "
+        >
+        <label
+            class="
+                control-label
+            "
+            for="14h-18h"
+            >
+            14h-18h
+        </label>
+        <div class="checkbox">
+            <label>
+                <input
+                    data-ng-change="cursos.setunset('curso_vespertino')"
+                    data-ng-disabled="cursos.curso_vespertino_noneditable"
+                    data-ng-model="cursos.curso_vespertino"
+                    type="checkbox"
+                    >
+                    Quero participar de um curso <strong>vespertino</strong>
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="
+                        !cursos.curso_vespertino ||
+                        cursos.curso_vespertino_noneditable
+                    "
+                    data-ng-model="edit.inscricao.curso_vespertino"
+                    id="ccopd"
+                    name="curso_vespertino"
+                    type="radio"
+                    value="CCOPD"
+                    >
+                    Cuidados com o paciente diabético.
+                    <b>
+                        *
+                    </b>
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_vespertino || cursos.curso_vespertino_noneditable"
+                    data-ng-model="edit.inscricao.curso_vespertino"
+                    id="sneep"
+                    name="curso_vespertino"
+                    type="radio"
+                    value="SNEEP"
+                    >
+                    Suporte nutricional enteral e parenteral.
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_vespertino || cursos.curso_vespertino_noneditable"
+                    data-ng-model="edit.inscricao.curso_vespertino"
+                    id="ccapppt"
+                    name="curso_vespertino"
+                    type="radio"
+                    value="CCAPPPT"
+                    >
+                    Cuidados com a pele periestomal: prevenção e tratamento. <strong>Parte II</strong>.
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="!cursos.curso_vespertino || cursos.curso_vespertino_noneditable"
+                    data-ng-model="edit.inscricao.curso_vespertino"
+                    id="amdi"
+                    name="curso_vespertino"
+                    type="radio"
+                    value="AMDI"
+                    >
+                    Avaliação multidimensional do idoso. <strong>Parte II</strong>.
+            </label>
+        </div>
+        <p
+            class="
+                help-block
+            "
+            >
+            <b>
+                *
+            </b>
+            Curso não confirmado.
+        </p>
+    </div>
+</fieldset>

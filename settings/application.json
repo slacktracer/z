@@ -1,0 +1,9 @@
+{
+    "developmentPort": 3000,
+    "environment": "",
+    "faviconPath": "public/favicon.ico",
+    "indexPath": "public/index.html",
+    "onEnvironmentSetMessage": "Application environment set to %s.",
+    "onListeningMessage": "I'm listening on port %s.",
+    "staticPath": "public/"
+}

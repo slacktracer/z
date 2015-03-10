@@ -1,0 +1,19 @@
+#home h1 {
+    color: #777777;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 112px;
+    font-weight: 700;
+    line-height: 1.22;
+    text-shadow: 4px 4px 6px #dddddd;
+}
+#home .lead {
+    color: #999999;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 32px;
+}
+#home .btn-lg {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 28px;
+    line-height: 1.66;
+    margin: 10px 0px;
+}

@@ -1,0 +1,13 @@
+{
+    "console": {
+        "colorize": true,
+        "level": "debug",
+        "timestamp": true
+    },
+    "papertrail": {
+        "colorize": true,
+        "host": "logs2.papertrailapp.com",
+        "level": "debug",
+        "port": 52643
+    }
+}

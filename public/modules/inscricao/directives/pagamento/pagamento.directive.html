@@ -1,0 +1,119 @@
+<h2>
+    Situação da Inscrição
+</h2>
+<p
+    class="
+        big-label
+        text-justify
+    "
+    >
+    <span
+        data-ng-switch="pagamento.status"
+        >
+        <span
+            data-ng-switch-when="verifying"
+            >
+            <span
+                class="
+                    label
+                    label-default
+                "
+                >
+                Verificando Situação...
+            </span>
+        </span>
+        <span
+            data-ng-switch-when="ok"
+            >
+            <span
+                class="
+                    label
+                    label-success
+                "
+                >
+                Inscrição Confirmada
+            </span>
+        </span>
+        <span
+            data-ng-switch-when="pending"
+            >
+            <span
+                class="
+                    label
+                    label-warning
+                "
+                >
+                Inscrição Pendente
+            </span>
+        </span>
+        <span
+            data-ng-switch-default
+            >
+            <span
+                class="
+                    label
+                    label-danger
+                "
+                >
+                Fnord. Erro 2501.
+            </span>
+        </span>
+    </span>
+</p>
+<div>
+    <hr>
+    <h2>
+        Dados para o Pagamento
+    </h2>
+    <p
+        class="
+            text-justify
+        "
+        >
+        Para que sua inscrição seja efetivada basta realizar um depósito ou transferência no valor de <b>R${{pagamento.valor}},00</b> e enviar uma cópia do comprovante de depósito ou transferência para o endereço <a href="mailto:congressohujbb2015@gmail.com">congressohujbb2015@gmail.com</a>.
+    </p>
+    <p
+        class="
+            text-justify
+        "
+        >
+        Os dados para a realização do depósito ou transferência são:
+    </p>
+    <dl>
+        <dt>
+            Favorecido
+        </dt>
+        <dd>
+            Fundação de Amparo e Desenvolvimento da Pesquisa (FADESP)
+        </dd>
+        <dt>
+            Banco
+        </dt>
+        <dd>
+            001 (Banco do Brasil)
+        </dd>
+        <dt>
+            Agência
+        </dt>
+        <dd>
+            3702-8
+        </dd>
+        <dt>
+            Conta Corrente
+        </dt>
+        <dd>
+            102.144-3
+        </dd>
+        <dt>
+            <abbr
+                class="initialism"
+                title="Cadastro Nacional da Pessoa Jurídica"
+                >
+                CNPJ
+            </abbr>
+        </dt>
+        <dd>
+            05.572.870/0001-59
+        </dd>
+    </dl>
+</div>

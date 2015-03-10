@@ -1,0 +1,6 @@
+{
+    "audience": {
+        "development":"http://localhost:3000/",
+        "production": "http://siga.evennode.com/"
+    }
+}
