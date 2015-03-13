@@ -1,8 +1,5 @@
 (function () {
     'use strict';
     angular
-        .module('notifier', [
-            'ngAnimate',
-            'ngSanitize'
-        ]);
+        .module('notifier', []);
 }());
