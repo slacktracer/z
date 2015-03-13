@@ -7,13 +7,15 @@
         '$location',
         'main.observed',
         'session.data',
-        'session.navigator'
+        'session.navigator',
+        'session.notifications'
     ];
     function session(
         $location,
         main$observed,
         data,
-        navigator
+        navigator,
+        notifications
     ) {
         var
             intent,
@@ -100,9 +102,11 @@
             return true;
         }
         function onlogin(assertion) {
+            notifications.authenticating.pending();
             data
                 .createSession(assertion)
                 .then(function onResolve(value) {
+                    notifications.authenticating.fulfilled();
                     load(service, value);
                     followIntent();
                 })
@@ -130,9 +134,11 @@
                 });
         }
         function setup() {
+            notifications.verifyingAuthenticationState.pending();
             data
                 .readSession()
                 .then(function onResolve(value) {
+                    notifications.verifyingAuthenticationState.fulfilled();
                     load(service, value);
                     service.signIn = signIn;
                     service.signOut = signOut;

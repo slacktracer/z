@@ -10,6 +10,7 @@
         'inscricao.cadastroDePessoaFisica',
         'inscricao.data',
         'inscricao.errorHandler',
+        'inscricao.notifications',
         'session.session'
     ];
     function Edit(
@@ -19,6 +20,7 @@
         cadastroDePessoaFisica,
         data,
         errorHandler,
+        notifications,
         session
     ) {
         var
@@ -38,7 +40,7 @@
          * functions
          */
         function activate(action) {
-            vm.inscricao = data.example('Thiago');
+            vm.inscricao = data.example();
             vm.state = 'pending';
             if (action === 'nova') {
                 vm.submit = save;
@@ -130,9 +132,11 @@
             vm.afterInvalidSubmission = true;
             vm.actionButtonsDisabled = true;
             if (vm.ficha.$valid) {
+                notifications.saving.pending();
                 data
                     .update(vm.inscricao)
                     .then(function onResolve(value) {
+                        notifications.saving.fulfilled();
                         if (value.isError) {
                             throw value;
                         }
@@ -141,10 +145,12 @@
                         $location.path('/inscricao/' + vm.inscricao.id);
                     })
                     .catch(function onReject(reason) {
+                        notifications.saving.rejected();
                         errorHandler(reason);
                         vm.actionButtonsDisabled = false;
                     });
             } else {
+                notifications.invalid();
                 vm.actionButtonsDisabled = false;
             }
         }
