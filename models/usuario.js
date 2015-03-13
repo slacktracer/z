@@ -31,7 +31,8 @@
     }
     function getInscricao(email) {
         return modules
-            .executor(
+            .executor
+            .getFirst(
                 squel
                     .select()
                     .field('id')
@@ -39,7 +40,6 @@
                     .where('email = ?', email)
                     .where('__status__ = 1')
             )
-            .then(modules.executor.first)
             .then(function onResolve(value) {
                 return (value) ? value.id : value;
             });
@@ -58,7 +58,8 @@
             permissions: getPermissions(email)
         };
         return modules
-            .executor(
+            .executor
+            .getFirst(
                 squel
                     .select()
                     .field('inscricao')
@@ -66,7 +67,6 @@
                     .where('email = ?', email)
                     .where('__status__ = 1')
             )
-            .then(modules.executor.first)
             .then(function onResolve(value) {
                 if (value === null) {
                     return null;

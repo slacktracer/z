@@ -223,7 +223,8 @@
     }
     function readStatusById(id) {
         return modules
-            .executor(
+            .executor
+            .getFirst(
                 squel
                     .select()
                     .field('status')
@@ -231,7 +232,6 @@
                     .where('inscricao = ?', id)
                     .where('__status__ = 1')
             )
-            .then(modules.executor.first)
             .then(function onResolve(value) {
                 if (value) {
                     if (value.status === 0) {

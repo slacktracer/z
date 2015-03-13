@@ -7,7 +7,7 @@
 ) {
     module.exports = execute;
     let Promise = bluebird;
-    execute.first = first;
+    execute.getFirst = getFirst;
     function execute(query) {
         return new Promise(function executor(resolve, reject) {
             let connection = mysql.createConnection(settings.database);
@@ -30,9 +30,12 @@
             connection.end();
         });
     }
-    function first(value) {
-        let valueResult = value.result;
-        return (valueResult.length) ? Promise.resolve(valueResult[0]) : Promise.resolve(null);
+    function getFirst(value) {
+        execute
+            .then(function onResolve(value) {
+                let valueResult = value.result;
+                return (valueResult.length) ? valueResult[0] : null;
+            });
     }
 }(
     require('bluebird'),
@@ -41,6 +44,6 @@
     },
     require('mysql'),
     { //settings
-        database: require('../settings/database')
+        database: require('../settings/database').main
     }
 ));
