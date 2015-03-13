@@ -71,7 +71,7 @@
     router.post(
         '/',
         middleware.denyMultiple,
-        middleware.protectEmail,
+        middleware.guardEmail,
         function (request, response, next) {
             models
                 .inscricao
@@ -93,32 +93,37 @@
                 });
         }
     );
-    router.put('/', function (request, response, next) {
-        models
-            .inscricao
-            .update(request.body, request.session.email)
-            .then(function then(id) {
-                request.session.inscricao = id;
-                response
-                    .status(204)
-                    .send({});
-            })
-            .catch(function (reason) {
-                if (reason.isError !== true) {
-                    modules.logger.warn('Uncaught exception!');
-                }
-                modules.logger.error(reason);
-                response
-                    .status(500)
-                    .send(reason);
-            });
-    });
+    router.put(
+        '/',
+        middleware.guardInscricao,
+        function (request, response, next) {
+            models
+                .inscricao
+                .update(request.body, request.session.email)
+                .then(function then(id) {
+                    request.session.inscricao = id;
+                    response
+                        .status(204)
+                        .send({});
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
 }(
     require('express'),
     { //middleware
         denyMultiple: require('./middleware').denyMultiple,
         denyViewOthers: require('./middleware').denyViewOthers,
-        protectEmail: require('./middleware').protectEmail
+        guardEmail: require('./middleware').guardEmail,
+        guardInscricao: require('./middleware').guardInscricao,
     },
     { //models
         inscricao: require('../models/inscricao')
