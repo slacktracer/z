@@ -6,11 +6,12 @@
     settings
 ) {
     module.exports = execute;
+    let databaseSettings = settings.database[settings.database.active];
     let Promise = bluebird;
     execute.getFirst = getFirst;
     function execute(query) {
         return new Promise(function executor(resolve, reject) {
-            let connection = mysql.createConnection(settings.database);
+            let connection = mysql.createConnection(databaseSettings);
             connection.connect();
             connection.query(query.toString(), function (error, result, fields) {
                 if (error) {
@@ -30,8 +31,8 @@
             connection.end();
         });
     }
-    function getFirst(value) {
-        execute
+    function getFirst(query) {
+        return execute(query)
             .then(function onResolve(value) {
                 let valueResult = value.result;
                 return (valueResult.length) ? valueResult[0] : null;
@@ -44,6 +45,6 @@
     },
     require('mysql'),
     { //settings
-        database: require('../settings/database').main
+        database: require('../settings/database')
     }
 ));

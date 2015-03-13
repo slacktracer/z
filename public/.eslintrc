@@ -9,7 +9,9 @@
         "node": false
     },
     "globals": {
-        "angular": false
+        "angular": false,
+        "jQuery": false,
+        "moment": false
     },
     "rules": {
         "generator-star": 0,

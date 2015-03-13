@@ -3,23 +3,31 @@
     angular
         .module('inscricao')
         .factory('inscricao.errorHandler', errorHandler);
-    function errorHandler() {
+    errorHandler.$inject = [
+        'inscricao.notifications'
+    ];
+    function errorHandler(
+        notifications
+    ) {
         var
-            surrogate = window.alert;
+            surrogateAlert,
+            surrogateError;
+        surrogateAlert = window.alert;
+        surrogateError = window.error;
         return service;
         function service(error) {
             switch (error.type) {
             case 'ACCESS_DENIED':
-                surrogate('ACCESS_DENIED');
+                surrogateAlert('ACCESS_DENIED');
                 break;
             case 'CPF_REPETIDO':
-                surrogate('CPF_REPETIDO');
+                notifications.cpfRepetido();
                 break;
             case 'NO_SUCH_ID':
-                surrogate('NO_SUCH_ID');
+                surrogateAlert('NO_SUCH_ID');
                 break;
             default:
-                surrogate('UNCAUGHT: ' + error.type);
+                surrogateError('UNCAUGHT: ' + error.type);
             }
         }
     }

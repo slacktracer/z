@@ -7,7 +7,7 @@
         '$timeout',
         'notifier.defaults',
         'notifier.notify'
-    ]
+    ];
     function notifier(
         $timeout,
         defaults,
@@ -38,13 +38,13 @@
                 false
             );
         }
-        function justClose(notification, milliseconds) {
+        function justClose(notificationToClose, milliseconds) {
             internalTimeout(
                 function onTimeout(notification) {
                     notification.close();
                 },
                 milliseconds,
-                notification
+                notificationToClose
             );
         }
     }

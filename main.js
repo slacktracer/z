@@ -18,12 +18,10 @@
     });
     function routing(application) {
         application.use('/api', routers.api);
-        return;
     }
     function setEnvironment(environment) {
         settings.application.environment = environment;
         modules.logger.info(settings.application.onEnvironmentSetMessage, environment);
-        return;
     }
 }(
     { //modules
