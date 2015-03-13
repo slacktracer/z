@@ -30,6 +30,14 @@
             rel="stylesheet"
             >
         <link
+            href="3rd-party/assets/animate.css/animate.css"
+            rel="stylesheet"
+            >
+        <link
+            href="3rd-party/assets/bootstrap-notify/css/custom-progress-bar.css"
+            rel="stylesheet"
+            >
+        <link
             href="assets/css/main.css"
             rel="stylesheet"
             >
@@ -63,10 +71,6 @@
         data-ng-csp
         >
         <div
-            data-ntf-notifier
-            >
-        </div>
-        <div
             data-ez-navigation
             >
         </div>
@@ -90,23 +94,27 @@
             >
         </script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"
+            src="3rd-party/assets/bootstrap-notify/js/bootstrap-notify.min.js"
             >
         </script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-animate.min.js"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"
             >
         </script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-aria.min.js"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.min.js"
             >
         </script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-route.min.js"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-aria.min.js"
             >
         </script>
         <script
-            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-sanitize.min.js"
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"
+            >
+        </script>
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-sanitize.min.js"
             >
         </script>
         <script
@@ -142,15 +150,15 @@
             >
         </script>
         <script
-            src="modules/notifier/notifier.provider.js"
+            src="modules/notifier/notify.constant.js"
             >
         </script>
         <script
-            src="modules/notifier/notifier.directive.js"
+            src="modules/notifier/defaults.constant.js"
             >
         </script>
         <script
-            src="modules/notifier/notification.directive.js"
+            src="modules/notifier/notifier.service.js"
             >
         </script>
         <script
@@ -171,6 +179,10 @@
         </script>
         <script
             src="modules/session/data.service.js"
+            >
+        </script>
+        <script
+            src="modules/session/notifications.service.js"
             >
         </script>
         <script
@@ -199,6 +211,10 @@
         </script>
         <script
             src="modules/inscricao/services/example.service.js"
+            >
+        </script>
+        <script
+            src="modules/inscricao/services/notifications.service.js"
             >
         </script>
         <script
