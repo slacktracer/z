@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular
-        .module('inscricao')
+        .module('main')
         .directive('ezEnvelope', ezEnvelope);
     function ezEnvelope() {
         return {
@@ -11,7 +11,7 @@
             scope: {
                 state: '='
             },
-            templateUrl: '/modules/inscricao/directives/envelope/envelope.directive.html',
+            templateUrl: '/modules/main/directives/envelope/envelope.directive.html',
             transclude: true
         };
         /**
