@@ -29,7 +29,7 @@
          */
         function create(inscricao) {
             return $http
-                .post('/api/inscricao/', inscricao)
+                .post('/api/inscricao', inscricao)
                 .then(function onResolve(value) {
                     return value.data.id;
                 })

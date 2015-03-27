@@ -76,6 +76,8 @@
                     .set('curso_ou_formacao', inscricao.curso_ou_formacao)
                     .set('acronimo_da_instituicao_ou_empresa', inscricao.acronimo_da_instituicao_ou_empresa)
                     .set('nome_da_instituicao_ou_empresa', inscricao.nome_da_instituicao_ou_empresa)
+                    .set('status', 0)
+                    .set('valor_pago', 0)
                     .set('curso_matutino', inscricao.curso_matutino)
                     .set('curso_vespertino', inscricao.curso_vespertino)
                     .set('__status__', 1)
@@ -84,28 +86,15 @@
                 inscricao.id = value.result.insertId;
             })
             .then(function onResolve() {
-                return Promise
-                    .all([
-                        modules
-                            .executor(
-                                squel
-                                    .update()
-                                    .table('usuario')
-                                    .set('inscricao', inscricao.id)
-                                    .where('email = ?', email)
-                                    .where('__status__ = 1')
-                            ),
-                        modules
-                            .executor(
-                                squel
-                                    .insert()
-                                    .into('pagamento')
-                                    .set('inscricao', inscricao.id)
-                                    .set('valor', 0)
-                                    .set('status', 0)
-                                    .set('__status__', 1)
-                            )
-                    ]);
+                return modules
+                    .executor(
+                        squel
+                            .update()
+                            .table('usuario')
+                            .set('inscricao', inscricao.id)
+                            .where('email = ?', email)
+                            .where('__status__ = 1')
+                    );
             })
             .then(function onResolve() {
                 return inscricao.id;
@@ -228,8 +217,8 @@
                 squel
                     .select()
                     .field('status')
-                    .from('pagamento')
-                    .where('inscricao = ?', id)
+                    .from('inscricao')
+                    .where('id = ?', id)
                     .where('__status__ = 1')
             )
             .then(function onResolve(value) {

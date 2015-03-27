@@ -40,7 +40,7 @@
          * functions
          */
         function activate(action) {
-            vm.inscricao = data.example('Thiago');
+            vm.inscricao = data.example();
             vm.state = 'pending';
             if (action === 'nova') {
                 vm.submit = save;
@@ -118,7 +118,6 @@
                             throw value;
                         }
                         notifications.saving.fulfilled();
-                        vm.actionButtonsDisabled = false;
                         session.renew();
                         $location.path('/inscricao/' + value);
                     })

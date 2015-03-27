@@ -114,9 +114,9 @@
         return service;
         function service(name) {
             if (examples[name]) {
-                return examples[name];
+                return Object.create(examples[name]);
             }
-            return empty;
+            return Object.create(empty);
         }
     }
 }());
