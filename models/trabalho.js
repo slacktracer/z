@@ -1,3 +1,4 @@
+/* eslint camelcase: 0 */
 'use strict';
 (function (
     modules,
@@ -53,7 +54,7 @@
                 let trabalhos = value.result;
                 trabalhos.forEach(function forEach(trabalho) {
                     formatOut(trabalho);
-                })
+                });
                 return trabalhos;
             });
     }

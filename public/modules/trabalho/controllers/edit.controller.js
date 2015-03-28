@@ -74,7 +74,6 @@
             var
                 fieldName;
             vm.tabs[index].trabalho = data.example();
-            vm.tabs[index].arquivo = "";
             vm[formName].$setPristine();
             vm.tabs[index].afterInvalidSubmission = false;
             for (fieldName in vm.tabs[index][formName]) {
@@ -113,7 +112,7 @@
                             lockdown(index);
                         })
                         .catch(function onReject(reason) {
-                            errorHandler(reason);
+                            // errorHandler(reason);
                             vm.tabs[index].actionButtonsDisabled = false;
                         });
                 }

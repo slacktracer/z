@@ -1,12 +1,10 @@
 /* eslint camelcase: 0 */
 'use strict';
 (function (
-    bluebird,
     modules,
     moment,
     squel
 ) {
-    let Promise = bluebird;
     let model = {
         create: create,
         readAll: readAll,
@@ -311,7 +309,6 @@
             });
     }
 }(
-    require('bluebird'),
     { //modules
         executor: require('../modules/executor'),
         logger: require('../modules/logger')

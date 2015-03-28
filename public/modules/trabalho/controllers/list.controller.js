@@ -7,8 +7,5 @@
     ];
     function List(
     ) {
-        var
-            vm;
-        vm = this;
     }
 }());

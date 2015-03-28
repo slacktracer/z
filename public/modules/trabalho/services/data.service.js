@@ -36,11 +36,11 @@
                     },
                     file: arquivo
                 })
-                .success(function onSuccess(data) {
-                    return data;
+                .success(function onSuccess(successData) {
+                    return successData;
                 })
-                .error(function onError(data) {
-                    return data;
+                .error(function onError(errorData) {
+                    return errorData;
                 })
                 .progress(onProgress);
         }
