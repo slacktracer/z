@@ -30,6 +30,7 @@
     "express": "^4.11.2",
     "moment": "^2.9.0",
     "morgan": "^1.5.1",
+    "multiparty": "^4.1.1",
     "mysql": "^2.5.4",
     "serve-favicon": "^2.2.0",
     "serve-static": "^1.8.1",

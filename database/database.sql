@@ -58,6 +58,8 @@ CREATE TABLE IF NOT EXISTS `anzol20`.`inscricao` (
   `curso_ou_formacao` VARCHAR(256) NULL,
   `acronimo_da_instituicao_ou_empresa` VARCHAR(64) NULL,
   `nome_da_instituicao_ou_empresa` VARCHAR(256) NULL,
+  `confirmada` TINYINT(1) NULL,
+  `valor_pago` DECIMAL(10,2) NULL,
   `curso_matutino` VARCHAR(32) NULL,
   `curso_vespertino` VARCHAR(32) NULL,
   `__status__` TINYINT(1) NULL,
@@ -95,26 +97,28 @@ COLLATE = utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `anzol20`.`pagamento`
+-- Table `anzol20`.`trabalho`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `anzol20`.`pagamento` ;
+DROP TABLE IF EXISTS `anzol20`.`trabalho` ;
 
-CREATE TABLE IF NOT EXISTS `anzol20`.`pagamento` (
+CREATE TABLE IF NOT EXISTS `anzol20`.`trabalho` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `inscricao` INT UNSIGNED NOT NULL,
-  `valor` DECIMAL(10,2) NULL,
-  `status` TINYINT(1) NULL,
+  `area_tematica` INT UNSIGNED NULL,
+  `titulo` VARCHAR(250) NULL,
+  `autores` VARCHAR(256) NULL,
+  `tipo_de_resumo` INT UNSIGNED NULL,
+  `nome_do_arquivo` VARCHAR(512) NULL,
+  `aprovado` TINYINT(1) NULL,
   `__status__` TINYINT(1) NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_pagamento_inscricao1_idx` (`inscricao` ASC),
-  CONSTRAINT `fk_pagamento_inscricao`
+  INDEX `fk_trabalho_inscricao1_idx` (`inscricao` ASC),
+  CONSTRAINT `fk_trabalho_inscricao1`
     FOREIGN KEY (`inscricao`)
     REFERENCES `anzol20`.`inscricao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
+ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

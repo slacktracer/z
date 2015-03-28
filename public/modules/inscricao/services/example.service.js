@@ -36,11 +36,11 @@
             'cep': '',
             'endereco': '',
             'nome_no_cracha': '',
-            'categoria': '1',
+            'categoria': 1,
             'curso_ou_formacao': '',
             'acronimo_da_instituicao_ou_empresa': '',
             'nome_da_instituicao_ou_empresa': '',
-            '__status__': '1'
+            '__status__': 1
         };
         examples = {
             'Thiago': {
@@ -71,11 +71,11 @@
                 'cep': '66055000',
                 'endereco': '',
                 'nome_no_cracha': 'Thiago F',
-                'categoria': '1',
+                'categoria': 1,
                 'curso_ou_formacao': 'Tecnologia em Processamento de Dados',
                 'acronimo_da_instituicao_ou_empresa': 'UNAMA',
                 'nome_da_instituicao_ou_empresa': 'Universidade da Amazônia',
-                '__status__': '1'
+                '__status__': 1
             },
             'Sherlock': {
                 'id': 0,
@@ -105,18 +105,19 @@
                 'uf': '',
                 'cep': '',
                 'nome_no_cracha': 'Holmes',
-                'categoria': '2',
+                'categoria': 2,
                 'curso_ou_formacao': 'Consulting Detective',
                 'acronimo_da_instituicao_ou_empresa': '',
-                'nome_da_instituicao_ou_empresa': 'Scotland Yard'
+                'nome_da_instituicao_ou_empresa': 'Scotland Yard',
+                '__status__': 1
             }
         };
         return service;
         function service(name) {
             if (examples[name]) {
-                return examples[name];
+                return JSON.parse(JSON.stringify(examples[name]));
             }
-            return Object.create(empty);
+            return JSON.parse(JSON.stringify(empty));
         }
     }
 }());

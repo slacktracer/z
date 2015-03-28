@@ -1,5 +1,6 @@
 'use strict';
 (function (
+    models,
     modules,
     settings,
     squel
@@ -13,7 +14,7 @@
      * functions
      */
     function create(email) {
-        modules.logger.info('Criando usuário: ' + email + '.');
+        modules.logger.info(`Criando usuário: ${email}.`);
         return modules
             .executor(
                 squel
@@ -25,7 +26,7 @@
                     })
             )
             .then(function onResolve() {
-                modules.logger.info(`Usuário criado. Email: ${email}`);
+                modules.logger.info(`Usuário criado. E-mail: ${email}.`);
                 return getInscricao(email);
             });
     }
@@ -44,6 +45,17 @@
                 return (value) ? value.id : value;
             });
     }
+    function setInscricao(email, inscricao) {
+        return modules
+            .executor(
+                squel
+                    .update()
+                    .table('usuario')
+                    .set('inscricao', inscricao)
+                    .where('email = ?', email)
+                    .where('__status__ = 1')
+            );
+    }
     function getPermissions(email) {
         if (email in settings.permissions) {
             return settings.permissions[email];
@@ -51,7 +63,7 @@
         return settings.permissions.default;
     }
     function read(email) {
-        modules.logger.info(`Buscando usuário: ${email}`);
+        modules.logger.info(`Buscando usuário: ${email}.`);
         let usuario = {
             email: email,
             inscricao: null,
@@ -80,17 +92,24 @@
                         .create(email)
                         .then(function onResolve(inscricao) {
                             if (inscricao) {
-                                modules.logger.info(`Inscrição preexistente encontrada para o email ${email}`);
+                                modules.logger.info(`Inscrição preexistente encontrada para o e-mail ${email}. Inscrição: ${inscricao}.`);
                                 usuario.inscricao = inscricao;
+                                return setInscricao(email, inscricao)
+                                    .then(function onResolve() {
+                                        return usuario;
+                                    });
                             }
                             return usuario;
                         });
                 }
-                modules.logger.info(`Usuário encontrado. Email: ${email}`);
+                modules.logger.info(`Usuário encontrado. E-mail: ${email}.`);
                 return usuario;
             });
     }
 }(
+    { //models
+        trabalho: require('./trabalho')
+    },
     { //modules
         executor: require('../modules/executor'),
         logger: require('../modules/logger')
