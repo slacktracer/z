@@ -7,6 +7,7 @@
             'ngAnimate',
             'ngRoute',
             'session',
-            'settings'
+            'settings',
+            'trabalho'
         ]);
 }());

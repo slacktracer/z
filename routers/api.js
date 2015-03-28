@@ -12,6 +12,7 @@
     router.use(clientSessions(settings.session));
     router.use(bodyParser.json());
     router.use('/inscricao', routers.inscricao);
+    router.use('/trabalho', routers.trabalho);
     router.use('/usuario', routers.usuario);
 }(
     require('body-parser'),
@@ -22,6 +23,7 @@
     },
     { //routers
         inscricao: require('./inscricao'),
+        trabalho: require('./trabalho'),
         usuario: require('./usuario')
     },
     { //settings

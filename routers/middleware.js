@@ -1,12 +1,14 @@
 'use strict';
 (function (
-    modules
+    modules,
+    Form
 ) {
     let middleware = {
         denyMultiple: denyMultiple,
         denyViewOthers: denyViewOthers,
         guardEmail: guardEmail,
-        guardInscricao: guardInscricao
+        guardInscricao: guardInscricao,
+        parseUpload: parseUpload
     };
     module.exports = middleware;
     function denyMultiple(request, response, next) {
@@ -64,9 +66,35 @@
         }
         return next();
     }
+    function parseUpload(request, response, next) {
+        let form = new Form();
+        form.parse(
+            request,
+            function onParse(
+                error,
+                fields,
+                files
+            ) {
+                if (error) {
+                    response
+                        .status(500)
+                        .send({
+                            isError: true,
+                            type: 'PARSE_ERROR'
+                        });
+                    throw error;
+                }
+                request.body.trabalho = JSON.parse(fields.trabalho[0]);
+                request.body.trabalho.nome_do_arquivo = files.file[0].originalFilename;
+                request.body.arquivo = files.file[0].path;
+                return next();
+            }
+        );
+    }
 }(
     { //modules
         authorizer: require('../modules/authorizer'),
         logger: require('../modules/logger')
-    }
+    },
+    require('multiparty').Form
 ));

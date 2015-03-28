@@ -1,0 +1,403 @@
+<div
+    data-state="edit.state"
+    ez-envelope
+    >
+    <div
+        class="
+            row
+        "
+        >
+        <div
+            class="
+                col-md-12
+            "
+            >
+            <h1>
+                Submissão de Trabalho Científico
+            </h1>
+            <hr>
+            <div>
+                <ul
+                    class="
+                        nav
+                        nav-tabs
+                    "
+                    >
+                    <li
+                        data-ng-class="{
+                            'active': edit.activeTab === tab.id
+                        }"
+                        data-ng-repeat="tab in edit.tabs"
+                        >
+                        <a
+                            data-ng-click="edit.activateTab(tab.id)"
+                            href="#"
+                            >
+                            {{tab.name}}
+                        </a>
+                    </li>
+                </ul>
+                <div
+                    class="
+                        tab-content
+                    "
+                    >
+                    <div
+                        class="
+                            tab-pane
+                        "
+                        data-ng-class="{
+                            'active': edit.activeTab === tab.id
+                        }"
+                        data-ng-repeat="tab in edit.tabs"
+                        >
+                        <br>
+                        <div
+                            class="
+                                row
+                            "
+                            >
+                            <div
+                                class="
+                                    col-md-12
+                                "
+                                >
+                                <h2>
+                                    {{tab.name}}
+                                </h2>
+                                <hr>
+                                <div
+                                    class="
+                                        alert
+                                        alert-warning
+                                    "
+                                    >
+                                    <button
+                                        class="
+                                            close
+                                        "
+                                        data-dismiss="alert"
+                                        type="button"
+                                        >
+                                        &times;
+                                    </button>
+                                    <strong>
+                                        Atenção!
+                                    </strong>
+                                    Os campos marcados com um
+                                    <span
+                                        class="
+                                            glyphicon
+                                            glyphicon-asterisk
+                                        "
+                                    >
+                                    </span>
+                                    (asterisco) são obrigatórios.
+                                </div>
+                                <form
+                                    data-ng-submit="edit.submit($index)"
+                                    name="edit.ficha_{{$index + 1}}"
+                                    novalidate
+                                    >
+                                    <div
+                                        class="
+                                            form-group
+                                        "
+                                        data-ng-class="{
+                                            'has-error': edit.isInvalidField('area_tematica', 'ficha_' + ($index + 1), $index)
+                                        }"
+                                        >
+                                        <label
+                                            class="
+                                                control-label
+                                            "
+                                            for="area_tematica"
+                                            >
+                                            Área Temática
+                                            <span
+                                                class="
+                                                    glyphicon
+                                                    glyphicon-asterisk
+                                                "
+                                                >
+                                            </span>
+                                        </label>
+                                        <select
+                                            class="
+                                                form-control
+                                            "
+                                            data-ng-blur="edit.setBlurred('area_tematica', 'ficha_' + ($index + 1))"
+                                            data-ng-disabled="tab.locked"
+                                            data-ng-model="tab.trabalho.area_tematica"
+                                            id="area_tematica"
+                                            name="area_tematica"
+                                            required
+                                            >
+                                            <option value="">Selecione uma Área Temática</option>
+                                            <option value="1">Cardiologia</option>
+                                            <option value="2">Ciências Básicas</option>
+                                            <option value="3">Cirurgia</option>
+                                            <option value="4">Clínica Médica</option>
+                                            <option value="5">Enfermagem</option>
+                                            <option value="6">Fisioterapia</option>
+                                            <option value="7">Geriatria</option>
+                                            <option value="8">Ginecologia e Obstetrícia</option>
+                                            <option value="9">Infectologia</option>
+                                            <option value="10">Miscelânea</option>
+                                            <option value="11">Neurologia</option>
+                                            <option value="12">Nutrição</option>
+                                            <option value="13">Odontologia</option>
+                                            <option value="14">Oncologia</option>
+                                            <option value="15">Pediatria</option>
+                                            <option value="16">Políticas Públicas</option>
+                                            <option value="17">Pneumologia</option>
+                                            <option value="18">Psicologia</option>
+                                            <option value="19">Saúde do Idoso</option>
+                                            <option value="20">Serviço Social</option>
+                                            <option value="21">Tecnologia em Saúde</option>
+                                            <option value="22">Terapia Ocupacional</option>
+                                        </select>
+                                    </div>
+                                    <div
+                                        class="
+                                            form-group
+                                        "
+                                        data-ng-class="{
+                                            'has-error': edit.isInvalidField('titulo', 'ficha_' + ($index + 1), $index)
+                                        }"
+                                        >
+                                        <label
+                                            class="
+                                                control-label
+                                            "
+                                            for="titulo"
+                                            >
+                                            Título
+                                            <span
+                                                class="
+                                                    glyphicon
+                                                    glyphicon-asterisk
+                                                "
+                                                >
+                                            </span>
+                                        </label>
+                                        <input
+                                            class="
+                                                form-control
+                                            "
+                                            data-ng-blur="edit.setBlurred('titulo', 'ficha_' + ($index + 1))"
+                                            data-ng-disabled="tab.locked"
+                                            data-ng-model="tab.trabalho.titulo"
+                                            id="titulo"
+                                            maxlength="250"
+                                            name="titulo"
+                                            required
+                                            type="text"
+                                            >
+                                    </div>
+                                    <div
+                                        class="
+                                            form-group
+                                        "
+                                        data-ng-class="{
+                                            'has-error': edit.isInvalidField('autores', 'ficha_' + ($index + 1), $index)
+                                        }"
+                                        >
+                                        <label
+                                            class="
+                                                control-label
+                                            "
+                                            for="autores"
+                                            >
+                                            Autores
+                                            <span
+                                                class="
+                                                    glyphicon
+                                                    glyphicon-asterisk
+                                                "
+                                                >
+                                            </span>
+                                        </label>
+                                        <input
+                                            class="
+                                                form-control
+                                            "
+                                            data-ng-blur="edit.setBlurred('autores', 'ficha_' + ($index + 1))"
+                                            data-ng-disabled="tab.locked"
+                                            data-ng-list="; "
+                                            data-ng-model="tab.trabalho.autores"
+                                            id="autores"
+                                            maxlength="250"
+                                            name="autores"
+                                            required
+                                            type="text"
+                                            >
+                                    </div>
+                                    <div
+                                        class="
+                                            form-group
+                                        "
+                                        data-ng-class="{
+                                            'has-error': edit.isInvalidField('tipo_de_resumo', 'ficha_' + ($index + 1), $index)
+                                        }"
+                                        >
+                                        <label
+                                            class="
+                                                control-label
+                                            "
+                                            for="tipo_de_resumo"
+                                            >
+                                            Tipo de Resumo
+                                            <span
+                                                class="
+                                                    glyphicon
+                                                    glyphicon-asterisk
+                                                "
+                                                >
+                                            </span>
+                                        </label>
+                                        <select
+                                            class="
+                                                form-control
+                                            "
+                                            data-ng-blur="edit.setBlurred('tipo_de_resumo', 'ficha_' + ($index + 1))"
+                                            data-ng-disabled="tab.locked"
+                                            data-ng-model="tab.trabalho.tipo_de_resumo"
+                                            id="tipo_de_resumo"
+                                            name="tipo_de_resumo"
+                                            required
+                                            >
+                                            <option value="">Selecione um Tipo de Resumo</option>
+                                            <option value="1">Expandido</option>
+                                            <option value="2">Simples</option>
+                                        </select>
+                                    </div>
+                                    <div
+                                        data-ng-if="!tab.locked"
+                                        >
+                                        <div
+                                            class="
+                                                form-group
+                                            "
+                                            data-ng-class="{
+                                                'has-error': edit.isInvalidField('arquivo', 'ficha_' + ($index + 1), $index)
+                                            }"
+                                            >
+                                            <label
+                                                class="
+                                                    control-label
+                                                "
+                                                for="arquivo"
+                                                >
+                                                Arquivo
+                                                <span
+                                                    class="
+                                                        glyphicon
+                                                        glyphicon-asterisk
+                                                    "
+                                                    >
+                                                </span>
+                                            </label>
+                                            <input
+                                                accept="image/*"
+                                                data-ng-blur="edit.setBlurred('arquivo', 'ficha_' + ($index + 1))"
+                                                data-ng-disabled="tab.locked"
+                                                data-ng-file-select
+                                                data-ng-model="tab.arquivo"
+                                                id="arquivo"
+                                                name="arquivo"
+                                                type="file"
+                                                required
+                                                >
+                                        </div>
+                                        <div
+                                            class="
+                                                progress
+                                            "
+                                            data-ng-init="tab.arquivo.percentual = 0"
+                                            >
+                                            <div
+                                                class="
+                                                    active
+                                                    progress-bar
+                                                    progress-bar-success
+                                                    progress-bar-striped
+                                                "
+                                                data-ng-style="{
+                                                    'width': tab.arquivo.percentual + '%'
+                                                }"
+                                                >
+                                                <span
+                                                    class="
+                                                        sr-only
+                                                    "
+                                                    >
+                                                    {{tab.arquivo.percentual}}% Completo
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <button
+                                            class="
+                                                btn
+                                                btn-success
+                                            "
+                                            data-ng-disabled="tab.actionButtonsDisabled"
+                                            type="submit"
+                                            >
+                                            <span
+                                                class="
+                                                    glyphicon
+                                                    glyphicon-cloud-upload
+                                                "
+                                                >
+                                            </span>
+                                            Enviar
+                                        </button>
+                                        <button
+                                            class="
+                                                btn
+                                                btn-link
+                                                pull-right
+                                            "
+                                            data-ng-click="edit.forget('ficha_' + ($index + 1), $index)"
+                                            data-ng-disabled="tab.actionButtonsDisabled"
+                                            type="button"
+                                            >
+                                            Limpar
+                                        </button>
+                                    </div>
+                                    <div
+                                        class="
+                                            form-group
+                                        "
+                                        data-ng-if="tab.locked"
+                                        >
+                                        <label
+                                            class="
+                                                control-label
+                                            "
+                                            for="nome_do_arquivo"
+                                            >
+                                            Arquivo Enviado
+                                        </label>
+                                        <input
+                                            class="
+                                                form-control
+                                            "
+                                            data-ng-model="tab.trabalho.nome_do_arquivo"
+                                            disabled
+                                            id="nome_do_arquivo"
+                                            name="nome_do_arquivo"
+                                            required
+                                            type="text"
+                                            >
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
