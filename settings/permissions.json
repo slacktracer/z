@@ -3,11 +3,13 @@
     "thiagocondurufigueiredo@gmail.com": [
         "CREATE_OTHERS",
         "MULTIPLE",
-        "VIEW_OTHERS"
+        "VIEW_OTHERS",
+        "VIEW_PAPERS"
     ],
     "zanaribeiro@gmail.com": [
         "CREATE_OTHERS",
         "MULTIPLE",
-        "VIEW_OTHERS"
+        "VIEW_OTHERS",
+        "VIEW_PAPERS"
     ]
 }
