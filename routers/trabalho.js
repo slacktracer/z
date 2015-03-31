@@ -15,14 +15,12 @@
                 .trabalho
                 .create(
                     request.body.trabalho,
-                    request.body.arquivo,
-                    request.session.inscricao
+                    request.session.inscricao,
+                    request.session.email
                 )
-                .then(function then(value) {
-                    request.session.trabalhos.push(value.id);
+                .then(function then(id) {
                     response.send({
-                        id: value.id,
-                        nome_do_arquivo: value.nome_do_arquivo
+                        id: id
                     });
                 })
                 .catch(function (reason) {
@@ -36,12 +34,16 @@
                 });
         }
     );
-    router.get('/inscricao/:id', function (request, response, next) {
+    router.get(
+        '/quantidade',
+        function (request, response, next) {
             models
                 .trabalho
-                .readByInscricao(request.session.inscricao)
-                .then(function then(value) {
-                    response.send(value);
+                .countByInscricao(request.session.inscricao)
+                .then(function then(quantidade) {
+                    response.send({
+                        quantidade: quantidade
+                    });
                 })
                 .catch(function (reason) {
                     if (reason.isError !== true) {

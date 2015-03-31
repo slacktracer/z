@@ -5,13 +5,11 @@
         .factory('trabalho.data', data);
     data.$inject = [
         '$http',
-        '$q',
         '$upload',
         'trabalho.example'
     ];
     function data(
         $http,
-        $q,
         $upload,
         example
     ) {
@@ -20,8 +18,7 @@
         service = {
             create: create,
             example: example,
-            readAll: readAll,
-            readByInscricao: readByInscricao
+            countByInscricao: countByInscricao
         };
         return service;
         /**
@@ -44,21 +41,11 @@
                 })
                 .progress(onProgress);
         }
-        function readAll() {
+        function countByInscricao() {
             return $http
-                .get('/api/trabalho')
+                .get('/api/trabalho/quantidade')
                 .then(function onResolve(value) {
-                    return value.data.inscricoes;
-                })
-                .catch(function onReject(reason) {
-                    return reason.data;
-                });
-        }
-        function readByInscricao(id) {
-            return $http
-                .get('/api/trabalho/inscricao/' + id)
-                .then(function onResolve(value) {
-                    return value.data;
+                    return value.data.quantidade;
                 })
                 .catch(function onReject(reason) {
                     return reason.data;

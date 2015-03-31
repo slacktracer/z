@@ -4,124 +4,121 @@
         .module('trabalho')
         .controller('trabalho.Edit', Edit);
     Edit.$inject = [
+        '$location',
         '$route',
         '$upload',
         'trabalho.data',
+        'trabalho.errorHandler',
+        'trabalho.notifications',
+        'trabalho.settings',
         'session.session'
     ];
     function Edit(
+        $location,
         $route,
         $upload,
         data,
+        errorHandler,
+        notifications,
+        settings,
         session
     ) {
         var
             vm;
         vm = this;
-        vm.activateTab = activateTab;
-        vm.activeTab = '1';
-        vm.tabs = [{
-            id: '1',
-            name: 'Submissão I'
-        }, {
-            id: '2',
-            name: 'Submissão II'
-        }];
+        vm.actionButtonsDisabled = false;
+        vm.afterInvalidSubmission = false;
+        vm.blocked = false;
+        vm.devMode = settings.devMode;
+        vm.examples = {
+            'autores': 'FIGUEIREDO, T.C.; ALVES, E.R.'
+        };
         vm.forget = reset;
         vm.isInvalidField = isInvalidField;
+        vm.limiteDeSubmissoes = settings.limiteDeSubmissoes;
         vm.setBlurred = setBlurred;
         vm.state = 'pending';
         vm.submit = send;
-        vm.tabs.forEach(function forEach(tab) {
-            tab.actionButtonsDisabled = false;
-            tab.afterInvalidSubmission = false;
-            tab.locked = false;
-            tab.trabalho = data.example();
-        });
+        vm.trabalho = data.example();
         activate();
         /**
          * functions
          */
         function activate() {
-            // vm.tabs[0].trabalho = data.example('simples');
-            // vm.tabs[1].trabalho = data.example('expandido');
+            notifications.loadingCount.pending();
             data
-                .readByInscricao(session.inscricao)
-                .then(function onResolve(trabalhos) {
-                    trabalhos.forEach(function forEach(trabalho, index) {
-                        vm.tabs[index].trabalho = trabalho;
-                        vm.tabs[index].locked = true;
-                    });
+                .countByInscricao()
+                .then(function onResolve(quantidade) {
+                    notifications.loadingCount.fulfilled();
+                    vm.blocked = quantidade >= vm.limiteDeSubmissoes;
                     vm.state = 'fulfilled';
+                })
+                .catch(function onReject(reason) {
+                    notifications.loadingCount.rejected();
+                    errorHandler(reason);
+                    vm.state = 'rejected';
                 });
         }
-        function activateTab(tab) {
-            vm.activeTab = tab;
-        }
-        function isInvalidField(fieldName, formName, index) {
+        function isInvalidField(fieldName) {
             return (
-                vm[formName][fieldName].$invalid &&
+                vm.ficha[fieldName].$invalid &&
                 (
-                    vm[formName][fieldName].$$$blurred ||
-                    vm.tabs[index].afterInvalidSubmission
+                    vm.ficha[fieldName].$touched ||
+                    vm.afterInvalidSubmission
                 )
             );
         }
-        function lockdown(index) {
-            vm.tabs[index].locked = true;
+        function reset() {
+            vm.trabalho = data.example();
+            vm.ficha.$setPristine();
+            vm.ficha.$setUntouched();
+            vm.afterInvalidSubmission = false;
         }
-        function reset(formName, index) {
-            var
-                fieldName;
-            vm.tabs[index].trabalho = data.example();
-            vm[formName].$setPristine();
-            vm.tabs[index].afterInvalidSubmission = false;
-            for (fieldName in vm.tabs[index][formName]) {
+        function send() {
+            vm.afterInvalidSubmission = true;
+            vm.actionButtonsDisabled = true;
+            if (vm.ficha.$valid) {
                 if (
-                    vm[formName].hasOwnProperty(fieldName) &&
-                    vm[formName][fieldName] &&
-                    vm[formName][fieldName].$$$blurred === true
+                    vm.arquivo &&
+                    vm.arquivo.length
                 ) {
-                    vm[formName][fieldName].$$$blurred = false;
-                }
-            }
-        }
-        function send(index) {
-            vm.tabs[index].afterInvalidSubmission = true;
-            vm.tabs[index].actionButtonsDisabled = true;
-            if (vm['ficha_' + (index + 1)].$valid) {
-                if (
-                    vm.tabs[index].arquivo &&
-                    vm.tabs[index].arquivo.length
-                ) {
+                    notifications.sending.pending();
+                    // vm.arquivo.$setValidity('required-file', true);
                     data
                         .create(
-                            vm.tabs[index].trabalho,
-                            vm.tabs[index].arquivo[0],
+                            vm.trabalho,
+                            vm.arquivo[0],
                             function onProgress(event) {
                                 var
                                     percentual;
                                 percentual = parseInt(100.0 * event.loaded / event.total);
-                                vm.tabs[index].arquivo.percentual = percentual;
+                                vm.percentual_de_envio_do_arquivo = percentual;
                             }
                         )
                         .then(function onResolve(value) {
                             if (value.isError) {
                                 throw value;
                             }
-                            lockdown(index);
+                            notifications.sending.fulfilled();
+                            $location.path('/inscricao/' + session.inscricao);
                         })
                         .catch(function onReject(reason) {
-                            // errorHandler(reason);
-                            vm.tabs[index].actionButtonsDisabled = false;
+                            notifications.sending.rejected();
+                            errorHandler(reason);
+                            vm.actionButtonsDisabled = false;
                         });
+                } else {
+                    notifications.invalid();
+                    // vm.arquivo.$setValidity('required-file', false);
+                    vm.actionButtonsDisabled = false;
                 }
             } else {
-                vm.tabs[index].actionButtonsDisabled = false;
+                notifications.invalid();
+                vm.actionButtonsDisabled = false;
             }
         }
-        function setBlurred(fieldName, formName) {
-            vm[formName][fieldName].$$$blurred = true;
+        function setBlurred(fieldName) {
+            vm.ficha[fieldName].$$$blurred = true;
         }
     }
 }());

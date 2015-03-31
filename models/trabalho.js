@@ -7,11 +7,10 @@
 ) {
     let model = {
         create: create,
-        readByInscricao: readByInscricao,
-        readIdsByInscricao: readIdsByInscricao
+        countByInscricao: countByInscricao
     };
     module.exports = model;
-    function create(trabalho, arquivo, inscricao) {
+    function create(trabalho, inscricao, usuario) {
         formatIn(trabalho);
         return modules
             .executor(
@@ -28,11 +27,12 @@
                     .set('__status__', 1)
             )
             .then(function onResolve(value) {
-                trabalho.id = value.result.insertId;
-                return {
-                    id: trabalho.id,
-                    nome_do_arquivo: trabalho.nome_do_arquivo
-                };
+                modules.mailbot(
+                    trabalho.caminho_do_arquivo,
+                    trabalho.nome_do_arquivo,
+                    usuario
+                );
+                return value.result.insertId;
             });
     }
     function formatIn(trabalho) {
@@ -41,44 +41,23 @@
     function formatOut(trabalho) {
         trabalho.autores = trabalho.autores.split(',');
     }
-    function readByInscricao(inscricao) {
+    function countByInscricao(inscricao) {
         return modules
             .executor(
                 squel
                     .select()
                     .from('trabalho')
-                    .where('inscricao')
                     .where('inscricao = ?', inscricao)
             )
             .then(function onResolve(value) {
-                let trabalhos = value.result;
-                trabalhos.forEach(function forEach(trabalho) {
-                    formatOut(trabalho);
-                });
-                return trabalhos;
-            });
-    }
-    function readIdsByInscricao(inscricao) {
-        return modules
-            .executor(
-                squel
-                    .select()
-                    .field('id')
-                    .from('trabalho')
-                    .where('inscricao = ?', inscricao)
-            )
-            .then(function onResolve(value) {
-                let ids = value.result;
-                if (ids.length > 2) {
-                    modules.logger.warn(`Atenção! Inscrição com mais de dois trabalhos: ${inscricao}.`);
-                }
-                return ids;
+                return value.result.length;
             });
     }
 }(
     { //modules
         executor: require('../modules/executor'),
-        logger: require('../modules/logger')
+        logger: require('../modules/logger'),
+        mailbot: require('../modules/mailbot')
     },
     { //settings
         database: require('../settings/database')

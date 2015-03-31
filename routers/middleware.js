@@ -86,7 +86,7 @@
                 }
                 request.body.trabalho = JSON.parse(fields.trabalho[0]);
                 request.body.trabalho.nome_do_arquivo = files.file[0].originalFilename;
-                request.body.arquivo = files.file[0].path;
+                request.body.trabalho.caminho_do_arquivo = files.file[0].path;
                 return next();
             }
         );
