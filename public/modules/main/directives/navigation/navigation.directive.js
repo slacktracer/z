@@ -1,20 +1,18 @@
 (function () {
     'use strict';
     angular
-        .module('navigation')
+        .module('main')
         .directive('ezNavigation', ezNavigation);
     ezNavigation.$inject = [];
     function ezNavigation() {
         return {
             controller: controller,
             controllerAs: 'navigation',
-            link: link,
-            templateUrl: 'modules/navigation/navigation.directive.html'
+            templateUrl: '/modules/main/directives/navigation/navigation.directive.html'
         };
         /**
          * functions
          */
         function controller() {}
-        function link() {}
     }
 }());

@@ -65,10 +65,10 @@
                     nav
                     navbar-nav
                 "
-                data-ng-if="main.session.may('VIEW_OTHERS')"
                 >
                 <li
                     class="dropdown"
+                    data-ng-if="main.session.may('VIEW_OTHERS')"
                     >
                     <a
                         class="
@@ -108,15 +108,9 @@
                         </li>
                     </ul>
                 </li>
-            </ul>
-            <ul
-                class="
-                    nav
-                    navbar-nav
-                "
-                >
                 <li
                     class="dropdown"
+                    data-ng-if="main.session.may('VIEW_PAPERS')"
                     >
                     <a
                         class="
@@ -139,15 +133,6 @@
                         "
                         >
                         <li>
-                            <a
-                                href="trabalho/enviar"
-                                >
-                                Enviar Trabalho
-                            </a>
-                        </li>
-                        <li
-                            data-ng-if="main.session.may('VIEW_PAPERS')"
-                            >
                             <a
                                 href="trabalho"
                                 >
@@ -220,7 +205,16 @@
                             <a
                                 href="inscricao/{{main.session.inscricao}}"
                                 >
-                                Inscrição
+                                Ver Inscrição
+                            </a>
+                        </li>
+                        <li
+                            data-ng-if="main.session.inscricao"
+                            >
+                            <a
+                                href="trabalho/enviar"
+                                >
+                                Enviar Trabalho
                             </a>
                         </li>
                         <li
