@@ -36,7 +36,6 @@
         vm.forget = reset;
         vm.isInvalidField = isInvalidField;
         vm.limiteDeSubmissoes = settings.limiteDeSubmissoes;
-        vm.setBlurred = setBlurred;
         vm.state = 'pending';
         vm.submit = send;
         vm.trabalho = data.example();
@@ -92,7 +91,7 @@
                                 var
                                     percentual;
                                 percentual = parseInt(100.0 * event.loaded / event.total);
-                                vm.percentual_de_envio_do_arquivo = percentual;
+                                vm.percentualDeEnvioDoArquivo = percentual;
                             }
                         )
                         .then(function onResolve(value) {
@@ -116,9 +115,6 @@
                 notifications.invalid();
                 vm.actionButtonsDisabled = false;
             }
-        }
-        function setBlurred(fieldName) {
-            vm.ficha[fieldName].$$$blurred = true;
         }
     }
 }());

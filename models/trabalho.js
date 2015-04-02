@@ -38,9 +38,9 @@
     function formatIn(trabalho) {
         trabalho.autores = trabalho.autores.join();
     }
-    function formatOut(trabalho) {
-        trabalho.autores = trabalho.autores.split(',');
-    }
+    // function formatOut(trabalho) {
+    //     trabalho.autores = trabalho.autores.split(',');
+    // }
     function countByInscricao(inscricao) {
         return modules
             .executor(
