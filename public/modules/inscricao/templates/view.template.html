@@ -26,6 +26,53 @@
                         col-md-4
                     "
                     >
+                    <div
+                        class="
+                            big-label
+                        "
+                        >
+                        <span
+                            data-ng-switch="view.inscricao.status"
+                            >
+                            <span
+                                data-ng-switch-when="1"
+                                >
+                                <span
+                                    class="
+                                        label
+                                        label-success
+                                    "
+                                    >
+                                    Inscrição Confirmada
+                                </span>
+                            </span>
+                            <span
+                                data-ng-switch-when="0"
+                                >
+                                <span
+                                    class="
+                                        label
+                                        label-warning
+                                    "
+                                    >
+                                    Inscrição Pendente
+                                </span>
+                            </span>
+                            <span
+                                data-ng-switch-default
+                                >
+                                <span
+                                    class="
+                                        label
+                                        label-danger
+                                    "
+                                    >
+                                    Fnord. Erro 2501.
+                                </span>
+                            </span>
+                        </span>
+                    </div>
+                    <br>
                     <dl>
                         <dt>
                             Nome
@@ -214,6 +261,7 @@
                     >
                     <div
                         data-ez-pagamento
+                        data-ng-if="view.inscricao.status === 0"
                         >
                     </div>
                 </div>

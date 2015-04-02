@@ -86,7 +86,6 @@
                                 class="
                                     form-control
                                 "
-                                data-ng-blur="edit.setBlurred('nome_completo')"
                                 data-ng-model="edit.inscricao.nome_completo"
                                 id="nome_completo"
                                 maxlength="256"
@@ -123,7 +122,6 @@
                                     form-control
                                 "
                                 data-ez-valid-date
-                                data-ng-blur="edit.setBlurred('data_de_nascimento')"
                                 data-ng-model="edit.inscricao.data_de_nascimento"
                                 id="data_de_nascimento"
                                 maxlength="10"
@@ -216,8 +214,7 @@
                                 class="
                                     form-control
                                 "
-                                data-ng-blur="edit.setBlurred('email')"
-                                data-ng-disabled="main.session.mayNot('MULTIPLE')"
+                                data-ng-readonly="main.session.mayNot('MULTIPLE')"
                                 data-ng-model="edit.inscricao.email"
                                 id="email"
                                 maxlength="255"
@@ -284,7 +281,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('cpf')"
                                     data-ng-model="edit.inscricao.cpf"
                                     data-ng-required="!edit.inscricao.estrangeiro"
                                     data-ez-cadastro-de-pessoa-fisica
@@ -329,7 +325,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('nome_do_documento')"
                                     data-ng-model="edit.inscricao.nome_do_documento"
                                     data-ng-required="inscricao.estrangeiro"
                                     id="nome_do_documento"
@@ -373,7 +368,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('numero_do_documento')"
                                     data-ng-model="edit.inscricao.numero_do_documento"
                                     data-ng-required="inscricao.estrangeiro"
                                     id="numero_do_documento"
@@ -424,7 +418,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('codigo_internacional_1')"
                                         data-ng-model="edit.inscricao.codigo_internacional_1"
                                         data-st-digits-only
                                         id="codigo_internacional_1"
@@ -468,7 +461,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('codigo_nacional_1')"
                                         data-ng-model="edit.inscricao.codigo_nacional_1"
                                         data-st-digits-only
                                         id="codigo_nacional_1"
@@ -512,7 +504,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('numero_1')"
                                         data-ng-model="edit.inscricao.numero_1"
                                         data-st-digits-only
                                         id="numero_1"
@@ -555,7 +546,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('codigo_internacional_2')"
                                         data-ng-model="edit.inscricao.codigo_internacional_2"
                                         data-st-digits-only
                                         id="codigo_internacional_2"
@@ -584,7 +574,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('codigo_nacional_2')"
                                         data-ng-model="edit.inscricao.codigo_nacional_2"
                                         data-st-digits-only
                                         id="codigo_nacional_2"
@@ -613,7 +602,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('numero_2')"
                                         data-ng-model="edit.inscricao.numero_2"
                                         data-st-digits-only
                                         id="numero_2"
@@ -648,7 +636,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('codigo_internacional_3')"
                                         data-ng-model="edit.inscricao.codigo_internacional_3"
                                         data-st-digits-only
                                         id="codigo_internacional_3"
@@ -677,7 +664,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('codigo_nacional_3')"
                                         data-ng-model="edit.inscricao.codigo_nacional_3"
                                         data-st-digits-only
                                         id="codigo_nacional_3"
@@ -706,7 +692,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('numero_3')"
                                         data-ng-model="edit.inscricao.numero_3"
                                         data-st-digits-only
                                         id="numero_3"
@@ -747,7 +732,6 @@
                                         class="
                                             form-control
                                         "
-                                        data-ng-blur="edit.setBlurred('endereco')"
                                         data-ng-model="edit.inscricao.endereco"
                                         data-ng-required="inscricao.estrangeiro"
                                         id="endereco"
@@ -792,7 +776,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('logradouro')"
                                     data-ng-model="edit.inscricao.logradouro"
                                     data-ng-required="!edit.inscricao.estrangeiro"
                                     id="logradouro"
@@ -835,7 +818,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('numero')"
                                     data-ng-model="edit.inscricao.numero"
                                     data-ng-required="!edit.inscricao.estrangeiro"
                                     id="numero"
@@ -868,7 +850,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('complemento')"
                                     data-ng-model="edit.inscricao.complemento"
                                     id="complemento"
                                     maxlength="128"
@@ -903,7 +884,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('bairro')"
                                     data-ng-model="edit.inscricao.bairro"
                                     data-ng-required="!edit.inscricao.estrangeiro"
                                     id="bairro"
@@ -946,7 +926,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('localidade')"
                                     data-ng-model="edit.inscricao.localidade"
                                     data-ng-required="!edit.inscricao.estrangeiro"
                                     id="localidade"
@@ -996,7 +975,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('uf')"
                                     data-ng-minlength="2"
                                     data-ng-model="edit.inscricao.uf"
                                     data-ng-required="!edit.inscricao.estrangeiro"
@@ -1047,7 +1025,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('cep')"
                                     data-ng-minlength="8"
                                     data-ng-model="edit.inscricao.cep"
                                     data-ng-required="!edit.inscricao.estrangeiro"
@@ -1098,7 +1075,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('nome_no_cracha')"
                                     data-ng-model="edit.inscricao.nome_no_cracha"
                                     id="nome_no_cracha"
                                     maxlength="256"
@@ -1201,7 +1177,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('curso_ou_formacao')"
                                     data-ng-model="edit.inscricao.curso_ou_formacao"
                                     id="curso_ou_formacao"
                                     maxlength="256"
@@ -1227,7 +1202,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('acronimo_da_instituicao_ou_empresa')"
                                     data-ng-model="edit.inscricao.acronimo_da_instituicao_ou_empresa"
                                     id="acronimo_da_instituicao_ou_empresa"
                                     maxlength="64"
@@ -1262,7 +1236,6 @@
                                     class="
                                         form-control
                                     "
-                                    data-ng-blur="edit.setBlurred('nome_da_instituicao_ou_empresa')"
                                     data-ng-model="edit.inscricao.nome_da_instituicao_ou_empresa"
                                     id="nome_da_instituicao_ou_empresa"
                                     maxlength="256"

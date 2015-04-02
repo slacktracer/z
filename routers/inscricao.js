@@ -26,25 +26,6 @@
                     .send(reason);
             });
     });
-    router.get('/:id/status', function (request, response, next) {
-        models
-            .inscricao
-            .readStatusById(request.params.id)
-            .then(function then(status) {
-                response.send({
-                    status: status
-                });
-            })
-            .catch(function (reason) {
-                if (reason.isError !== true) {
-                    modules.logger.warn('Uncaught exception!');
-                }
-                modules.logger.error(reason);
-                response
-                    .status(500)
-                    .send(reason);
-            });
-    });
     router.get(
         '/',
         middleware.denyViewOthers,

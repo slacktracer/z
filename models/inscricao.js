@@ -9,7 +9,6 @@
         create: create,
         readAll: readAll,
         readById: readById,
-        readStatusById: readStatusById,
         update: update
     };
     module.exports = model;
@@ -206,32 +205,6 @@
                 }
                 let inscricao = formatOut(value.result[0]);
                 return inscricao;
-            });
-    }
-    function readStatusById(id) {
-        return modules
-            .executor
-            .getFirst(
-                squel
-                    .select()
-                    .field('status')
-                    .from('inscricao')
-                    .where('id = ?', id)
-                    .where('__status__ = 1')
-            )
-            .then(function onResolve(value) {
-                if (value) {
-                    if (value.status === 0) {
-                        return 'pending';
-                    }
-                    if (value.status === 1) {
-                        return 'ok';
-                    }
-                }
-                throw {
-                    isError: true,
-                    type: 'UNKNOWN_PAYMENT_STATUS'
-                };
             });
     }
     function setCase(inscricao) {

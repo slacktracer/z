@@ -34,7 +34,6 @@
             'data_de_nascimento': '5/8/1981'
         };
         vm.isInvalidField = isInvalidField;
-        vm.setBlurred = setBlurred;
         activate(vm.action);
         /**
          * functions
@@ -76,7 +75,7 @@
             return (
                 vm.ficha[fieldName].$invalid &&
                 (
-                    vm.ficha[fieldName].$$$blurred ||
+                    vm.ficha[fieldName].$touched ||
                     vm.afterInvalidSubmission
                 )
             );
@@ -91,20 +90,10 @@
             });
         }
         function reset() {
-            var
-                property;
             vm.inscricao = data.example();
             vm.ficha.$setPristine();
+            vm.ficha.$setUntouched();
             vm.afterInvalidSubmission = false;
-            for (property in vm.ficha) {
-                if (
-                    vm.ficha.hasOwnProperty(property) &&
-                    vm.ficha[property] &&
-                    vm.ficha[property].$$$blurred === true
-                ) {
-                    vm.ficha[property].$$$blurred = false;
-                }
-            }
         }
         function save() {
             vm.afterInvalidSubmission = true;
@@ -130,9 +119,6 @@
                 notifications.invalid();
                 vm.actionButtonsDisabled = false;
             }
-        }
-        function setBlurred(fieldName) {
-            vm.ficha[fieldName].$$$blurred = true;
         }
         function update() {
             vm.afterInvalidSubmission = true;

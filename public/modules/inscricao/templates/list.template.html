@@ -28,6 +28,13 @@
                     >
                     <div
                         class="
+                            text-right
+                        "
+                        >
+                        Total: <b>{{list.inscricoes.length}}</b>
+                    </div>
+                    <div
+                        class="
                             table-responsive
                         "
                         >
@@ -90,13 +97,23 @@
                                     <td>
                                         {{::inscricao.cpf}}
                                     </td>
-                                    <td>
+                                    <td
+                                        class="
+                                            text-center
+                                        "
+                                        >
                                         <button
                                             class="
                                                 btn
                                                 btn-default
                                                 btn-xs
                                             "
+                                            data-ng-click="list.inscricaoPorConfirmar = {
+                                                nome_completo: inscricao.nome_completo,
+                                                cpf: inscricao.cpf
+                                            }"
+                                            data-target="#confirmModal"
+                                            data-toggle="modal"
                                             >
                                             Confirmar
                                         </button>
@@ -108,5 +125,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div
+        data-ng-include="'/modules/inscricao/templates/confirm.template.html'"
+        >
     </div>
 </div>

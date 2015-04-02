@@ -20,7 +20,6 @@
             example: example,
             readAll: readAll,
             readById: readById,
-            readStatusById: readStatusById,
             update: update
         };
         return service;
@@ -52,16 +51,6 @@
                 .get('/api/inscricao/' + id)
                 .then(function onResolve(value) {
                     return value.data.inscricao;
-                })
-                .catch(function onReject(reason) {
-                    return reason.data;
-                });
-        }
-        function readStatusById(id) {
-            return $http
-                .get('/api/inscricao/' + id + '/status')
-                .then(function onResolve(value) {
-                    return value.data.status;
                 })
                 .catch(function onReject(reason) {
                     return reason.data;
