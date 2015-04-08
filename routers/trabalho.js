@@ -10,6 +10,7 @@
     router.post(
         '/',
         middleware.parseUpload,
+        middleware.denyUpload,
         function (request, response, next) {
             models
                 .trabalho
@@ -56,9 +57,32 @@
                 });
         }
     );
+    router.get(
+        '/status',
+        function (request, response, next) {
+            models
+                .trabalho
+                .isAllowedToSubmit(request.session.inscricao)
+                .then(function then(status) {
+                    response.send({
+                        status: status
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
 }(
     require('express'),
     { //middleware
+        denyUpload: require('./middleware').denyUpload,
         parseUpload: require('./middleware').parseUpload
     },
     { //models

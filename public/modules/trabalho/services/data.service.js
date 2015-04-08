@@ -16,6 +16,7 @@
         var
             service;
         service = {
+            isAllowedToSubmit: isAllowedToSubmit,
             create: create,
             example: example,
             countByInscricao: countByInscricao
@@ -33,19 +34,29 @@
                     },
                     file: arquivo
                 })
-                .success(function onSuccess(successData) {
-                    return successData;
+                .progress(onProgress)
+                .then(function (value) {
+                    return value.data;
                 })
-                .error(function onError(errorData) {
-                    return errorData;
-                })
-                .progress(onProgress);
+                .catch(function (reason) {
+                    return reason.data;
+                });
         }
         function countByInscricao() {
             return $http
                 .get('/api/trabalho/quantidade')
                 .then(function onResolve(value) {
                     return value.data.quantidade;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
+        function isAllowedToSubmit() {
+            return $http
+                .get('/api/trabalho/status')
+                .then(function onResolve(value) {
+                    return value.data.status;
                 })
                 .catch(function onReject(reason) {
                     return reason.data;

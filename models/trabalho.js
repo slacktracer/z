@@ -1,38 +1,54 @@
 /* eslint camelcase: 0 */
 'use strict';
 (function (
+    models,
     modules,
     settings,
     squel
 ) {
     let model = {
         create: create,
-        countByInscricao: countByInscricao
+        countByInscricao: countByInscricao,
+        isAllowedToSubmit: isAllowedToSubmit
     };
     module.exports = model;
     function create(trabalho, inscricao, usuario) {
-        formatIn(trabalho);
-        return modules
-            .executor(
-                squel
-                    .insert()
-                    .into('trabalho')
-                    .set('inscricao', inscricao)
-                    .set('area_tematica', trabalho.area_tematica)
-                    .set('titulo', trabalho.titulo)
-                    .set('autores', trabalho.autores)
-                    .set('tipo_de_resumo', trabalho.tipo_de_resumo)
-                    .set('nome_do_arquivo', trabalho.nome_do_arquivo)
-                    .set('status', 0)
-                    .set('__status__', 1)
-            )
-            .then(function onResolve(value) {
-                modules.mailbot(
-                    trabalho.caminho_do_arquivo,
-                    trabalho.nome_do_arquivo,
-                    usuario
-                );
-                return value.result.insertId;
+        return isAllowedToSubmit(inscricao)
+            .then(function onResolve(status) {
+                if (status) {
+                    formatIn(trabalho);
+                    return modules
+                        .executor(
+                            squel
+                                .insert()
+                                .into('trabalho')
+                                .set('inscricao', inscricao)
+                                .set('area_tematica', trabalho.area_tematica)
+                                .set('titulo', trabalho.titulo)
+                                .set('autores', trabalho.autores)
+                                .set('tipo_de_resumo', trabalho.tipo_de_resumo)
+                                .set('nome_do_arquivo', trabalho.nome_do_arquivo)
+                                .set('status', 0)
+                                .set('__status__', 1)
+                        )
+                        .then(function onResolve(value) {
+                            modules.mailbot(
+                                trabalho.area_tematica,
+                                trabalho.caminho_do_arquivo,
+                                trabalho.nome_do_arquivo,
+                                trabalho.titulo,
+                                usuario
+                            );
+                            return value.result.insertId;
+                        });
+                }
+                // A inscrição não está confirmada.
+                // Não é permitido submeter trabalho.
+                throw {
+                    error: 'Acesso Negado',
+                    isError: true,
+                    type: 'ACCESS_DENIED'
+                };
             });
     }
     function formatIn(trabalho) {
@@ -53,7 +69,15 @@
                 return value.result.length;
             });
     }
+    function isAllowedToSubmit(inscricao) {
+        return models
+            .inscricao
+            .readStatusById(inscricao);
+    }
 }(
+    { //models
+        inscricao: require('./inscricao')
+    },
     { //modules
         executor: require('../modules/executor'),
         logger: require('../modules/logger'),

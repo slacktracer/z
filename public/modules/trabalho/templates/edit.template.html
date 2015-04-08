@@ -68,7 +68,34 @@
                 </div>
             </div>
             <div
-                data-ng-if="!edit.blocked &amp;&amp; !edit.devMode"
+                data-ng-if="!edit.allowed &amp;&amp; !edit.devMode"
+                >
+                <div
+                    class="
+                        row
+                    "
+                    >
+                    <div
+                        class="
+                            col-md-12
+                        "
+                        >
+                        <div
+                            class="
+                                alert
+                                alert-warning
+                            "
+                            >
+                            <strong>
+                                Inscrição não confirmada!
+                            </strong>
+                            Você só pode submeter trabalhos após a confirmação de sua inscrição.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                data-ng-if="!edit.blocked &amp;&amp; edit.allowed &amp;&amp; !edit.devMode"
                 >
                 <div
                     class="
@@ -322,13 +349,6 @@
                                     type="file"
                                     required
                                     >
-                                    <p
-                                        class="
-                                            help-block
-                                        "
-                                        >
-                                        Arquivo selecionado: {{edit.arquivo[0].name || 'Nenhum'}}
-                                    </p>
                             </div>
                             <div
                                 class="

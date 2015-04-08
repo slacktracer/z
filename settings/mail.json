@@ -1,8 +1,8 @@
 {
     "service": "Gmail",
     "authentication": {
-        "username": "artigos.fbea",
-        "password": "artigosfbeasecretaria"
+        "username": "trabalhos.hujbb",
+        "password": "hujbb2015"
     },
-    "from": "Congresso HUJBB <congressohujbb2015@gmail.com"
+    "from": "Submissão de Trabalhos HUJBB <trabalhos.hujbb@gmail.com"
 }

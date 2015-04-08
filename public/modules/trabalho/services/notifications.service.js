@@ -22,18 +22,18 @@
             },
             loadingCount: {
                 pending: function pending() {
-                    this.notification = notifier({
-                        message: 'Verificando submissões...'
-                    });
+                    // this.notification = notifier({
+                    //     message: 'Verificando submissões...'
+                    // });
                 },
                 fulfilled: function fulfilled() {
-                    this.notification.update('type', 'success');
-                    this.notification.update('message', '<strong>Sucesso.</strong> Submissões verificadas.');
-                    notifier.close(this.notification, 3000);
+                    // this.notification.update('type', 'success');
+                    // this.notification.update('message', '<strong>Sucesso.</strong> Submissões verificadas.');
+                    // notifier.close(this.notification, 3000);
                 },
                 rejected: function rejected() {
                     this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível verificar suas submissões.');
+                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível verificar submissões prévias e liberar o sistema de submissão.');
                     notifier.close(this.notification, 10000);
                 }
             },
@@ -53,6 +53,23 @@
                 rejected: function rejected() {
                     this.notification.update('type', 'danger');
                     this.notification.update('message', '<strong>Erro.</strong> Não foi possível enviar seu trabalho.');
+                    notifier.close(this.notification, 10000);
+                }
+            },
+            verifyingAllowed: {
+                pending: function pending() {
+                    // this.notification = notifier({
+                    //     message: 'Verificando permissão para submissão...'
+                    // });
+                },
+                fulfilled: function fulfilled() {
+                    // this.notification.update('type', 'success');
+                    // this.notification.update('message', '<strong>Sucesso.</strong> Inscrição confirmada. Submissão permitida.');
+                    // notifier.close(this.notification, 3000);
+                },
+                rejected: function rejected() {
+                    this.notification.update('type', 'danger');
+                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível verificar o status de sua inscrição.');
                     notifier.close(this.notification, 10000);
                 }
             }

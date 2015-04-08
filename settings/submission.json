@@ -1,0 +1,78 @@
+{
+    "allowedFiletypes": [
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/octet-stream"
+    ],
+    "areaTematicaPorCodigo": {
+        "1": "Cardiologia",
+        "2": "Ciências Básicas",
+        "3": "Cirurgia",
+        "4": "Clínica Médica",
+        "5": "Enfermagem",
+        "6": "Fisioterapia",
+        "7": "Geriatria",
+        "8": "Ginecologia e Obstetrícia",
+        "9": "Infectologia",
+        "10": "Miscelânea",
+        "11": "Neurologia",
+        "12": "Nutrição",
+        "13": "Odontologia",
+        "14": "Oncologia",
+        "15": "Pediatria",
+        "16": "Políticas Públicas",
+        "17": "Pneumologia",
+        "18": "Psicologia",
+        "19": "Saúde do Idoso",
+        "20": "Serviço Social",
+        "21": "Tecnologia em Saúde",
+        "22": "Terapia Ocupacional",
+        "X": "Y"
+    },
+    "coordenadorPorAreaTematica": {
+        "Enfermagem": {
+            "endereco": "danituma@ufpa.br",
+            "nome": "Danielle Saraiva Tuma dos Reis"
+        },
+        "Farmácia": {
+            "endereco": "alfeoli@gmail.com",
+            "nome": "Alex Oliveira"
+        },
+        "Fisioterapia": {
+            "endereco": "renatoct@ufpa.br",
+            "nome": "Renato da Costa Teixeira"
+        },
+        "Medicina": {
+            "endereco": "dilmasouza@ufpa.br",
+            "nome": "Dilma do Socorro Souza"
+        },
+        "Nutrição": {
+            "endereco": "guterres39@hotmail.com",
+            "nome": "Aldair da Silva Guterres"
+        },
+        "Odontologia": {
+            "endereco": "harp@ufpa.br",
+            "nome": "Helder Pontes"
+        },
+        "Psicologia": {
+            "endereco": "sap_psi@yahoo.com.br",
+            "nome": "Simone Pampolha"
+        },
+        "Serviço Social": {
+            "endereco": "petgomes@ufpa.br",
+            "nome": "Petronila Gomes Coutinho"
+        },
+        "Tecnologia em Saúde": {
+            "endereco": "mariaheliana@ufpa.br",
+            "nome": "Maria Heliane Alencar da Costa"
+        },
+        "Terapia Ocupacional": {
+            "endereco": "janainabg@yahoo.com.br",
+            "nome": "Janaína Barbosa Gomes Cunha"
+        },
+        "Y": {
+            "endereco": "thiagocondurufigueiredo@gmail.com",
+            "nome": "Thiago Condurú Figueiredo"
+        }
+    }
+}

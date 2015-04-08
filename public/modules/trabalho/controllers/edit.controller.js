@@ -28,6 +28,7 @@
         vm = this;
         vm.actionButtonsDisabled = false;
         vm.afterInvalidSubmission = false;
+        vm.allowed = true;
         vm.blocked = false;
         vm.devMode = settings.devMode;
         vm.examples = {
@@ -44,16 +45,29 @@
          * functions
          */
         function activate() {
-            notifications.loadingCount.pending();
+            // notifications.loadingCount.pending();
+            // notifications.verifyingAllowed.pending();
             data
                 .countByInscricao()
                 .then(function onResolve(quantidade) {
-                    notifications.loadingCount.fulfilled();
+                    // notifications.loadingCount.fulfilled();
                     vm.blocked = quantidade >= vm.limiteDeSubmissoes;
                     vm.state = 'fulfilled';
                 })
                 .catch(function onReject(reason) {
                     notifications.loadingCount.rejected();
+                    errorHandler(reason);
+                    vm.state = 'rejected';
+                });
+            data
+                .isAllowedToSubmit()
+                .then(function onResolve(allowed) {
+                    // notifications.verifyingAllowed.fulfilled();
+                    vm.allowed = allowed;
+                    vm.state = 'fulfilled';
+                })
+                .catch(function onReject(reason) {
+                    notifications.verifyingAllowed.rejected();
                     errorHandler(reason);
                     vm.state = 'rejected';
                 });
@@ -82,7 +96,6 @@
                     vm.arquivo.length
                 ) {
                     notifications.sending.pending();
-                    // vm.arquivo.$setValidity('required-file', true);
                     data
                         .create(
                             vm.trabalho,
@@ -104,11 +117,11 @@
                         .catch(function onReject(reason) {
                             notifications.sending.rejected();
                             errorHandler(reason);
+                            vm.percentualDeEnvioDoArquivo = 0;
                             vm.actionButtonsDisabled = false;
                         });
                 } else {
                     notifications.invalid();
-                    // vm.arquivo.$setValidity('required-file', false);
                     vm.actionButtonsDisabled = false;
                 }
             } else {

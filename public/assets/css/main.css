@@ -4,3 +4,6 @@ body {
 .big-label {
     font-size: 1.4em;
 }
+input[type="file"] {
+    width: 100%;
+}

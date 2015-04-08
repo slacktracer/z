@@ -1,11 +1,13 @@
 'use strict';
 (function (
     modules,
-    Form
+    Form,
+    settings
 ) {
     let middleware = {
         denyMultiple: denyMultiple,
         denyViewOthers: denyViewOthers,
+        denyUpload: denyUpload,
         guardEmail: guardEmail,
         guardInscricao: guardInscricao,
         parseUpload: parseUpload
@@ -27,6 +29,21 @@
             return;
         }
         return next();
+    }
+    function denyUpload(request, response, next) {
+        let allowedFiletypes = settings.submission.allowedFiletypes;
+        if (allowedFiletypes.indexOf(request.body.trabalho.tipo_do_arquivo) !== -1) {
+            next();
+        } else {
+            modules.logger.warn(`Tentativa de submissão de trabalho em formato incorreto. (${request.body.trabalho.tipo_do_arquivo})`)
+            response
+                .status(500)
+                .send({
+                    error: 'Arquivo Inválido',
+                    isError: true,
+                    type: 'INVALID_FILETYPE'
+                });
+        }
     }
     function denyViewOthers(request, response, next) {
         let session = request.session;
@@ -87,6 +104,7 @@
                 request.body.trabalho = JSON.parse(fields.trabalho[0]);
                 request.body.trabalho.nome_do_arquivo = files.file[0].originalFilename;
                 request.body.trabalho.caminho_do_arquivo = files.file[0].path;
+                request.body.trabalho.tipo_do_arquivo = files.file[0].headers['content-type'];
                 return next();
             }
         );
@@ -96,5 +114,8 @@
         authorizer: require('../modules/authorizer'),
         logger: require('../modules/logger')
     },
-    require('multiparty').Form
+    require('multiparty').Form,
+    { //settings
+        submission: require('../settings/submission')
+    }
 ));
