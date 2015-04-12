@@ -105,13 +105,11 @@
                                         <button
                                             class="
                                                 btn
-                                                btn-default
                                                 btn-xs
                                             "
-                                            data-ng-click="list.inscricaoPorConfirmar = {
-                                                nome_completo: inscricao.nome_completo,
-                                                cpf: inscricao.cpf
-                                            }"
+                                            data-ng-class="list.getButtonClass(inscricao)"
+                                            data-ng-click="list.select(inscricao)"
+                                            data-keyboard="false"
                                             data-target="#confirmModal"
                                             data-toggle="modal"
                                             >

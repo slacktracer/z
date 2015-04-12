@@ -5,11 +5,13 @@
         .config(config);
     config.$inject = [
         '$locationProvider',
-        '$routeProvider'
+        '$routeProvider',
+        'ngToastProvider'
     ];
     function config(
         $locationProvider,
-        $routeProvider
+        $routeProvider,
+        ngToastProvider
     ) {
         $locationProvider.html5Mode(true);
         $routeProvider
@@ -43,5 +45,11 @@
                 },
                 templateUrl: 'modules/inscricao/templates/edit.template.html'
             });
+        ngToastProvider.configure({
+            animation: 'slide',
+            horizontalPosition: 'center',
+            maxNumber: 0,
+            verticalPosition: 'top'
+        });
     }
 }());

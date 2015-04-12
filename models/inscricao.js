@@ -6,6 +6,7 @@
     squel
 ) {
     let model = {
+        confirm: confirm,
         create: create,
         readAll: readAll,
         readById: readById,
@@ -30,6 +31,22 @@
                     return true;
                 }
                 return false;
+            });
+    }
+    function confirm(inscricao) {
+        inscricao = formatIn(inscricao);
+        return modules
+            .executor(
+                squel
+                    .update()
+                    .table('inscricao')
+                    .set('status', 1)
+                    .set('valor_pago', +inscricao.valor_pago)
+                    .set('data_de_pagamento', inscricao.data_de_pagamento)
+                    .where('id = ?', inscricao.id)
+            )
+            .then(function onResolve(value) {
+                return formatOut(inscricao);
             });
     }
     function create(inscricao, email) {
@@ -75,7 +92,6 @@
                     .set('acronimo_da_instituicao_ou_empresa', inscricao.acronimo_da_instituicao_ou_empresa)
                     .set('nome_da_instituicao_ou_empresa', inscricao.nome_da_instituicao_ou_empresa)
                     .set('status', 0)
-                    .set('valor_pago', 0)
                     .set('curso_matutino', inscricao.curso_matutino)
                     .set('curso_vespertino', inscricao.curso_vespertino)
                     .set('__status__', 1)
@@ -100,6 +116,7 @@
     }
     function formatIn(inscricao) {
         inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento, 'DD/MM/YYYY').format('YYYY-MM-DD');
+        inscricao.data_de_pagamento = moment.utc(inscricao.data_de_pagamento, 'DD/MM/YYYY').format('YYYY-MM-DD');
         inscricao.sexo = (inscricao.sexo === 'Feminino') ? 1 : 2;
         inscricao.estrangeiro = (inscricao.estrangeiro === false) ? 0 : 1;
         inscricao.telefones = [
@@ -131,6 +148,9 @@
     }
     function formatOut(inscricao) {
         inscricao.data_de_nascimento = moment.utc(inscricao.data_de_nascimento).format('D/M/YYYY');
+        if (inscricao.data_de_pagamento) {
+            inscricao.data_de_pagamento = moment.utc(inscricao.data_de_pagamento).format('D/M/YYYY');
+        }
         inscricao.sexo = (inscricao.sexo === 1) ? 'Feminino' : 'Masculino';
         inscricao.estrangeiro = (inscricao.estrangeiro === 0) ? false : true;
         inscricao.telefones = inscricao.telefones.split(',');

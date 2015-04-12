@@ -4,78 +4,131 @@
         .module('inscricao')
         .service('inscricao.notifications', notifications);
     notifications.$inject = [
-        'notifier.notifier'
+        'main.sweetAlert',
+        'ngToast'
     ];
     function notifications(
-        notifier
+        sweetAlert,
+        ngToast
     ) {
         var
             service;
         service = {
-            cpfRepetido: function cpfRepetido() {
-                notifier({
-                    message: '<strong>Erro.</strong> O CPF informado já foi usado em uma inscrição. Confirme o número e entre em contato com o administrador do sistema.'
-                }, {
-                    delay: 20000,
-                    type: 'danger'
+            accessDeniedError: function accessDeniedError() {
+                sweetAlert({
+                    text: 'Acesso Negado.',
+                    title: 'Erro!',
+                    type: 'error'
+                });
+            },
+            cpfRepetidoError: function cpfRepetidoError() {
+                sweetAlert({
+                    title: 'Atenção!',
+                    text: 'O CPF fornecido já foi usado em uma inscrição anterior.',
+                    type: 'error'
+                });
+            },
+            databaseError: function databaseError() {
+                sweetAlert({
+                    title: 'Erro!',
+                    text: 'Falha no Processamento dos Dados.',
+                    type: 'error'
                 });
             },
             invalid: function invalid() {
-                notifier({
-                    message: '<strong>Atenção!</strong> Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de salvar.'
-                }, {
-                    delay: 20000,
-                    type: 'danger'
+                sweetAlert({
+                    text: 'Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de avançar.',
+                    title: 'Atenção!',
+                    type: 'warning'
                 });
             },
             loadingAll: {
                 pending: function pending() {
-                    this.notification = notifier({
-                        message: 'Carregando inscrições...'
+                    sweetAlert({
+                        allowEscapeKey: false,
+                        html: true,
+                        text: '<div class="spinner"></div><br>Carregando inscrições.',
+                        showConfirmButton: false,
+                        title: 'Aguarde!',
+                        type: null
                     });
                 },
                 fulfilled: function fulfilled() {
-                    notifier.close(this.notification, 1000);
+                    sweetAlert.close();
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível carregar as inscrições.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível carregar as inscrições.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
             },
             loadingOne: {
                 pending: function pending() {
-                    this.notification = notifier({
-                        message: 'Carregando inscrição...'
+                    sweetAlert({
+                        allowEscapeKey: false,
+                        html: true,
+                        text: '<div class="spinner"></div><br>Carregando inscrição.',
+                        showConfirmButton: false,
+                        title: 'Aguarde!',
+                        type: null
                     });
                 },
                 fulfilled: function fulfilled() {
-                    notifier.close(this.notification, 1000);
+                    sweetAlert.close();
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível carregar sua inscrição.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível carregar as inscrições.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
+            },
+            noSuchIdError: function noSuchIdError() {
+                sweetAlert({
+                    text: 'Registro não encontrado.',
+                    title: 'Erro!',
+                    type: 'error'
+                });
+            },
+            confirmSuccess: function confirmSuccess() {
+                sweetAlert({
+                    text: 'Inscrição confirmada.',
+                    title: 'Sucesso!',
+                    type: 'success'
+                });
             },
             saving: {
                 pending: function pending() {
-                    this.notification = notifier({
-                        message: 'Salvando inscrição...'
-                    }, {
-                        type: 'warning'
+                    this.toast = ngToast.create({
+                        className: 'info',
+                        content: 'Salvando inscrição...',
+                        dismissOnTimeout: false
                     });
                 },
                 fulfilled: function fulfilled() {
-                    this.notification.update('type', 'success');
-                    this.notification.update('message', '<strong>Sucesso.</strong> Sua inscrição foi salva com sucesso.');
-                    notifier.close(this.notification, 1000);
+                    ngToast.dismiss(this.toast);
+                    // this.toast = ngToast.create({
+                    //     className: 'success',
+                    //     content: '<strong>Sucesso.</strong> Sua inscrição foi salva com sucesso.'
+                    // });
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível salvar sua inscrição.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível salvar sua inscrição.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
+            },
+            uncaughtError: function uncaughtError(error) {
+                sweetAlert({
+                    text: 'Uncaught: ' + error.type,
+                    title: 'Erro!',
+                    type: 'error'
+                });
             }
         };
         return service;

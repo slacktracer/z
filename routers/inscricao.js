@@ -74,6 +74,29 @@
                 });
         }
     );
+    router.post(
+        '/:id/confirmar',
+        middleware.denyConfirm,
+        function (request, response, next) {
+            models
+                .inscricao
+                .confirm(request.body)
+                .then(function then() {
+                    response.send({
+                        inscricao: request.body
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
     router.put(
         '/',
         middleware.guardInscricao,
@@ -101,6 +124,7 @@
 }(
     require('express'),
     { //middleware
+        denyConfirm: require('./middleware').denyConfirm,
         denyMultiple: require('./middleware').denyMultiple,
         denyViewOthers: require('./middleware').denyViewOthers,
         guardEmail: require('./middleware').guardEmail,

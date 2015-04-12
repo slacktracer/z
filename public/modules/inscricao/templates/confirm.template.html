@@ -3,6 +3,7 @@
         fade
         modal
     "
+    data-ng-controller="inscricao.Confirm as confirm"
     id="confirmModal"
     tabindex="-1"
     >
@@ -28,23 +29,47 @@
                     data-dismiss="modal"
                     type="button"
                     >
-                    <span>&times;</span>
+                    <span>
+                        &times;
+                    </span>
                 </button>
                 <h4
                     class="
                         modal-title
                     "
-                    id="myModalLabel"
                     >
                     Confirmação de Inscrição
                 </h4>
             </div>
-                <form>
+                <form
+                    data-ng-submit="confirm.submit()"
+                    name="confirm.ficha"
+                    novalidate
+                    >
                 <div
                     class="
                         modal-body
                     "
                     >
+                    <div
+                        class="
+                            alert
+                            alert-warning
+                        "
+                        >
+                        <strong>
+                            Atenção!
+                        </strong>
+                        Os campos marcados com um
+                        <span
+                            class="
+                                glyphicon
+                                glyphicon-asterisk
+                            "
+                        >
+                        </span>
+                        (asterisco) são obrigatórios.
+                    </div>
                     <div
                         class="
                             form-group
@@ -54,7 +79,7 @@
                             class="
                                 control-label
                             "
-                            for="confirmacao.nome_completo"
+                            for="nome_completo"
                             >
                             Nome Completo
                         </label>
@@ -62,9 +87,9 @@
                             class="
                                 form-control
                             "
-                            id="confirmacao.nome_completo"
-                            name="confirmacao.nome_completo"
-                            value="{{list.inscricaoPorConfirmar.nome_completo}}"
+                            id="nome_completo"
+                            name="nome_completo"
+                            value="{{confirm.inscricao.copy.nome_completo}}"
                             readonly="true"
                             >
                     </div>
@@ -77,7 +102,7 @@
                             class="
                                 control-label
                             "
-                            for="confirmacao.cpf"
+                            for="cpf"
                             >
                             <abbr
                                 class="
@@ -92,9 +117,9 @@
                             class="
                                 form-control
                             "
-                            id="confirmacao.cpf"
-                            name="confirmacao.cpf"
-                            value="{{list.inscricaoPorConfirmar.cpf}}"
+                            id="cpf"
+                            name="cpf"
+                            value="{{confirm.inscricao.copy.cpf}}"
                             readonly
                             >
                     </div>
@@ -102,43 +127,81 @@
                         class="
                             form-group
                         "
+                        data-ng-class="{
+                            'has-error': confirm.isInvalidField('valor_pago')
+                        }"
                         >
                         <label
                             class="
                                 control-label
                             "
-                            for="confirmacao.valor_pago"
+                            for="valor_pago"
                             >
                             Valor Pago
+                            <span
+                                class="
+                                    glyphicon
+                                    glyphicon-asterisk
+                                "
+                                >
+                            </span>
                         </label>
-                        <input
+                        <div
                             class="
-                                form-control
+                                input-group
                             "
-                            id="confirmacao.valor_pago"
-                            name="confirmacao.valor_pago"
-                            type="text"
                             >
+                            <div class="
+                                input-group-addon
+                                "
+                                >
+                                R$
+                            </div>
+                            <input
+                                class="
+                                    form-control
+                                "
+                                data-ng-model="confirm.inscricao.copy.valor_pago"
+                                id="valor_pago"
+                                name="valor_pago"
+                                required
+                                type="text"
+                                >
+                        </div>
                     </div>
                     <div
                         class="
                             form-group
                         "
+                        data-ng-class="{
+                            'has-error': confirm.isInvalidField('data_de_pagamento')
+                        }"
                         >
                         <label
                             class="
                                 control-label
                             "
-                            for="confirmacao.data_de_pagamento"
+                            for="data_de_pagamento"
                             >
                             Data de Pagamento
+                            <span
+                                class="
+                                    glyphicon
+                                    glyphicon-asterisk
+                                "
+                                >
+                            </span>
                         </label>
                         <input
                             class="
                                 form-control
                             "
-                            id="confirmacao.data_de_pagamento"
-                            name="confirmacao.data_de_pagamento"
+                            data-ez-valid-date
+                            data-ng-model="confirm.inscricao.copy.data_de_pagamento"
+                            id="data_de_pagamento"
+                            maxlength="10"
+                            name="data_de_pagamento"
+                            required
                             type="text"
                             >
                     </div>
@@ -156,14 +219,15 @@
                         data-dismiss="modal"
                         type="button"
                         >
-                        Cancelar
+                        Fechar
                     </button>
                     <button
                         class="
                             btn
                             btn-success
                         "
-                        type="button"
+                        data-ng-disabled="confirm.actionButtonsDisabled"
+                        type="submit"
                         >
                         Confirmar
                     </button>

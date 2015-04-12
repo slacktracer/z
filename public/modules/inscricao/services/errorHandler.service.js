@@ -9,26 +9,23 @@
     function errorHandler(
         notifications
     ) {
-        var
-            surrogateAlert;
-        surrogateAlert = window.alert;
         return service;
         function service(error) {
             switch (error.type) {
             case 'ACCESS_DENIED':
-                surrogateAlert('ERROR: ACCESS_DENIED');
+                notifications.accessDeniedError();
                 break;
             case 'CPF_REPETIDO':
-                notifications.cpfRepetido();
+                notifications.cpfRepetidoError();
                 break;
             case 'DATABASE':
-                surrogateAlert('ERROR: DATABASE');
+                notifications.databaseError();
                 break;
             case 'NO_SUCH_ID':
-                surrogateAlert('ERROR: NO_SUCH_ID');
+                notifications.noSuchIdError();
                 break;
             default:
-                surrogateAlert('[UNCAUGHT] ERROR: ' + error.type);
+                notifications.uncaughtError(error);
             }
         }
     }

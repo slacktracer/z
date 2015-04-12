@@ -11,7 +11,8 @@
     "globals": {
         "angular": false,
         "jQuery": false,
-        "moment": false
+        "moment": false,
+        "sweetAlert": false
     },
     "rules": {
         "generator-star": 0,

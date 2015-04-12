@@ -16,6 +16,7 @@
         var
             service;
         service = {
+            confirm: confirm,
             create: create,
             example: example,
             readAll: readAll,
@@ -26,6 +27,16 @@
         /**
          * functions
          */
+        function confirm(inscricao) {
+            return $http
+                .post('/api/inscricao/' + inscricao.id + '/confirmar', inscricao)
+                .then(function onResolve(value) {
+                    return value.data.inscricao;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
         function create(inscricao) {
             return $http
                 .post('/api/inscricao', inscricao)

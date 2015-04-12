@@ -1,12 +1,16 @@
 {
     "default": [],
     "thiagocondurufigueiredo@gmail.com": [
+        "BETATEST",
+        "CONFIRM",
         "CREATE_OTHERS",
         "MULTIPLE",
         "VIEW_OTHERS",
         "VIEW_PAPERS"
     ],
     "zanaribeiro@gmail.com": [
+        "BETATEST",
+        "CONFIRM",
         "CREATE_OTHERS",
         "MULTIPLE",
         "VIEW_OTHERS",

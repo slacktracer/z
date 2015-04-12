@@ -5,6 +5,7 @@
     settings
 ) {
     let middleware = {
+        denyConfirm: denyConfirm,
         denyMultiple: denyMultiple,
         denyViewOthers: denyViewOthers,
         denyUpload: denyUpload,
@@ -13,6 +14,20 @@
         parseUpload: parseUpload
     };
     module.exports = middleware;
+    function denyConfirm(request, response, next) {
+        let session = request.session;
+        if (modules.authorizer.mayNot('CONFIRM', session.permissions)) {
+            response
+                .status(403)
+                .send({
+                    error: 'Acesso Negado',
+                    isError: true,
+                    type: 'ACCESS_DENIED'
+                });
+            return;
+        }
+        return next();
+    }
     function denyMultiple(request, response, next) {
         let session = request.session;
         if (

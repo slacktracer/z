@@ -16,6 +16,8 @@
         var
             vm;
         vm = this;
+        vm.getButtonClass = getButtonClass;
+        vm.select = select;
         activate();
         /**
          * functions
@@ -38,6 +40,21 @@
                     errorHandler(reason);
                     vm.state = 'rejected';
                 });
+        }
+        function getButtonClass(inscricao) {
+            if (inscricao.status === 0) {
+                return 'btn-default';
+            }
+            if (inscricao.status === 1 && +inscricao.valor_pago === 0) {
+                return 'btn-info';
+            }
+            if (
+                inscricao.status === 1 && +inscricao.valor_pago !== 0) {
+                return 'btn-success';
+            }
+        }
+        function select(inscricao) {
+            vm.inscricoes.inscricao = inscricao;
         }
     }
 }());
