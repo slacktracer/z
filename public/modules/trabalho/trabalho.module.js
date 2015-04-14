@@ -5,6 +5,6 @@
             'angularFileUpload',
             'ngAnimate',
             'ngRoute',
-            'notifier'
+            'ngToast'
         ]);
 }());

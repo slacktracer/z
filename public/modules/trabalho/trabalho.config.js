@@ -5,11 +5,13 @@
         .config(config);
     config.$inject = [
         '$locationProvider',
-        '$routeProvider'
+        '$routeProvider',
+        'ngToastProvider'
     ];
     function config(
         $locationProvider,
-        $routeProvider
+        $routeProvider,
+        ngToastProvider
     ) {
         $locationProvider.html5Mode(true);
         $routeProvider
@@ -23,5 +25,9 @@
                 controllerAs: 'edit',
                 templateUrl: 'modules/trabalho/templates/edit.template.html'
             });
+        ngToastProvider.configure({
+            additionalClasses: 'toast',
+            horizontalPosition: 'center'
+        });
     }
 }());

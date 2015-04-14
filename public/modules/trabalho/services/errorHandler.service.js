@@ -9,23 +9,20 @@
     function errorHandler(
         notifications
     ) {
-        var
-            surrogateAlert;
-        surrogateAlert = window.alert;
         return service;
         function service(error) {
             switch (error.type) {
             case 'ACCESS_DENIED':
-                surrogateAlert('ACCESS_DENIED');
+                notifications.accessDeniedError();
                 break;
             case 'NO_SUCH_ID':
-                surrogateAlert('NO_SUCH_ID');
+                notifications.noSuchIdError();
                 break;
             case 'INVALID_FILETYPE':
-                surrogateAlert('INVALID_FILETYPE');
+                notifications.invalidFiletypeError(error);
                 break;
             default:
-                surrogateAlert('UNCAUGHT: ' + error.type);
+                notifications.uncaughtError(error);
             }
         }
     }

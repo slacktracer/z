@@ -4,74 +4,93 @@
         .module('trabalho')
         .service('trabalho.notifications', notifications);
     notifications.$inject = [
-        'notifier.notifier'
+        'main.sweetAlert',
+        'ngToast'
     ];
     function notifications(
-        notifier
+        sweetAlert,
+        ngToast
     ) {
         var
             service;
         service = {
+            accessDeniedError: function accessDeniedError() {
+                sweetAlert({
+                    text: 'Acesso Negado.',
+                    title: 'Erro!',
+                    type: 'error'
+                });
+            },
             invalid: function invalid() {
-                notifier({
-                    message: '<strong>Atenção!</strong> Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de salvar.'
-                }, {
-                    delay: 20000,
-                    type: 'danger'
+                sweetAlert({
+                    text: 'Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de avançar.',
+                    title: 'Atenção!',
+                    type: 'warning'
                 });
             },
             loadingCount: {
                 pending: function pending() {
-                    // this.notification = notifier({
-                    //     message: 'Verificando submissões...'
-                    // });
                 },
                 fulfilled: function fulfilled() {
-                    // this.notification.update('type', 'success');
-                    // this.notification.update('message', '<strong>Sucesso.</strong> Submissões verificadas.');
-                    // notifier.close(this.notification, 3000);
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível verificar submissões prévias e liberar o sistema de submissão.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível verificar suas submissões prévias e liberar o sistema de submissão.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
+            },
+            noSuchIdError: function noSuchIdError() {
+                sweetAlert({
+                    text: 'Registro não encontrado.',
+                    title: 'Erro!',
+                    type: 'error'
+                });
             },
             sending: {
                 pending: function pending() {
-                    this.notification = notifier({
-                        message: 'Enviando trabalho...'
-                    }, {
-                        type: 'warning'
+                    this.toast = ngToast.create({
+                        className: 'info',
+                        content: 'Enviando trabalho...',
+                        dismissOnTimeout: false
                     });
                 },
                 fulfilled: function fulfilled() {
-                    this.notification.update('type', 'success');
-                    this.notification.update('message', '<strong>Sucesso.</strong> Seu trabalho foi enviado com sucesso.');
-                    notifier.close(this.notification, 3000);
+                    ngToast.dismiss(this.toast);
+                    this.toast = ngToast.create({
+                        className: 'successo',
+                        content: '<strong>Sucesso.</strong> Seu trabalho foi enviado com sucesso.',
+                        timeout: 10000
+                    });
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível enviar seu trabalho.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível enviar seu trabalho.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
             },
             verifyingAllowed: {
                 pending: function pending() {
-                    // this.notification = notifier({
-                    //     message: 'Verificando permissão para submissão...'
-                    // });
                 },
                 fulfilled: function fulfilled() {
-                    // this.notification.update('type', 'success');
-                    // this.notification.update('message', '<strong>Sucesso.</strong> Inscrição confirmada. Submissão permitida.');
-                    // notifier.close(this.notification, 3000);
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível verificar o status de sua inscrição.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível verificar o status de sua inscrição e liberar o sistema de submissão.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
+            },
+            uncaughtError: function uncaughtError(error) {
+                sweetAlert({
+                    text: 'Uncaught: ' + error.type,
+                    title: 'Erro!',
+                    type: 'error'
+                });
             }
         };
         return service;
