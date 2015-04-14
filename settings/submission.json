@@ -10,26 +10,44 @@
         "3": "Cirurgia",
         "4": "Clínica Médica",
         "5": "Enfermagem",
-        "6": "Fisioterapia",
-        "7": "Geriatria",
-        "8": "Ginecologia e Obstetrícia",
-        "9": "Infectologia",
-        "10": "Miscelânea",
-        "11": "Neurologia",
-        "12": "Nutrição",
-        "13": "Odontologia",
-        "14": "Oncologia",
-        "15": "Pediatria",
-        "16": "Políticas Públicas",
-        "17": "Pneumologia",
-        "18": "Psicologia",
-        "19": "Saúde do Idoso",
-        "20": "Serviço Social",
-        "21": "Tecnologia em Saúde",
-        "22": "Terapia Ocupacional",
+        "6": "Farmácia",
+        "7": "Fisioterapia",
+        "8": "Geriatria",
+        "9": "Ginecologia e Obstetrícia",
+        "10": "Infectologia",
+        "11": "Medicina",
+        "12": "Miscelânea",
+        "13": "Neurologia",
+        "14": "Nutrição",
+        "15": "Odontologia",
+        "16": "Oncologia",
+        "17": "Pediatria",
+        "18": "Pneumologia",
+        "19": "Políticas Públicas",
+        "20": "Psicologia",
+        "21": "Saúde do Idoso",
+        "22": "Serviço Social",
+        "23": "Tecnologia em Saúde",
+        "24": "Terapia Ocupacional",
         "X": "Y"
     },
     "coordenadorPorAreaTematica": {
+        "Cardiologia": {
+            "endereco": "dilmasouza@ufpa.br",
+            "nome": "Dilma do Socorro Souza"
+        },
+        "Ciências Básicas": {
+            "endereco": "cezar_caldas@yahoo.com.br",
+            "nome": "Cezar Caldas"
+        },
+        "Cirurgia": {
+            "endereco": "assumpcao@gmail.com",
+            "nome": "Paulo Assumpção"
+        },
+        "Clínica Médica": {
+            "endereco": "sconde@ufpa.br",
+            "nome": "Simone Conde"
+        },
         "Enfermagem": {
             "endereco": "danituma@ufpa.br",
             "nome": "Danielle Saraiva Tuma dos Reis"
@@ -42,9 +60,29 @@
             "endereco": "renatoct@ufpa.br",
             "nome": "Renato da Costa Teixeira"
         },
+        "Geriatria": {
+            "endereco": "drkmoreira@yahoo.com.br",
+            "nome": "Karlo Edson Carneiro Santana Moreira"
+        },
+        "Ginecologia e Obstetrícia": {
+            "endereco": "",
+            "nome": ""
+        },
+        "Infectologia": {
+            "endereco": "ritacloset@uol.com.br",
+            "nome": "Rita Medeiros"
+        },
         "Medicina": {
             "endereco": "dilmasouza@ufpa.br",
             "nome": "Dilma do Socorro Souza"
+        },
+        "Miscelânea": {
+            "endereco": "carlomagnobahia@gmail.com",
+            "nome": "Carlomagno Bahia"
+        },
+        "Neurologia": {
+            "endereco": "ericpaschoal@yahoo.com.br",
+            "nome": "Eric Homero Albuquerque Paschoal"
         },
         "Nutrição": {
             "endereco": "guterres39@hotmail.com",
@@ -54,9 +92,29 @@
             "endereco": "harp@ufpa.br",
             "nome": "Helder Pontes"
         },
+        "Oncologia": {
+            "endereco": "geishak@ig.com",
+            "nome": "Geraldo Ishak"
+        },
+        "Pediatria": {
+            "endereco": "vcmartins@ufpa.br",
+            "nome": "Valéria Martins"
+        },
+        "Pneumologia": {
+            "endereco": "cleonardoaugusto@gmail.com",
+            "nome": "Cleonardo Augusto"
+        },
+        "Políticas Públicas": {
+            "endereco": "pedropiani@yahoo.com.br",
+            "nome": "Pedro Paulo Freire Piani"
+        },
         "Psicologia": {
             "endereco": "sap_psi@yahoo.com.br",
             "nome": "Simone Pampolha"
+        },
+        "Saúde do Idoso": {
+            "endereco": "drkmoreira@yahoo.com.br",
+            "nome": "Karlo Edson Carneiro Santana Moreira"
         },
         "Serviço Social": {
             "endereco": "petgomes@ufpa.br",
