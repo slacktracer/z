@@ -4,7 +4,6 @@
         .module('inscricao', [
             'ngAnimate',
             'ngRoute',
-            'ngToast',
-            'notifier'
+            'ngToast'
         ]);
 }());

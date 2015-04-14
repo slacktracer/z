@@ -21,6 +21,13 @@
                     type: 'error'
                 });
             },
+            confirmSuccess: function confirmSuccess() {
+                sweetAlert({
+                    text: 'Inscrição confirmada.',
+                    title: 'Sucesso!',
+                    type: 'success'
+                });
+            },
             cpfRepetidoError: function cpfRepetidoError() {
                 sweetAlert({
                     title: 'Atenção!',
@@ -46,6 +53,7 @@
                 pending: function pending() {
                     sweetAlert({
                         allowEscapeKey: false,
+                        allowOutsideClick: false,
                         html: true,
                         text: '<div class="spinner"></div><br>Carregando inscrições.',
                         showConfirmButton: false,
@@ -68,6 +76,7 @@
                 pending: function pending() {
                     sweetAlert({
                         allowEscapeKey: false,
+                        allowOutsideClick: false,
                         html: true,
                         text: '<div class="spinner"></div><br>Carregando inscrição.',
                         showConfirmButton: false,
@@ -93,13 +102,6 @@
                     type: 'error'
                 });
             },
-            confirmSuccess: function confirmSuccess() {
-                sweetAlert({
-                    text: 'Inscrição confirmada.',
-                    title: 'Sucesso!',
-                    type: 'success'
-                });
-            },
             saving: {
                 pending: function pending() {
                     this.toast = ngToast.create({
@@ -110,10 +112,6 @@
                 },
                 fulfilled: function fulfilled() {
                     ngToast.dismiss(this.toast);
-                    // this.toast = ngToast.create({
-                    //     className: 'success',
-                    //     content: '<strong>Sucesso.</strong> Sua inscrição foi salva com sucesso.'
-                    // });
                 },
                 rejected: function rejected() {
                     sweetAlert({

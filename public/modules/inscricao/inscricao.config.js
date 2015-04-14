@@ -46,10 +46,8 @@
                 templateUrl: 'modules/inscricao/templates/edit.template.html'
             });
         ngToastProvider.configure({
-            animation: 'slide',
-            horizontalPosition: 'center',
-            maxNumber: 0,
-            verticalPosition: 'top'
+            additionalClasses: 'toast',
+            horizontalPosition: 'center'
         });
     }
 }());
