@@ -4,42 +4,55 @@
         .module('session')
         .service('session.notifications', notifications);
     notifications.$inject = [
-        'notifier.notifier'
+        'main.sweetAlert',
+        'ngToast'
     ];
     function notifications(
-        notifier
+        sweetAlert,
+        ngToast
     ) {
         var
             service;
         service = {
             authenticating: {
                 pending: function pending() {
-                    this.notification = notifier({
-                        message: 'Processando autenticação...'
-                    }, {
-                        type: 'warning'
+                    this.toast = ngToast.create({
+                        className: 'info',
+                        content: 'Processando autenticação...',
+                        dismissOnTimeout: false
                     });
                 },
                 fulfilled: function fulfilled() {
-                    this.notification.update('type', 'success');
-                    this.notification.update('message', '<strong>Sucesso.</strong> Sua autenticação foi realizada com sucesso.');
-                    notifier.close(this.notification, 1000);
+                    ngToast.dismiss(this.toast);
+                    ngToast.create({
+                        className: 'success',
+                        content: '<strong>Sucesso.</strong> Sua autenticação foi realizada com sucesso.',
+                        timeout: 4000
+                    });
                 },
                 rejected: function rejected() {
-                    this.notification.update('type', 'danger');
-                    this.notification.update('message', '<strong>Erro.</strong> Não foi possível realizar sua autenticação.');
-                    notifier.close(this.notification, 10000);
+                    sweetAlert({
+                        text: 'Não foi possível realizar sua autenticação.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
                 }
             },
             verifyingAuthenticationState: {
                 pending: function started() {
-                    this.notification = notifier({
-                        message: 'Verificando autenticação...'
+                    this.toast = ngToast.create({
+                        className: 'info',
+                        content: 'Verificando autenticação...',
+                        dismissOnTimeout: false
                     });
                 },
                 fulfilled: function done() {
-                    this.notification.update('message', 'Autenticação verificada.');
-                    notifier.close(this.notification, 1000);
+                    ngToast.dismiss(this.toast);
+                    ngToast.create({
+                        className: 'success',
+                        content: '<strong>Sucesso.</strong> Autenticação verificada.',
+                        timeout: 4000
+                    });
                 }
             }
         };
