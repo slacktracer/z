@@ -35,10 +35,9 @@
                     filename: fileName
                 }];
                 let coordenador = settings.submission.coordenadorPorAreaTematica[areaTematica];
-                coordenador = `${coordenador.nome} <${coordenador.endereco}>`;
                 sendMail({
                     from: settings.mail.from,
-                    to: coordenador,
+                    to: `${coordenador.nome} <${coordenador.endereco}>`,
                     subject: `Submissão de Trabalho para o Congresso HUJBB - ${areaTematica}`,
                     html: `Trabalho submetido para a área temática <b>${areaTematica}</b>` +
                         `<br><br>` +
