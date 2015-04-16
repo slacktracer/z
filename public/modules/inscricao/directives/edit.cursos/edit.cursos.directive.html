@@ -19,7 +19,10 @@
             <label>
                 <input
                     data-ng-change="cursos.setunset('curso_matutino')"
-                    data-ng-disabled="cursos.curso_matutino_noneditable"
+                    data-ng-disabled="
+                        cursos.curso_matutino_noneditable &amp;&amp;
+                        main.session.mayNot('CHANGE_COURSE')
+                    "
                     data-ng-model="cursos.curso_matutino"
                     type="checkbox"
                     >
@@ -31,7 +34,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_matutino ||
+                        (
+                            cursos.curso_matutino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_matutino"
                     id="entadpdhiv"
                     name="curso_matutino"
@@ -46,7 +55,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_matutino ||
+                        (
+                            cursos.curso_matutino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_matutino"
                     id="nec"
                     name="curso_matutino"
@@ -61,7 +76,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_matutino ||
+                        (
+                            cursos.curso_matutino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_matutino"
                     id="ccapppt"
                     name="curso_matutino"
@@ -76,7 +97,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_matutino || cursos.curso_matutino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_matutino ||
+                        (
+                            cursos.curso_matutino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_matutino"
                     id="amdi"
                     name="curso_matutino"
@@ -104,7 +131,10 @@
             <label>
                 <input
                     data-ng-change="cursos.setunset('curso_vespertino')"
-                    data-ng-disabled="cursos.curso_vespertino_noneditable"
+                    data-ng-disabled="
+                        cursos.curso_matutino_noneditable &amp;&amp;
+                        main.session.mayNot('CHANGE_COURSE')
+                    "
                     data-ng-model="cursos.curso_vespertino"
                     type="checkbox"
                     >
@@ -118,7 +148,10 @@
                 <input
                     data-ng-disabled="
                         !cursos.curso_vespertino ||
-                        cursos.curso_vespertino_noneditable
+                        (
+                            cursos.curso_vespertino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
                     "
                     data-ng-model="edit.inscricao.curso_vespertino"
                     id="ccopd"
@@ -137,7 +170,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_vespertino || cursos.curso_vespertino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_vespertino ||
+                        (
+                            cursos.curso_vespertino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_vespertino"
                     id="sneep"
                     name="curso_vespertino"
@@ -152,7 +191,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_vespertino || cursos.curso_vespertino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_vespertino ||
+                        (
+                            cursos.curso_vespertino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_vespertino"
                     id="ccapppt"
                     name="curso_vespertino"
@@ -167,7 +212,13 @@
             >
             <label>
                 <input
-                    data-ng-disabled="!cursos.curso_vespertino || cursos.curso_vespertino_noneditable"
+                    data-ng-disabled="
+                        !cursos.curso_vespertino ||
+                        (
+                            cursos.curso_vespertino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
                     data-ng-model="edit.inscricao.curso_vespertino"
                     id="amdi"
                     name="curso_vespertino"

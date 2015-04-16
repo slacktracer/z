@@ -26,7 +26,7 @@
                     ngToast.dismiss(this.toast);
                     ngToast.create({
                         className: 'success',
-                        content: '<strong>Sucesso.</strong> Sua autenticação foi realizada com sucesso.',
+                        content: 'Sua autenticação foi realizada com sucesso.',
                         timeout: 4000
                     });
                 },
@@ -49,8 +49,8 @@
                 fulfilled: function done() {
                     ngToast.dismiss(this.toast);
                     ngToast.create({
-                        className: 'success',
-                        content: '<strong>Sucesso.</strong> Autenticação verificada.',
+                        className: 'info',
+                        content: 'Autenticação verificada.',
                         timeout: 4000
                     });
                 }

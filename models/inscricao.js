@@ -67,7 +67,10 @@
         return modules
             .executor(
                 squel
-                    .insert()
+                    .insert({
+                        replaceSingleQuotes: true,
+                        singleQuoteReplacement: '\\\''
+                    })
                     .into('inscricao')
                     .set('nome_completo', inscricao.nome_completo)
                     .set('data_de_nascimento', inscricao.data_de_nascimento)
@@ -275,7 +278,10 @@
         return modules
             .executor(
                 squel
-                    .update()
+                    .update({
+                        replaceSingleQuotes: true,
+                        singleQuoteReplacement: '\\\''
+                    })
                     .table('inscricao')
                     .set('nome_completo', inscricao.nome_completo)
                     .set('data_de_nascimento', inscricao.data_de_nascimento)
