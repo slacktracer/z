@@ -17,9 +17,11 @@
             service;
         service = {
             isAllowedToSubmit: isAllowedToSubmit,
+            countByInscricao: countByInscricao,
             create: create,
+            evaluate: evaluate,
             example: example,
-            countByInscricao: countByInscricao
+            readAll: readAll
         };
         return service;
         /**
@@ -52,11 +54,34 @@
                     return reason.data;
                 });
         }
+        function evaluate(id, evaluation) {
+            return $http
+                .post('/api/trabalho/avaliar', {
+                    id: id,
+                    evaluation: evaluation
+                })
+                .then(function onResolve(value) {
+                    return value.data;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
         function isAllowedToSubmit() {
             return $http
                 .get('/api/trabalho/status')
                 .then(function onResolve(value) {
                     return value.data.status;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
+        function readAll() {
+            return $http
+                .get('/api/trabalho')
+                .then(function onResolve(value) {
+                    return value.data.trabalhos;
                 })
                 .catch(function onReject(reason) {
                     return reason.data;

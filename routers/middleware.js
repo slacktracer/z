@@ -7,7 +7,9 @@
     let middleware = {
         denyConfirm: denyConfirm,
         denyMultiple: denyMultiple,
+        denyEvaluate: denyEvaluate,
         denyViewOthers: denyViewOthers,
+        denyViewPapers: denyViewPapers,
         denyUpload: denyUpload,
         guardEmail: guardEmail,
         guardInscricao: guardInscricao,
@@ -17,6 +19,20 @@
     function denyConfirm(request, response, next) {
         let session = request.session;
         if (modules.authorizer.mayNot('CONFIRM', session.permissions)) {
+            response
+                .status(403)
+                .send({
+                    error: 'Acesso Negado',
+                    isError: true,
+                    type: 'ACCESS_DENIED'
+                });
+            return;
+        }
+        return next();
+    }
+    function denyEvaluate(request, response, next) {
+        let session = request.session;
+        if (modules.authorizer.mayNot('EVALUATE', session.permissions)) {
             response
                 .status(403)
                 .send({
@@ -63,6 +79,20 @@
     function denyViewOthers(request, response, next) {
         let session = request.session;
         if (modules.authorizer.mayNot('VIEW_OTHERS', session.permissions)) {
+            response
+                .status(403)
+                .send({
+                    error: 'Acesso Negado',
+                    isError: true,
+                    type: 'ACCESS_DENIED'
+                });
+            return;
+        }
+        return next();
+    }
+    function denyViewPapers(request, response, next) {
+        let session = request.session;
+        if (modules.authorizer.mayNot('VIEW_PAPERS', session.permissions)) {
             response
                 .status(403)
                 .send({

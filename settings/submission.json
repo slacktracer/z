@@ -9,26 +9,27 @@
         "2": "Ciências Básicas",
         "3": "Cirurgia",
         "4": "Clínica Médica",
-        "5": "Enfermagem",
-        "6": "Farmácia",
-        "7": "Fisioterapia",
-        "8": "Geriatria",
-        "9": "Ginecologia e Obstetrícia",
-        "10": "Infectologia",
-        "11": "Medicina",
-        "12": "Miscelânea",
-        "13": "Neurologia",
-        "14": "Nutrição",
-        "15": "Odontologia",
-        "16": "Oncologia",
-        "17": "Pediatria",
-        "18": "Pneumologia",
-        "19": "Políticas Públicas",
-        "20": "Psicologia",
-        "21": "Saúde do Idoso",
-        "22": "Serviço Social",
-        "23": "Tecnologia em Saúde",
-        "24": "Terapia Ocupacional",
+        "5": "Endocrinologia",
+        "6": "Enfermagem",
+        "7": "Farmácia",
+        "8": "Fisioterapia",
+        "9": "Geriatria",
+        "10": "Ginecologia e Obstetrícia",
+        "11": "Infectologia",
+        "12": "Medicina",
+        "13": "Miscelânea",
+        "14": "Neurologia",
+        "15": "Nutrição",
+        "16": "Odontologia",
+        "17": "Oncologia",
+        "18": "Pediatria",
+        "19": "Pneumologia",
+        "20": "Políticas Públicas",
+        "21": "Psicologia",
+        "22": "Saúde do Idoso",
+        "23": "Serviço Social",
+        "24": "Tecnologia em Saúde",
+        "25": "Terapia Ocupacional",
         "X": "Y"
     },
     "coordenadorPorAreaTematica": {
@@ -48,6 +49,10 @@
             "endereco": "sconde@ufpa.br",
             "nome": "Simone Conde"
         },
+        "Endocrinologia": {
+            "endereco": "endocrinologia.trabalhos.hujbb@gmail.com",
+            "nome": "Desconhecido"
+        },
         "Enfermagem": {
             "endereco": "danituma@ufpa.br",
             "nome": "Danielle Saraiva Tuma dos Reis"
@@ -65,8 +70,8 @@
             "nome": "Karlo Edson Carneiro Santana Moreira"
         },
         "Ginecologia e Obstetrícia": {
-            "endereco": "",
-            "nome": ""
+            "endereco": "ginecologia.trabalhos.hujbb@gmail.com",
+            "nome": "Desconhecido"
         },
         "Infectologia": {
             "endereco": "ritacloset@uol.com.br",
@@ -132,5 +137,9 @@
             "endereco": "thiagocondurufigueiredo@gmail.com",
             "nome": "Thiago Condurú Figueiredo"
         }
+    },
+    "tipoDeResumoPorCodigo": {
+        "1": "Expandido",
+        "2": "Simples"
     }
 }

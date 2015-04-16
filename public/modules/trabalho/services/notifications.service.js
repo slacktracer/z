@@ -21,12 +21,55 @@
                     type: 'error'
                 });
             },
+            evaluating: {
+                pending: function pending() {
+                    this.toast = ngToast.create({
+                        className: 'info',
+                        content: 'Avaliando trabalho...',
+                        dismissOnTimeout: false
+                    });
+                },
+                fulfilled: function fulfilled() {
+                    ngToast.dismiss(this.toast);
+                },
+                rejected: function rejected() {
+                    ngToast.dismiss(this.toast);
+                    sweetAlert({
+                        text: 'Não foi possível avaliar este trabalho.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
+                }
+            },
             invalid: function invalid() {
                 sweetAlert({
                     text: 'Alguns campos contém valores inválidos ou são obrigatórios e não foram preenchidos. Estes campos estão destacados em vermelho. Por favor, corrija-os antes de avançar.',
                     title: 'Atenção!',
                     type: 'warning'
                 });
+            },
+            loadingAll: {
+                pending: function pending() {
+                    sweetAlert({
+                        allowEscapeKey: false,
+                        allowOutsideClick: false,
+                        html: true,
+                        text: '<div class="spinner"></div><br>Carregando a lista de trabalhos submetidos.',
+                        showConfirmButton: false,
+                        title: 'Aguarde!',
+                        type: null
+                    });
+                },
+                fulfilled: function fulfilled() {
+                    sweetAlert.close();
+                },
+                rejected: function rejected() {
+                    sweetAlert({
+                        text: 'Não foi possível carregar a lista de trabalhos submetidos.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
+                }
             },
             loadingCount: {
                 pending: function pending() {
@@ -59,7 +102,7 @@
                 fulfilled: function fulfilled() {
                     ngToast.dismiss(this.toast);
                     this.toast = ngToast.create({
-                        className: 'successo',
+                        className: 'success',
                         content: '<strong>Sucesso.</strong> Seu trabalho foi enviado com sucesso.',
                         timeout: 10000
                     });

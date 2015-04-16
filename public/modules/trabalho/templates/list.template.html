@@ -1,1 +1,137 @@
-Listagem de Trabalhos
+<div
+    data-state="list.state"
+    ez-envelope
+    >
+    <div
+        class="
+            row
+        "
+        >
+        <div
+            class="
+                col-md-12
+            "
+            >
+            <h1>
+                Trabalhos Científicos
+            </h1>
+            <hr>
+            <div
+                class="
+                    row
+                "
+                >
+                <div
+                    class="
+                        col-md-12
+                    "
+                    >
+                    <div
+                        class="
+                            text-right
+                        "
+                        >
+                        Total: <b>{{list.trabalhos.length}}</b>
+                    </div>
+                    <div
+                        class="
+                            table-responsive
+                        "
+                        >
+                        <table
+                            class="
+                                table
+                                table-bordered
+                                table-hover
+                            "
+                            >
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Área Temática
+                                    </th>
+                                    <th>
+                                        Título
+                                    </th>
+                                    <th>
+                                        Autores
+                                    </th>
+                                    <th>
+                                        Tipo de Resumo
+                                    </th>
+                                    <th>
+                                        Avaliar
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr
+                                    data-ng-repeat="trabalho in list.trabalhos"
+                                    >
+                                    <td>
+                                        {{::trabalho.area_tematica | uppercase}}
+                                    </td>
+                                    <td>
+                                        {{::trabalho.titulo}}
+                                    </td>
+                                    <td>
+                                        <span
+                                            data-ng-repeat="autor in trabalho.autores"
+                                            >
+                                            {{::autor}};
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {{::trabalho.tipo_de_resumo | uppercase}}
+                                    </td>
+                                    <td
+                                        class="
+                                            text-center
+                                        "
+                                        >
+                                        <div
+                                            class="
+                                                btn-group
+                                            "
+                                            >
+                                            <button
+                                                class="
+                                                    btn
+                                                    btn-xs
+                                                "
+                                                data-ng-class="{
+                                                    'btn-default': trabalho.status === null,
+                                                    'btn-success': trabalho.status === 1
+                                                }"
+                                                data-ng-click="list.evaluate(trabalho.id, true)"
+                                                data-ng-disabled="list.actionButtonsDisabled"
+                                                type="button"
+                                                >
+                                                Aprovar
+                                            </button>
+                                            <button
+                                                class="
+                                                    btn
+                                                    btn-xs
+                                                "
+                                                data-ng-class="{
+                                                    'btn-default': trabalho.status === null,
+                                                    'btn-danger': trabalho.status === 0
+                                                }"
+                                                data-ng-click="list.evaluate(trabalho.id, false)"
+                                                data-ng-disabled="list.actionButtonsDisabled"
+                                                type="button"
+                                                >
+                                                Reprovar
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
