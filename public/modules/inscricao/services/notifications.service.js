@@ -127,6 +127,13 @@
                     title: 'Erro!',
                     type: 'error'
                 });
+            },
+            weirdError001: function weirdError001() {
+                sweetAlert({
+                    text: 'Não foi possível determinar a identidade da inscrição.',
+                    title: 'Erro!',
+                    type: 'error'
+                });
             }
         };
         return service;

@@ -24,6 +24,9 @@
             case 'NO_SUCH_ID':
                 notifications.noSuchIdError();
                 break;
+            case 'WEIRD_ERROR_001':
+                notifications.weirdError001();
+                break;
             default:
                 notifications.uncaughtError(error);
             }

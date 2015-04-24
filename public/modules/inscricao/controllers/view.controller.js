@@ -25,6 +25,7 @@
         function activate() {
             vm.state = 'pending';
             notifications.loadingOne.pending();
+            trap($routeParams.id);
             data
                 .readById($routeParams.id)
                 .then(function onResolve(inscricao) {
@@ -40,6 +41,16 @@
                     errorHandler(reason);
                     vm.state = 'rejected';
                 });
+        }
+        function trap(id) {
+            id = +id;
+            if (isNaN(id)) {
+                errorHandler({
+                    isError: true,
+                    type: 'WEIRD_ERROR_001'
+                });
+                throw 'Erro de aquisição de identidade da inscrição';
+            }
         }
     }
 }());

@@ -54,6 +54,7 @@
             .then(function onResolve(value) {
                 if (value === true) {
                     throw {
+                        cpf: inscricao.cpf,
                         isError: true,
                         type: 'CPF_REPETIDO'
                     };
