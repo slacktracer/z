@@ -7,6 +7,7 @@
         "CREATE_OTHERS",
         "EVALUATE",
         "MULTIPLE",
+        "SUPERUSER",
         "VIEW_OTHERS",
         "VIEW_PAPERS"
     ],

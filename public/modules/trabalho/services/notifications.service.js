@@ -108,6 +108,7 @@
                     });
                 },
                 rejected: function rejected() {
+                    ngToast.dismiss(this.toast);
                     sweetAlert({
                         text: 'Não foi possível enviar seu trabalho.',
                         title: 'Erro!',

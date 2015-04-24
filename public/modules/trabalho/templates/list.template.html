@@ -91,19 +91,19 @@
                                         >
                                         <div
                                             class="
-                                                btn-group
+                                                btn-group-vertical
                                             "
                                             >
                                             <button
                                                 class="
                                                     btn
+                                                    btn-default
                                                     btn-xs
                                                 "
                                                 data-ng-class="{
-                                                    'btn-default': trabalho.status === null,
                                                     'btn-success': trabalho.status === 1
                                                 }"
-                                                data-ng-click="list.evaluate(trabalho.id, true)"
+                                                data-ng-click="list.evaluate(trabalho, true)"
                                                 data-ng-disabled="list.actionButtonsDisabled"
                                                 type="button"
                                                 >
@@ -112,13 +112,13 @@
                                             <button
                                                 class="
                                                     btn
+                                                    btn-default
                                                     btn-xs
                                                 "
                                                 data-ng-class="{
-                                                    'btn-default': trabalho.status === null,
                                                     'btn-danger': trabalho.status === 0
                                                 }"
-                                                data-ng-click="list.evaluate(trabalho.id, false)"
+                                                data-ng-click="list.evaluate(trabalho, false)"
                                                 data-ng-disabled="list.actionButtonsDisabled"
                                                 type="button"
                                                 >

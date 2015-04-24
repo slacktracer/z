@@ -22,26 +22,30 @@
         filePath,
         fileName,
         tituloDoTrabalho,
+        codigoDoTipoDeResumo,
         usuario
     ) {
-        // para testes
-        codigoDaAreaTematicaDoTrabalho = 'X';
         fs
             .readFileAsync(filePath)
             .then(function onResolve(fileData) {
                 let areaTematica = settings.submission.areaTematicaPorCodigo[codigoDaAreaTematicaDoTrabalho];
+                let tipoDeResumo = settings.submission.tipoDeResumoPorCodigo[codigoDoTipoDeResumo];
                 let attachments = [{
                     content: fileData,
                     filename: fileName
                 }];
-                let coordenador = settings.submission.coordenadorPorAreaTematica[areaTematica];
+                let coordenador = settings.submission.coordenadorPorAreaTematica[
+                    settings.submission.areaTematicaPorCodigo.X
+                ];
                 sendMail({
                     from: settings.mail.from,
-                    to: `${coordenador.nome} <${coordenador.endereco}>`,
+                    to: `${coordenador.nome} <${coordenador.endereco}>, trabalhos.hujbb@gmail.com`,
                     subject: `Submissão de Trabalho para o Congresso HUJBB - ${areaTematica}`,
                     html: `Trabalho submetido para a área temática <b>${areaTematica}</b>` +
                         `<br><br>` +
-                        `Título: <b>${tituloDoTrabalho}<b>`,
+                        `Título: <b>${tituloDoTrabalho}</b>` +
+                        `<br>` +
+                        `Tipo de Resumo: <b>${tipoDeResumo}</b>`,
                     attachments: attachments
                 })
                 .then(function onResolve(outerValue) {
@@ -52,8 +56,11 @@
                         subject: 'Sucesso na Submissão de Trabalho para o Congresso HUJBB',
                         html: `Seu trabalho foi enviado com sucesso. Obrigado.` +
                             `<br><br>` +
-                            `Este e-mail contém uma cópia do arquivo enviado.`,
-                        attachments: attachments
+                            `Título: <b>${tituloDoTrabalho}</b>` +
+                            `<br>` +
+                            `Tipo de Resumo: <b>${tipoDeResumo}</b>` +
+                            `<br>` +
+                            `Área Temática: <b>${areaTematica}</b>`
                     })
                     .then(function onResolve(innerValue) {
                         modules.logger.info(`Envio de e-mail bem sucedido para o usário ${usuario}.`);

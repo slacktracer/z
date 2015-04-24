@@ -44,6 +44,7 @@
                                 trabalho.caminho_do_arquivo,
                                 trabalho.nome_do_arquivo,
                                 trabalho.titulo,
+                                trabalho.tipo_de_resumo,
                                 usuario
                             );
                             return value.result.insertId;
@@ -71,18 +72,31 @@
                 return value.result.length;
             });
     }
-    function evaluate(id, evaluation) {
-        let status = evaluation ? 1 : 0;
-        return modules
-            .executor(
-                squel
-                    .update()
-                    .table('trabalho')
-                    .set('status', status)
-                    .where('id = ?', id)
-            )
-            .then(function onResolve(value) {
-                return id;
+    function evaluate(trabalho, evaluation, evaluator, isSuperUser) {
+        return isAllowedToEvaluate(trabalho, evaluator, isSuperUser)
+            .then(function onResolve(allowed) {
+                console.log(allowed);
+                if (allowed) {
+                    let status = evaluation ? 1 : 0;
+                    return modules
+                        .executor(
+                            squel
+                                .update()
+                                .table('trabalho')
+                                .set('avaliador', evaluator)
+                                .set('status', status)
+                                .where('id = ?', trabalho)
+                        )
+                        .then(function onResolve(value) {
+                            return status;
+                        });
+                }
+                modules.logger.warn(`Tentativa de avaliação de trabalho por avaliador não autorizado. Avaliador: ${evaluator}. Avaliação: ${evaluation}.`);
+                throw {
+                    error: 'Acesso Negado',
+                    isError: true,
+                    type: 'ACCESS_DENIED'
+                };
             });
     }
     function formatIn(trabalho) {
@@ -94,6 +108,20 @@
         trabalho.tipo_de_resumo = settings.submission.tipoDeResumoPorCodigo[trabalho.tipo_de_resumo];
         trabalho.autores = trabalho.autores.split(';');
         return trabalho;
+    }
+    function isAllowedToEvaluate(trabalho, evaluator, isSuperUser) {
+        return readEvaluator(trabalho)
+            .then(function onResolve(value) {
+                console.log(value);
+                if (
+                    value === null ||
+                    value === evaluator ||
+                    isSuperUser
+                ) {
+                    return true;
+                }
+                return false;
+            });
     }
     function isAllowedToSubmit(inscricao) {
         return models
@@ -114,6 +142,20 @@
                     return formatOut(trabalho);
                 });
                 return trabalhos;
+            });
+    }
+    function readEvaluator(trabalho) {
+        return modules
+            .executor
+            .getFirst(
+                squel
+                    .select()
+                    .from('trabalho')
+                    .where('id = ?', trabalho)
+                    .where('__status__ = 1')
+            )
+            .then(function onResolve(value) {
+                return value.avaliador;
             });
     }
     function setCase(trabalho) {

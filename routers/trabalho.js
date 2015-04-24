@@ -66,11 +66,13 @@
                 .trabalho
                 .evaluate(
                     request.body.id,
-                    request.body.value
+                    request.body.evaluation,
+                    request.session.email,
+                    modules.authorizer.may('SUPERUSER', request.session.permissions)
                 )
-                .then(function then(id) {
+                .then(function then(status) {
                     response.send({
-                        id: id
+                        status: status
                     });
                 })
                 .catch(function (reason) {
@@ -140,6 +142,7 @@
         trabalho: require('../models/trabalho')
     },
     { //modules
+        authorizer: require('../modules/authorizer'),
         logger: require('../modules/logger')
     }
 ));
