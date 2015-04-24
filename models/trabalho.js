@@ -51,6 +51,7 @@
                 }
                 // A inscrição não está confirmada.
                 // Não é permitido submeter trabalho.
+                modules.logger.warn(`Tentativa de submissão de trabalho por inscrição não confirmada. Inscrição: ${inscricao}. Status: ${status}.`);
                 throw {
                     error: 'Acesso Negado',
                     isError: true,
