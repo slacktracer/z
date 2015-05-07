@@ -39,7 +39,8 @@
                 ];
                 sendMail({
                     from: settings.mail.from,
-                    to: `${coordenador.nome} <${coordenador.endereco}>, trabalhos.hujbb@gmail.com`,
+                    // to: `${coordenador.nome} <${coordenador.endereco}>, trabalhos.hujbb@gmail.com`,
+                    to: `trabalhos.hujbb@gmail.com`,
                     subject: `Submissão de Trabalho para o Congresso HUJBB - ${areaTematica}`,
                     html: `Trabalho submetido para a área temática <b>${areaTematica}</b>` +
                         `<br><br>` +
@@ -49,7 +50,8 @@
                     attachments: attachments
                 })
                 .then(function onResolve(outerValue) {
-                    modules.logger.info(`Envio de e-mail bem sucedido para o coordenador ${coordenador.nome}.`);
+                    // modules.logger.info(`Envio de e-mail bem sucedido para o coordenador ${coordenador.nome}.`);
+                    modules.logger.info(`Envio de e-mail bem sucedido para trabalhos.hujbb@gmail.com`);
                     sendMail({
                         from: settings.mail.from,
                         to: usuario,
@@ -70,7 +72,8 @@
                     });
                 })
                 .catch(function onReject(reason) {
-                    modules.logger.error(`Erro no envio de e-mail para o coordenador ${coordenador.nome}. Detalhes: ${JSON.stringify(reason)}`);
+                    // modules.logger.error(`Erro no envio de e-mail para o coordenador ${coordenador.nome}. Detalhes: ${JSON.stringify(reason)}`);
+                    modules.logger.error(`Erro no envio de e-mail para o trabalhos.hujbb@gmail.com. Detalhes: ${JSON.stringify(reason)}`);
                 });
             });
     }
