@@ -115,6 +115,7 @@
                     );
             })
             .then(function onResolve() {
+                modules.logger.info(`Inscrição ${inscricao.id} realizada.`);
                 return inscricao.id;
             });
     }
