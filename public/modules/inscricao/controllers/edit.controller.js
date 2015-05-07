@@ -26,6 +26,7 @@
         session
     ) {
         var
+            activationTime,
             vm;
         vm = this;
         vm.action = $route.current.locals.action;
@@ -41,6 +42,7 @@
          * functions
          */
         function activate(action) {
+            activationTime = Date.now();
             vm.inscricao = data.example();
             vm.state = 'pending';
             if (action === 'nova') {
@@ -118,6 +120,10 @@
             vm.afterInvalidSubmission = false;
         }
         function save() {
+            logToServer.info({
+                content: ((Date.now() - activationTime) / 1000) + 's',
+                title: 'Time to Save'
+            });
             vm.afterInvalidSubmission = true;
             vm.actionButtonsDisabled = true;
             if (vm.ficha.$valid) {
