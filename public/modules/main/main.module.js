@@ -3,6 +3,7 @@
     angular
         .module('main', [
             'inscricao',
+            'logToServer',
             'ngAnimate',
             'ngRoute',
             'session',

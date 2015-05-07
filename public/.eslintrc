@@ -10,6 +10,7 @@
     },
     "globals": {
         "angular": false,
+        "JL": false,
         "jQuery": false,
         "moment": false,
         "sweetAlert": false

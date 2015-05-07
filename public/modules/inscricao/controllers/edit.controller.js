@@ -11,6 +11,7 @@
         'inscricao.data',
         'inscricao.errorHandler',
         'inscricao.notifications',
+        'logToServer.logToServer',
         'session.session'
     ];
     function Edit(
@@ -21,6 +22,7 @@
         data,
         errorHandler,
         notifications,
+        logToServer,
         session
     ) {
         var
@@ -80,6 +82,26 @@
                 )
             );
         }
+        function logInvalidFields() {
+            var
+                invalidFields,
+                fieldName;
+            invalidFields = {
+                fields: {},
+                title: 'Invalid Fields'
+            };
+            for (fieldName in vm.ficha) {
+                if (
+                    vm.ficha[fieldName] &&
+                    vm.ficha[fieldName].$invalid
+                ) {
+                    invalidFields.fields[fieldName] = vm.ficha[fieldName].$viewValue;
+                }
+            }
+            logToServer.info({
+                content: invalidFields
+            });
+        }
         function setEmail() {
             if (session.email !== null) {
                 vm.inscricao.email = session.email;
@@ -116,6 +138,7 @@
                         vm.actionButtonsDisabled = false;
                     });
             } else {
+                logInvalidFields();
                 notifications.invalid();
                 vm.actionButtonsDisabled = false;
             }
@@ -142,6 +165,7 @@
                         vm.actionButtonsDisabled = false;
                     });
             } else {
+                logInvalidFields();
                 notifications.invalid();
                 vm.actionButtonsDisabled = false;
             }

@@ -12,6 +12,7 @@
     router.use(clientSessions(settings.session));
     router.use(bodyParser.json());
     router.use('/inscricao', routers.inscricao);
+    router.use('/logger', routers.logger);
     router.use('/trabalho', routers.trabalho);
     router.use('/usuario', routers.usuario);
 }(
@@ -23,6 +24,7 @@
     },
     { //routers
         inscricao: require('./inscricao'),
+        logger: require('./logger'),
         trabalho: require('./trabalho'),
         usuario: require('./usuario')
     },
