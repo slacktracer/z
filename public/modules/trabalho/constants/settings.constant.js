@@ -3,7 +3,7 @@
     angular
         .module('trabalho')
         .constant('trabalho.settings', {
-            'devMode': true,
+            'devMode': false,
             'limiteDeSubmissoes': 2
         });
 }());

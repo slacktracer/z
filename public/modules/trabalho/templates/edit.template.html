@@ -96,12 +96,9 @@
             </div>
             <div
                 data-ng-if="
-                    (
-                        !edit.blocked &amp;&amp;
-                        edit.allowed &amp;&amp;
-                        !edit.devMode
-                    ) ||
-                    main.session.may('BETATEST')
+                    !edit.blocked &amp;&amp;
+                    edit.allowed &amp;&amp;
+                    !edit.devMode
                 "
                 >
                 <div

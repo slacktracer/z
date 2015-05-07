@@ -45,12 +45,12 @@
          * functions
          */
         function activate() {
-            // notifications.loadingCount.pending();
-            // notifications.verifyingAllowed.pending();
+            notifications.loadingCount.pending();
+            notifications.verifyingAllowed.pending();
             data
                 .countByInscricao()
                 .then(function onResolve(quantidade) {
-                    // notifications.loadingCount.fulfilled();
+                    notifications.loadingCount.fulfilled();
                     vm.blocked = quantidade >= vm.limiteDeSubmissoes;
                     vm.state = 'fulfilled';
                 })
@@ -62,7 +62,7 @@
             data
                 .isAllowedToSubmit()
                 .then(function onResolve(allowed) {
-                    // notifications.verifyingAllowed.fulfilled();
+                    notifications.verifyingAllowed.fulfilled();
                     vm.allowed = allowed;
                     vm.state = 'fulfilled';
                 })
