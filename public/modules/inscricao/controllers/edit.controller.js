@@ -150,6 +150,10 @@
             }
         }
         function update() {
+            logToServer.info({
+                content: ((Date.now() - activationTime) / 1000) + 's',
+                title: 'Time to Update'
+            });
             vm.afterInvalidSubmission = true;
             vm.actionButtonsDisabled = true;
             if (vm.ficha.$valid) {
