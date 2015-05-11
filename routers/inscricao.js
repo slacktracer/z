@@ -121,6 +121,75 @@
                 });
         }
     );
+    router.get(
+        '/relatorio/pagas',
+        middleware.denyViewOthers,
+        function (request, response, next) {
+            models
+                .inscricao
+                .readAllPagas()
+                .then(function then(inscricoes) {
+                    response.send({
+                        inscricoes: inscricoes
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
+    router.get(
+        '/relatorio/nao-pagas',
+        middleware.denyViewOthers,
+        function (request, response, next) {
+            models
+                .inscricao
+                .readAllNaoPagas()
+                .then(function then(inscricoes) {
+                    response.send({
+                        inscricoes: inscricoes
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
+    router.get(
+        '/relatorio/isentas',
+        middleware.denyViewOthers,
+        function (request, response, next) {
+            models
+                .inscricao
+                .readAllIsentas()
+                .then(function then(inscricoes) {
+                    response.send({
+                        inscricoes: inscricoes
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
 }(
     require('express'),
     { //middleware

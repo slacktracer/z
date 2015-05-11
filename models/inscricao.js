@@ -9,6 +9,9 @@
         confirm: confirm,
         create: create,
         readAll: readAll,
+        readAllPagas: readAllPagas,
+        readAllNaoPagas: readAllNaoPagas,
+        readAllIsentas: readAllIsentas,
         readById: readById,
         readStatusById: readStatusById,
         update: update
@@ -203,6 +206,59 @@
                 squel
                     .select()
                     .from('inscricao')
+                    .where('__status__ = 1')
+                    .order('nome_completo')
+            )
+            .then(function onResolve(value) {
+                let inscricoes = value.result.map(function map(inscricao) {
+                    return formatOut(inscricao);
+                });
+                return inscricoes;
+            });
+    }
+    function readAllIsentas() {
+        return modules
+            .executor(
+                squel
+                    .select()
+                    .from('inscricao')
+                    .where('status = 1')
+                    .where('valor_pago = 0')
+                    .where('__status__ = 1')
+                    .order('nome_completo')
+            )
+            .then(function onResolve(value) {
+                let inscricoes = value.result.map(function map(inscricao) {
+                    return formatOut(inscricao);
+                });
+                return inscricoes;
+            });
+    }
+    function readAllNaoPagas() {
+        return modules
+            .executor(
+                squel
+                    .select()
+                    .from('inscricao')
+                    .where('status = 0')
+                    .where('__status__ = 1')
+                    .order('nome_completo')
+            )
+            .then(function onResolve(value) {
+                let inscricoes = value.result.map(function map(inscricao) {
+                    return formatOut(inscricao);
+                });
+                return inscricoes;
+            });
+    }
+    function readAllPagas() {
+        return modules
+            .executor(
+                squel
+                    .select()
+                    .from('inscricao')
+                    .where('status = 1')
+                    .where('valor_pago > 0')
                     .where('__status__ = 1')
                     .order('nome_completo')
             )
