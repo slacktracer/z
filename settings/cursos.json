@@ -1,10 +1,10 @@
 {
     "vagas": {
-        "AMDI": 30,
+        "AMDI": 300,
         "CCAPPPT": 150,
         "ENTADPDHIV": 100,
         "NEC": 150,
-        "CCOPD": 10,
+        "CCOPD": 100,
         "SNEEP": 150
     }
 }
