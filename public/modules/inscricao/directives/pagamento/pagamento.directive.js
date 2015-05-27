@@ -43,7 +43,7 @@
                 }
                 if (
                     view.inscricao.curso_vespertino &&
-                    view.inscricao.curso_vespertino !== 'CCOPD'
+                    view.inscricao.curso_vespertino !== 'AMDI'
                 ) {
                     valor += settings.valores.curso;
                 }

@@ -4,20 +4,20 @@
     </legend>
     <div
         class="
+            alert
+            alert-warning
+        "
+        >
+        <strong>
+            Atenção!
+        </strong>
+        Cada curso selecionado aumenta o valor final da inscrição em <strong>R$20,00</strong> (<em>vinte reais</em>).
+    </div>
+    <div
+        class="
             form-group
         "
         >
-        <div
-            class="
-                alert
-                alert-warning
-            "
-            >
-            <strong>
-                Atenção!
-            </strong>
-            Cada curso selecionado aumenta o valor final da inscrição em <strong>R$20,00</strong> (<em>vinte reais</em>).
-        </div>
         <label
             class="
                 control-label
@@ -100,7 +100,8 @@
                     type="radio"
                     value="CCAPPPT"
                     >
-                    Cuidados com a pele periestomal: prevenção e tratamento. <strong>Parte I</strong>.
+                    <!-- Cuidados com a pele periestomal: prevenção e tratamento. -->
+                    Enfermagem em estomaterapia - Atenção integral ao paciente traquiostomizado; Atenção integral ao paciente com gastrostomia.
             </label>
         </div>
         <div
@@ -124,6 +125,15 @@
                     Avaliação multidimensional do idoso. <strong>Parte I</strong>.
             </label>
         </div>
+        <div
+            class="
+                alert
+                alert-warning
+            "
+            data-ng-if="edit.inscricao.curso_matutino === 'AMDI'"
+            >
+            O <strong>curso selecionado</strong> será em <strong>horário integral</strong>. Das <strong>8h às 12h</strong> de manhã <strong>e</strong> continuando das <strong>14h às 18h</strong> de tarde.
+        </div>
     </div>
     <div
         class="
@@ -143,7 +153,7 @@
                 <input
                     data-ng-change="cursos.setunset('curso_vespertino')"
                     data-ng-disabled="
-                        cursos.curso_matutino_noneditable &amp;&amp;
+                        cursos.curso_vespertino_noneditable &amp;&amp;
                         main.session.mayNot('CHANGE_COURSE')
                     "
                     data-ng-model="cursos.curso_vespertino"
@@ -171,9 +181,6 @@
                     value="CCOPD"
                     >
                     Cuidados com o paciente diabético.
-                    <b>
-                        *
-                    </b>
             </label>
         </div>
         <div
@@ -210,27 +217,6 @@
                         )
                     "
                     data-ng-model="edit.inscricao.curso_vespertino"
-                    id="ccapppt"
-                    name="curso_vespertino"
-                    type="radio"
-                    value="CCAPPPT"
-                    >
-                    Cuidados com a pele periestomal: prevenção e tratamento. <strong>Parte II</strong>.
-            </label>
-        </div>
-        <div
-            class="radio"
-            >
-            <label>
-                <input
-                    data-ng-disabled="
-                        !cursos.curso_vespertino ||
-                        (
-                            cursos.curso_vespertino_noneditable &amp;&amp;
-                            main.session.mayNot('CHANGE_COURSE')
-                        )
-                    "
-                    data-ng-model="edit.inscricao.curso_vespertino"
                     id="amdi"
                     name="curso_vespertino"
                     type="radio"
@@ -244,10 +230,15 @@
                 help-block
             "
             >
-            <b>
-                *
-            </b>
-            Curso não confirmado.
+            <div
+                class="
+                    alert
+                    alert-warning
+                "
+                data-ng-if="edit.inscricao.curso_vespertino === 'AMDI'"
+                >
+                O <strong>curso selecionado</strong> será em <strong>horário integral</strong>. Das <strong>8h às 12h</strong> de manhã <strong>e</strong> continuando das <strong>14h às 18h</strong> de tarde.
+            </div>
         </p>
     </div>
 </fieldset>

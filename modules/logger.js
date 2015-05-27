@@ -12,7 +12,11 @@
      * functions
      */
     function myCustomParser(requestBody) {
-        return JSON.parse(requestBody.lg[0].m);
+        if (requestBody.lg[0]) {
+            return JSON.parse(requestBody.lg[0].m);
+        } else {
+            return JSON.parse(requestBody);
+        }
     }
 }(
     { //settings

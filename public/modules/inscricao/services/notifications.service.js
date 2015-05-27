@@ -4,10 +4,12 @@
         .module('inscricao')
         .service('inscricao.notifications', notifications);
     notifications.$inject = [
+        'inscricao.settings',
         'main.sweetAlert',
         'ngToast'
     ];
     function notifications(
+        settings,
         sweetAlert,
         ngToast
     ) {
@@ -127,6 +129,29 @@
                     title: 'Erro!',
                     type: 'error'
                 });
+            },
+            vagasEsgotadas: function vagasEsgotadas(error) {
+                var
+                    cursos;
+                cursos = [];
+                error.cursos.forEach(function forEach(curso) {
+                    cursos.push(settings.cursos[curso]);
+                });
+                if (cursos.length === 1) {
+                    sweetAlert({
+                        html: true,
+                        text: 'O curso <b>' + cursos[0] + '</b> está com as vagas esgotadas.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
+                } else {
+                    sweetAlert({
+                        html: true,
+                        text: 'Os cursos <b>' + cursos.join('</b> e <b>') + '</b> estão com as vagas esgotadas.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
+                }
             },
             weirdError001: function weirdError001() {
                 sweetAlert({

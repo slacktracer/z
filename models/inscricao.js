@@ -3,6 +3,7 @@
 (function (
     modules,
     moment,
+    settings,
     squel
 ) {
     let model = {
@@ -62,6 +63,14 @@
                         type: 'CPF_REPETIDO'
                     };
                 }
+            })
+            .then(function onResolve(value) {
+                return verificarVagas([
+                    inscricao.curso_matutino,
+                    inscricao.curso_vespertino
+                ]);
+            })
+            .then(function onResolve(value) {
                 return executeCreate(inscricao, email);
             });
     }
@@ -334,39 +343,63 @@
         inscricao = formatIn(inscricao);
         inscricao = setCase(inscricao);
         return modules
-            .executor(
+            .executor
+            .getFirst(
                 squel
-                    .update({
-                        replaceSingleQuotes: true,
-                        singleQuoteReplacement: '\\\''
-                    })
-                    .table('inscricao')
-                    .set('nome_completo', inscricao.nome_completo)
-                    .set('data_de_nascimento', inscricao.data_de_nascimento)
-                    .set('sexo', inscricao.sexo)
-                    .set('email', inscricao.email)
-                    .set('estrangeiro', inscricao.estrangeiro)
-                    // .set('cpf', inscricao.cpf)
-                    .set('nome_do_documento', inscricao.nome_do_documento)
-                    .set('numero_do_documento', inscricao.numero_do_documento)
-                    .set('telefones', inscricao.telefones)
-                    .set('logradouro', inscricao.logradouro)
-                    .set('numero', inscricao.numero)
-                    .set('complemento', inscricao.complemento)
-                    .set('bairro', inscricao.bairro)
-                    .set('localidade', inscricao.localidade)
-                    .set('uf', inscricao.uf)
-                    .set('cep', inscricao.cep)
-                    .set('endereco', inscricao.endereco)
-                    .set('nome_no_cracha', inscricao.nome_no_cracha)
-                    // .set('categoria', inscricao.categoria)
-                    .set('curso_ou_formacao', inscricao.curso_ou_formacao)
-                    .set('acronimo_da_instituicao_ou_empresa', inscricao.acronimo_da_instituicao_ou_empresa)
-                    .set('nome_da_instituicao_ou_empresa', inscricao.nome_da_instituicao_ou_empresa)
-                    .set('curso_matutino', inscricao.curso_matutino)
-                    .set('curso_vespertino', inscricao.curso_vespertino)
+                    .select()
+                    .field('curso_matutino')
+                    .field('curso_vespertino')
+                    .from('inscricao')
                     .where('id = ?', inscricao.id)
+                    .where('__status__ = 1')
             )
+            .then(function onResolve(value) {
+                if (
+                    value.curso_matutino !== inscricao.curso_matutino ||
+                    value.curso_vespertino !== inscricao.curso_vespertino
+                ) {
+                    return verificarVagas([
+                        inscricao.curso_matutino,
+                        inscricao.curso_vespertino
+                    ]);
+                }
+            })
+            .then(function onResolve(value) {
+                return modules
+                    .executor(
+                        squel
+                            .update({
+                                replaceSingleQuotes: true,
+                                singleQuoteReplacement: '\\\''
+                            })
+                            .table('inscricao')
+                            .set('nome_completo', inscricao.nome_completo)
+                            .set('data_de_nascimento', inscricao.data_de_nascimento)
+                            .set('sexo', inscricao.sexo)
+                            .set('email', inscricao.email)
+                            .set('estrangeiro', inscricao.estrangeiro)
+                            // .set('cpf', inscricao.cpf)
+                            .set('nome_do_documento', inscricao.nome_do_documento)
+                            .set('numero_do_documento', inscricao.numero_do_documento)
+                            .set('telefones', inscricao.telefones)
+                            .set('logradouro', inscricao.logradouro)
+                            .set('numero', inscricao.numero)
+                            .set('complemento', inscricao.complemento)
+                            .set('bairro', inscricao.bairro)
+                            .set('localidade', inscricao.localidade)
+                            .set('uf', inscricao.uf)
+                            .set('cep', inscricao.cep)
+                            .set('endereco', inscricao.endereco)
+                            .set('nome_no_cracha', inscricao.nome_no_cracha)
+                            // .set('categoria', inscricao.categoria)
+                            .set('curso_ou_formacao', inscricao.curso_ou_formacao)
+                            .set('acronimo_da_instituicao_ou_empresa', inscricao.acronimo_da_instituicao_ou_empresa)
+                            .set('nome_da_instituicao_ou_empresa', inscricao.nome_da_instituicao_ou_empresa)
+                            .set('curso_matutino', inscricao.curso_matutino)
+                            .set('curso_vespertino', inscricao.curso_vespertino)
+                            .where('id = ?', inscricao.id)
+                    );
+            })
             .then(function onResolve(value) {
                 return modules
                     .executor(
@@ -382,11 +415,79 @@
                 return inscricao.id;
             });
     }
+    function verificarVagas(testFor) {
+        var
+            vagasOcupadas;
+        vagasOcupadas = {};
+        return modules
+            .executor(
+                squel
+                    .select()
+                    .field('curso_matutino')
+                    .field('count(*) AS total')
+                    .from('inscricao')
+                    .group('curso_matutino')
+            )
+            .then(function onResolve(value) {
+                vagasOcupadas.cursosMatutinos = value.result;
+                return modules
+                    .executor(
+                        squel
+                            .select()
+                            .field('curso_vespertino')
+                            .field('count(*) AS total')
+                            .from('inscricao')
+                            .group('curso_vespertino')
+                    )
+            })
+            .then(function onResolve(value) {
+                vagasOcupadas.cursosVespertinos = value.result;
+                vagasOcupadas.cursosMatutinos.forEach(function forEach(value) {
+                    if (value.curso_matutino) {
+                        vagasOcupadas[value.curso_matutino] = value.total;
+                    }
+                });
+                delete vagasOcupadas.cursosMatutinos;
+                vagasOcupadas.cursosVespertinos.forEach(function forEach(value) {
+                    if (value.curso_vespertino) {
+                        vagasOcupadas[value.curso_vespertino] = value.total;
+                    }
+                });
+                delete vagasOcupadas.cursosVespertinos;
+            })
+            .then(function onResolve() {
+                var
+                    cursosEsgotados;
+                cursosEsgotados = [];
+                Object.keys(settings.cursos.vagas).forEach(function forEach(curso) {
+                    if (settings.cursos.vagas[curso] <= vagasOcupadas[curso]) {
+                        cursosEsgotados.push(curso);
+                    }
+                });
+                return cursosEsgotados;
+            })
+            .then(function onResolve(cursosEsgotados) {
+                if (cursosEsgotados.length) {
+                    testFor.forEach(function forEach(curso) {
+                        if (cursosEsgotados.indexOf(curso) !== -1) {
+                            throw {
+                                cursos: cursosEsgotados,
+                                isError: true,
+                                type: 'VAGAS_ESGOTADAS'
+                            };
+                        }
+                    });
+                }
+            });
+    }
 }(
     { //modules
         executor: require('../modules/executor'),
         logger: require('../modules/logger')
     },
     require('moment'),
+    { //settings
+        cursos: require('../settings/cursos')
+    },
     require('squel')
 ));

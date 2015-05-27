@@ -24,6 +24,9 @@
             case 'NO_SUCH_ID':
                 notifications.noSuchIdError();
                 break;
+            case 'VAGAS_ESGOTADAS':
+                notifications.vagasEsgotadas(error);
+                break;
             case 'WEIRD_ERROR_001':
                 notifications.weirdError001();
                 break;
