@@ -10,6 +10,7 @@
         confirm: confirm,
         create: create,
         readAll: readAll,
+        readAllConfirmadas: readAllConfirmadas,
         readAllPagas: readAllPagas,
         readAllNaoPagas: readAllNaoPagas,
         readAllIsentas: readAllIsentas,
@@ -225,6 +226,23 @@
                 return inscricoes;
             });
     }
+    function readAllConfirmadas() {
+        return modules
+            .executor(
+                squel
+                    .select()
+                    .from('inscricao')
+                    .where('status = 1')
+                    .where('__status__ = 1')
+                    .order('nome_completo')
+            )
+            .then(function onResolve(value) {
+                let inscricoes = value.result.map(function map(inscricao) {
+                    return formatOut(inscricao);
+                });
+                return inscricoes;
+            });
+    }
     function readAllIsentas() {
         return modules
             .executor(
@@ -365,6 +383,11 @@
                 }
             })
             .then(function onResolve(value) {
+                // considerando que algumas atualizações dependem de permissão,
+                // por exemplo, alteração de curso após confirmação de inscrição,
+                // convém trazer as permissões até aqui e construir a query em pedaços
+                // (fácil com o squel, basta ir acumulando numa variável)
+                // ...
                 return modules
                     .executor(
                         squel

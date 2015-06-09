@@ -12,6 +12,7 @@
         var
             service;
         service = {
+            readAllConfirmadas: readAllConfirmadas,
             readAllPagas: readAllPagas,
             readAllNaoPagas: readAllNaoPagas,
             readAllIsentas: readAllIsentas
@@ -20,6 +21,16 @@
         /**
          * functions
          */
+        function readAllConfirmadas() {
+            return $http
+                .get('/api/inscricao/relatorio/confirmadas')
+                .then(function onResolve(value) {
+                    return value.data.inscricoes;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
         function readAllPagas() {
             return $http
                 .get('/api/inscricao/relatorio/pagas')

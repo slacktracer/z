@@ -19,6 +19,12 @@
                 templateUrl: 'modules/inscricao/modules/relatorio/templates/relatorio.template.html'
             });
         $routeProvider
+            .when('/inscricao/relatorio/confirmadas', {
+                controller: 'inscricao.relatorio.Confirmadas',
+                controllerAs: 'confirmadas',
+                templateUrl: 'modules/inscricao/modules/relatorio/templates/relatorio.confirmadas.template.html'
+            });
+        $routeProvider
             .when('/inscricao/relatorio/pagas', {
                 controller: 'inscricao.relatorio.Pagas',
                 controllerAs: 'pagas',

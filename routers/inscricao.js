@@ -122,6 +122,29 @@
         }
     );
     router.get(
+        '/relatorio/confirmadas',
+        middleware.denyViewOthers,
+        function (request, response, next) {
+            models
+                .inscricao
+                .readAllConfirmadas()
+                .then(function then(inscricoes) {
+                    response.send({
+                        inscricoes: inscricoes
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
+    router.get(
         '/relatorio/pagas',
         middleware.denyViewOthers,
         function (request, response, next) {
