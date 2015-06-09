@@ -23,7 +23,10 @@
                     return modules
                         .executor(
                             squel
-                                .insert()
+                                .insert({
+                                    replaceSingleQuotes: true,
+                                    singleQuoteReplacement: '\\\''
+                                })
                                 .into('trabalho')
                                 .set('inscricao', inscricao)
                                 .set('area_tematica', trabalho.area_tematica)
