@@ -127,6 +127,94 @@
                         class="
                             form-group
                         "
+                        >
+                        <label
+                            class="
+                                control-label
+                            "
+                            for="categoria"
+                            >
+                            Categoria
+                        </label>
+                        <input
+                            class="
+                                form-control
+                            "
+                            id="categoria"
+                            name="categoria"
+                            value="{{confirm.inscricao.copy.categoria}}"
+                            readonly
+                            >
+                    </div>
+                    <div
+                        class="
+                            form-group
+                        "
+                        data-ng-if="confirm.inscricao.copy.curso_matutino"
+                        >
+                        <label
+                            class="
+                                control-label
+                            "
+                            for="curso_matutino"
+                            >
+                            Curso Matutino
+                        </label>
+                        <input
+                            class="
+                                form-control
+                            "
+                            id="curso_matutino"
+                            name="curso_matutino"
+                            value="{{confirm.inscricao.copy.curso_matutino}}"
+                            readonly
+                            >
+                    </div>
+                    <div
+                        class="
+                            form-group
+                        "
+                        data-ng-if="confirm.inscricao.copy.curso_vespertino"
+                        >
+                        <label
+                            class="
+                                control-label
+                            "
+                            for="curso_vespertino"
+                            >
+                            Curso Matutino
+                        </label>
+                        <input
+                            class="
+                                form-control
+                            "
+                            id="curso_vespertino"
+                            name="curso_vespertino"
+                            value="{{confirm.inscricao.copy.curso_vespertino}}"
+                            readonly
+                            >
+                    </div>
+                    <table class="table">
+                        <caption>Valores caculados por etapa.</caption>
+                        <thead>
+                            <tr>
+                                <th>até 31/05</th>
+                                <th>até 31/07</th>
+                                <th>até o evento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{confirm.valoresPorEtapa[0]}}</td>
+                                <td>{{confirm.valoresPorEtapa[1]}}</td>
+                                <td>{{confirm.valoresPorEtapa[2]}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div
+                        class="
+                            form-group
+                        "
                         data-ng-class="{
                             'has-error': confirm.isInvalidField('valor_pago')
                         }"
