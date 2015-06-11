@@ -51,6 +51,7 @@
                     .where('id = ?', inscricao.id)
             )
             .then(function onResolve(value) {
+                modules.notifier.confirmation(inscricao.email);
                 return formatOut(inscricao);
             });
     }
@@ -506,7 +507,8 @@
 }(
     { //modules
         executor: require('../modules/executor'),
-        logger: require('../modules/logger')
+        logger: require('../modules/logger'),
+        notifier: require('../modules/notifier')
     },
     require('moment'),
     { //settings
