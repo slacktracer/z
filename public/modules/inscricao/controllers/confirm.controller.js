@@ -69,7 +69,7 @@
                         if (inscricao.isError) {
                             throw inscricao;
                         }
-                        notifications.confirmSuccess();
+                        notifications.confirmSuccess(countConfirmations());
                         vm.inscricao.status = inscricao.status;
                         vm.inscricao.valor_pago = inscricao.valor_pago;
                         vm.inscricao.data_de_pagamento = inscricao.data_de_pagamento;
@@ -83,6 +83,17 @@
                 notifications.invalid();
                 vm.actionButtonsDisabled = false;
             }
+        }
+        function countConfirmations() {
+            var
+                confirmadas;
+            confirmadas = 0;
+            $scope.list.inscricoes.forEach(function forEach(inscricao) {
+                if (inscricao.status === 1) {
+                    confirmadas += 1;
+                }
+            });
+            return confirmadas;
         }
         function isInvalidField(fieldName) {
             return (

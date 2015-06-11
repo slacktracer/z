@@ -23,9 +23,10 @@
                     type: 'error'
                 });
             },
-            confirmSuccess: function confirmSuccess() {
+            confirmSuccess: function confirmSuccess(confirmations) {
                 sweetAlert({
-                    text: 'Inscrição confirmada.',
+                    html: true,
+                    text: 'Inscrição confirmada.' + '<br><br><br>' + 'Total: <strong>' + confirmations + '</strong>.',
                     title: 'Sucesso!',
                     type: 'success'
                 });
