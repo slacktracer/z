@@ -73,6 +73,23 @@
                         </span>
                     </div>
                     <br>
+                    <a
+                        data-ng-if="view.inscricao.status === 1"
+                        href="http://localhost:3000/trabalho/enviar"
+                        >
+                        <div
+                            class="
+                                alert
+                                alert-info
+                            "
+                            >
+                            <strong>
+                                Submissão de Trabalhos Autorizada
+                            </strong>
+                            <br>
+                            Você já pode submeter trabalhos.
+                        </div>
+                    </a>
                     <dl>
                         <dt>
                             Nome
