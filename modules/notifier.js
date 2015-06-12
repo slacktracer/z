@@ -8,8 +8,8 @@
     let transporter = nodemailer.createTransport({
         service: `Gmail`,
         auth: {
-            user: `trabalhos.hujbb`,
-            pass: `hujbb2015`
+            user: `congressohujbb2015@gmail.com`,
+            pass: `hujbb2016`
         }
     });
     let sendMail = Promise.promisify(transporter.sendMail, transporter);
@@ -24,7 +24,7 @@
         sendMail({
             from: `Secretaria do V Congresso do Hospital Universitário João de Barros Barreto <trabalhos.hujbb@gmail.com>`,
             to: email,
-            subject: `Inscrição Confirmada`,
+            subject: `Confirmação de Inscrição - Congresso HUJBB`,
             html: `Prezado(a),` +
                 `<br><br>` +
                 `Agradecemos o envio do comprovante de pagamento. Sua inscrição está confirmada.` +
