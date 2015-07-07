@@ -217,6 +217,27 @@
                         )
                     "
                     data-ng-model="edit.inscricao.curso_vespertino"
+                    id="toechferdp"
+                    name="curso_vespertino"
+                    type="radio"
+                    value="TOECHFERDP"
+                    >
+                    Terapia ocupacional em contextos hospitalares: fundamentação e relatos de prática.
+            </label>
+        </div>
+        <div
+            class="radio"
+            >
+            <label>
+                <input
+                    data-ng-disabled="
+                        !cursos.curso_vespertino ||
+                        (
+                            cursos.curso_vespertino_noneditable &amp;&amp;
+                            main.session.mayNot('CHANGE_COURSE')
+                        )
+                    "
+                    data-ng-model="edit.inscricao.curso_vespertino"
                     id="amdi"
                     name="curso_vespertino"
                     type="radio"
