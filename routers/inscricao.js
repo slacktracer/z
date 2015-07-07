@@ -213,6 +213,29 @@
                 });
         }
     );
+    router.get(
+        '/relatorio/cursos',
+        middleware.denyViewOthers,
+        function (request, response, next) {
+            models
+                .inscricao
+                .readAllCursos()
+                .then(function then(cursos) {
+                    response.send({
+                        cursos: cursos
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
 }(
     require('express'),
     { //middleware

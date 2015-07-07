@@ -15,7 +15,8 @@
             readAllConfirmadas: readAllConfirmadas,
             readAllPagas: readAllPagas,
             readAllNaoPagas: readAllNaoPagas,
-            readAllIsentas: readAllIsentas
+            readAllIsentas: readAllIsentas,
+            readAllCursos: readAllCursos
         };
         return service;
         /**
@@ -56,6 +57,16 @@
                 .get('/api/inscricao/relatorio/isentas')
                 .then(function onResolve(value) {
                     return value.data.inscricoes;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
+        function readAllCursos() {
+            return $http
+                .get('/api/inscricao/relatorio/cursos')
+                .then(function onResolve(value) {
+                    return value.data.cursos;
                 })
                 .catch(function onReject(reason) {
                     return reason.data;

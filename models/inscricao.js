@@ -1,11 +1,13 @@
 /* eslint camelcase: 0 */
 'use strict';
 (function (
+    bluebird,
     modules,
     moment,
     settings,
     squel
 ) {
+    Promise = bluebird;
     let model = {
         confirm: confirm,
         create: create,
@@ -14,6 +16,7 @@
         readAllPagas: readAllPagas,
         readAllNaoPagas: readAllNaoPagas,
         readAllIsentas: readAllIsentas,
+        readAllCursos: readAllCursos,
         readById: readById,
         readStatusById: readStatusById,
         update: update
@@ -243,6 +246,68 @@
                 });
                 return inscricoes;
             });
+    }
+    function readAllCursos() {
+        return Promise.props({
+            matutinos: modules
+                .executor(
+                    squel
+                        .select()
+                        .from('inscricao')
+                        .field('curso_matutino AS nome')
+                        .field('COUNT(*) AS total')
+                        .group('curso_matutino')
+                        .where('status = 1')
+                        .where('__status__ = 1')
+                        .order('curso_matutino')
+                )
+                .then(function onResolve(value) {
+                    return value.result
+                }),
+            vespertinos: modules
+                .executor(
+                    squel
+                        .select()
+                        .from('inscricao')
+                        .field('curso_vespertino AS nome')
+                        .field('COUNT(*) AS total')
+                        .group('curso_vespertino')
+                        .where('status = 1')
+                        .where('__status__ = 1')
+                        .order('curso_vespertino')
+                )
+                .then(function onResolve(value) {
+                    return value.result
+                }),
+            matutinosNaoConfirmados: modules
+                .executor(
+                    squel
+                        .select()
+                        .from('inscricao')
+                        .field('curso_matutino AS nome')
+                        .field('COUNT(*) AS total')
+                        .group('curso_matutino')
+                        .where('__status__ = 1')
+                        .order('curso_matutino')
+                )
+                .then(function onResolve(value) {
+                    return value.result
+                }),
+            vespertinosNaoConfirmados: modules
+                .executor(
+                    squel
+                        .select()
+                        .from('inscricao')
+                        .field('curso_vespertino AS nome')
+                        .field('COUNT(*) AS total')
+                        .group('curso_vespertino')
+                        .where('__status__ = 1')
+                        .order('curso_vespertino')
+                )
+                .then(function onResolve(value) {
+                    return value.result
+                })
+        });
     }
     function readAllIsentas() {
         return modules
@@ -505,6 +570,7 @@
             });
     }
 }(
+    require('bluebird'),
     { //modules
         executor: require('../modules/executor'),
         logger: require('../modules/logger'),

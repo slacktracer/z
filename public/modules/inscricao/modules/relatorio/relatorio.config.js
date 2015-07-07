@@ -42,6 +42,12 @@
                 controllerAs: 'isentas',
                 templateUrl: 'modules/inscricao/modules/relatorio/templates/relatorio.isentas.template.html'
             });
+        $routeProvider
+            .when('/inscricao/relatorio/cursos', {
+                controller: 'inscricao.relatorio.Cursos',
+                controllerAs: 'cursos',
+                templateUrl: 'modules/inscricao/modules/relatorio/templates/relatorio.cursos.template.html'
+            });
         ngToastProvider.configure({
             additionalClasses: 'toast',
             horizontalPosition: 'center'
