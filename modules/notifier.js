@@ -9,7 +9,7 @@
         service: `Gmail`,
         auth: {
             user: `congressohujbb2015@gmail.com`,
-            pass: `hujbb2016`
+            pass: `hujbb2017`
         }
     });
     let sendMail = Promise.promisify(transporter.sendMail, transporter);
