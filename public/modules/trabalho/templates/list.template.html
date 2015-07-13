@@ -62,11 +62,14 @@
                                     <th>
                                         Avaliar
                                     </th>
+                                    <th>
+                                        Recomendar
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr
-                                    data-ng-repeat="trabalho in list.trabalhos"
+                                    data-ng-repeat="trabalho in list.trabalhos track by $index"
                                     >
                                     <td>
                                         {{::trabalho.area_tematica | uppercase}}
@@ -76,7 +79,7 @@
                                     </td>
                                     <td>
                                         <span
-                                            data-ng-repeat="autor in trabalho.autores"
+                                            data-ng-repeat="autor in trabalho.autores track by $index"
                                             >
                                             {{::autor}};
                                         </span>
@@ -124,6 +127,54 @@
                                                 >
                                                 Reprovar
                                             </button>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="
+                                            text-center
+                                        "
+                                        >
+                                        <div
+                                            class="
+                                                btn-group-vertical
+                                            "
+                                            data-ng-if="trabalho.tipo_de_resumo === 'Expandido'"
+                                            >
+                                            <button
+                                                class="
+                                                    btn
+                                                    btn-default
+                                                    btn-xs
+                                                "
+                                                data-ng-class="{
+                                                    'btn-info': trabalho.recomendacao === 1
+                                                }"
+                                                data-ng-click="list.advise(trabalho, 1)"
+                                                data-ng-disabled="list.actionButtonsDisabled"
+                                                type="button"
+                                                >
+                                                Oral
+                                            </button>
+                                            <button
+                                                class="
+                                                    btn
+                                                    btn-default
+                                                    btn-xs
+                                                "
+                                                data-ng-class="{
+                                                    'btn-info': trabalho.recomendacao === 2
+                                                }"
+                                                data-ng-click="list.advise(trabalho, 2)"
+                                                data-ng-disabled="list.actionButtonsDisabled"
+                                                type="button"
+                                                >
+                                                Pôster
+                                            </button>
+                                        </div>
+                                        <div
+                                            data-ng-if="trabalho.tipo_de_resumo === 'Simples'"
+                                            >
+                                            N/A
                                         </div>
                                     </td>
                                 </tr>

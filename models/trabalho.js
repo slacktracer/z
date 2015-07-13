@@ -7,6 +7,7 @@
     squel
 ) {
     let model = {
+        advise: advise,
         create: create,
         countByInscricao: countByInscricao,
         evaluate: evaluate,
@@ -75,10 +76,34 @@
                 return value.result.length;
             });
     }
+    function advise(trabalho, advice, evaluator, isSuperUser) {
+        return isAllowedToEvaluate(trabalho, evaluator, isSuperUser)
+            .then(function onResolve(allowed) {
+                if (allowed) {
+                    return modules
+                        .executor(
+                            squel
+                                .update()
+                                .table('trabalho')
+                                .set('avaliador', evaluator)
+                                .set('recomendacao', advice)
+                                .where('id = ?', trabalho)
+                        )
+                        .then(function onResolve(value) {
+                            return advice;
+                        });
+                }
+                modules.logger.warn(`Tentativa de recomendação de formato de trabalho por avaliador não autorizado. Avaliador: ${evaluator}. Recomendação: ${advice}.`);
+                throw {
+                    error: 'Acesso Negado',
+                    isError: true,
+                    type: 'ACCESS_DENIED'
+                };
+            });
+    }
     function evaluate(trabalho, evaluation, evaluator, isSuperUser) {
         return isAllowedToEvaluate(trabalho, evaluator, isSuperUser)
             .then(function onResolve(allowed) {
-                console.log(allowed);
                 if (allowed) {
                     let status = evaluation ? 1 : 0;
                     return modules

@@ -19,6 +19,7 @@
             isAllowedToSubmit: isAllowedToSubmit,
             countByInscricao: countByInscricao,
             create: create,
+            advise: advise,
             evaluate: evaluate,
             example: example,
             readAll: readAll
@@ -49,6 +50,19 @@
                 .get('/api/trabalho/quantidade')
                 .then(function onResolve(value) {
                     return value.data.quantidade;
+                })
+                .catch(function onReject(reason) {
+                    return reason.data;
+                });
+        }
+        function advise(id, advice) {
+            return $http
+                .post('/api/trabalho/recomendar', {
+                    id: id,
+                    advice: advice
+                })
+                .then(function onResolve(value) {
+                    return value.data;
                 })
                 .catch(function onReject(reason) {
                     return reason.data;

@@ -17,6 +17,7 @@
             vm;
         vm = this;
         vm.actionButtonsDisabled = false;
+        vm.advise = advise;
         vm.evaluate = evaluate;
         activate();
         /**
@@ -39,6 +40,25 @@
                     notifications.loadingAll.rejected();
                     errorHandler(reason);
                     vm.state = 'rejected';
+                });
+        }
+        function advise(trabalho, advice) {
+            vm.actionButtonsDisabled = true;
+            notifications.advising.pending();
+            data
+                .advise(trabalho.id, advice)
+                .then(function onResolve(value) {
+                    if (value.isError) {
+                        throw value;
+                    }
+                    trabalho.recomendacao = value.advice;
+                    notifications.advising.fulfilled();
+                    vm.actionButtonsDisabled = false;
+                })
+                .catch(function onReject(reason) {
+                    notifications.advising.rejected();
+                    errorHandler(reason);
+                    vm.actionButtonsDisabled = false;
                 });
         }
         function evaluate(trabalho, evaluation) {

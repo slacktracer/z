@@ -21,6 +21,26 @@
                     type: 'error'
                 });
             },
+            advising: {
+                pending: function pending() {
+                    this.toast = ngToast.create({
+                        className: 'info',
+                        content: 'Recomendando formato...',
+                        dismissOnTimeout: false
+                    });
+                },
+                fulfilled: function fulfilled() {
+                    ngToast.dismiss(this.toast);
+                },
+                rejected: function rejected() {
+                    ngToast.dismiss(this.toast);
+                    sweetAlert({
+                        text: 'Não foi possível recomendar um formato para este trabalho.',
+                        title: 'Erro!',
+                        type: 'error'
+                    });
+                }
+            },
             evaluating: {
                 pending: function pending() {
                     this.toast = ngToast.create({

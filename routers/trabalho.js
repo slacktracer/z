@@ -86,6 +86,34 @@
                 });
         }
     );
+    router.post(
+        '/recomendar',
+        middleware.denyEvaluate,
+        function (request, response, next) {
+            models
+                .trabalho
+                .advise(
+                    request.body.id,
+                    request.body.advice,
+                    request.session.email,
+                    modules.authorizer.may('SUPERUSER', request.session.permissions)
+                )
+                .then(function then(advice) {
+                    response.send({
+                        advice: advice
+                    });
+                })
+                .catch(function (reason) {
+                    if (reason.isError !== true) {
+                        modules.logger.warn('Uncaught exception!');
+                    }
+                    modules.logger.error(reason);
+                    response
+                        .status(500)
+                        .send(reason);
+                });
+        }
+    );
     router.get(
         '/quantidade',
         function (request, response, next) {
