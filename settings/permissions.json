@@ -1,7 +1,9 @@
 {
     "default": [],
     "cezar_caldas@yahoo.com.br": [
-        "VIEW_OTHERS"
+        "EVALUATE",
+        "VIEW_OTHERS",
+        "VIEW_PAPERS"
     ],
     "thiagocondurufigueiredo@gmail.com": [
         "BETATEST",
@@ -22,6 +24,259 @@
         "EVALUATE",
         "MULTIPLE",
         "VIEW_OTHERS",
+        "VIEW_PAPERS"
+    ],
+
+    "airlemiranda@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "alessa_moura@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "alfeoli@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "anaisabel.terapeuta@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "andresk@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "assumpcao@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "carlomagnobahia@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "claracosta@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "cleonardoaugusto@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "crismaia@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "cursinocf@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "danituma@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "dilmasouza@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "djenanne@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "drkmoreira@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "edifalcao@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "elensmota@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "elianecsazevedo@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "elipinbt@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ericpaschoal@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "felicio.bel@terra.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ffaro@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "fjreis2@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "flaaendres@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "flaviapontes@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "fmolento@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "geishak@ig.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "guterres@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "guterres39@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "harp@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "hilmapk@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ilma.m@oi.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ilmasouza@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "itacloset@uol.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "janainabg@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "jsreis@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "lissocial@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "lrmarsola@globo.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "mariaheliana@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "mariliafvo@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "mspovoa@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "nurse.alinecruz@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "odpereira@bol.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "pedropiani@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "petgomes@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "renatoct@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ritaclosset@uol.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "rmspovoa@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "rozi@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "rstavares@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "rtorres@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ruipovoa@cardiol.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "sap_psi@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "saul@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "sconde@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "shpolaro@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "silvioeder@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "silvioeder2003@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "sofiares@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ssocial_saude@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "tesanches@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "vcmartins@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "vivi_aslan@yahoo.com.br": [
+        "EVALUATE",
         "VIEW_PAPERS"
     ]
 }
