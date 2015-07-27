@@ -19,6 +19,10 @@
         vm.actionButtonsDisabled = false;
         vm.advise = advise;
         vm.evaluate = evaluate;
+        vm.filterAvaliados = true;
+        vm.filteredTotal = 0;
+        vm.filterFunction = filterFunction;
+        vm.filterNaoAvaliados = true;
         activate();
         /**
          * functions
@@ -79,6 +83,18 @@
                     errorHandler(reason);
                     vm.actionButtonsDisabled = false;
                 });
+        }
+        function filterFunction(row) {
+            if (vm.filterAvaliados && !vm.filterNaoAvaliados) {
+                return row.status !== null;
+            }
+            if (!vm.filterAvaliados && vm.filterNaoAvaliados) {
+                return row.status === null;
+            }
+            if (!vm.filterAvaliados && !vm.filterNaoAvaliados) {
+                return false;
+            }
+            return true;
         }
     }
 }());

@@ -26,12 +26,36 @@
                         col-md-12
                     "
                     >
+                    <div>
+                        <label
+                            class="
+                                checkbox-inline
+                            "
+                            >
+                            <input
+                                data-ng-model="list.filterAvaliados"
+                                type="checkbox"
+                                >
+                            Mostrar Avaliados
+                        </label>
+                        <label
+                            class="
+                                checkbox-inline
+                            "
+                            >
+                            <input
+                                data-ng-model="list.filterNaoAvaliados"
+                                type="checkbox"
+                                >
+                            Mostrar Não-Avaliados
+                        </label>
+                    </div>
                     <div
                         class="
                             text-right
                         "
                         >
-                        Total: <b>{{list.trabalhos.length}}</b>
+                        Total: <b>{{list.filtered.length}}</b>
                     </div>
                     <div
                         class="
@@ -48,13 +72,13 @@
                             <thead>
                                 <tr>
                                     <th>
+                                        id
+                                    </th>
+                                    <th>
                                         Área Temática
                                     </th>
                                     <th>
                                         Título
-                                    </th>
-                                    <th>
-                                        Autores
                                     </th>
                                     <th>
                                         Tipo de Resumo
@@ -65,24 +89,23 @@
                                     <th>
                                         Recomendar
                                     </th>
+                                    <th>
+                                        Autores
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr
-                                    data-ng-repeat="trabalho in list.trabalhos track by $index"
+                                    data-ng-repeat="trabalho in list.filtered = (list.trabalhos | filter: list.filterFunction) track by $index"
                                     >
+                                    <td>
+                                        {{::trabalho.id}}
+                                    </td>
                                     <td>
                                         {{::trabalho.area_tematica | uppercase}}
                                     </td>
                                     <td>
                                         {{::trabalho.titulo}}
-                                    </td>
-                                    <td>
-                                        <span
-                                            data-ng-repeat="autor in trabalho.autores track by $index"
-                                            >
-                                            {{::autor}};
-                                        </span>
                                     </td>
                                     <td>
                                         {{::trabalho.tipo_de_resumo | uppercase}}
@@ -176,6 +199,13 @@
                                             >
                                             N/A
                                         </div>
+                                    </td>
+                                    <td>
+                                        <span
+                                            data-ng-repeat="autor in trabalho.autores track by $index"
+                                            >
+                                            {{::autor}};
+                                        </span>
                                     </td>
                                 </tr>
                             </tbody>
