@@ -39,7 +39,7 @@
         "EVALUATE",
         "VIEW_PAPERS"
     ],
-    "anaisabel.terapeuta@yahoo.com.br": [
+    "anaisabel.terapeuta@yahoo.com": [
         "EVALUATE",
         "VIEW_PAPERS"
     ],
@@ -131,7 +131,7 @@
         "EVALUATE",
         "VIEW_PAPERS"
     ],
-    "geishak@ig.com": [
+    "geishak@ig.com.br": [
         "EVALUATE",
         "VIEW_PAPERS"
     ],
@@ -168,6 +168,10 @@
         "VIEW_PAPERS"
     ],
     "jsreis@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "lilianpereirasc@yahoo.com.br": [
         "EVALUATE",
         "VIEW_PAPERS"
     ],
@@ -278,5 +282,73 @@
     "vivi_aslan@yahoo.com.br": [
         "EVALUATE",
         "VIEW_PAPERS"
+    ],
+
+    "pedro.imed@globo.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "onete3@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ajuru2@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ianbarroso@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "arnaldojrc@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "drarnaldo@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+
+    "bezeliana@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+
+    "ajocbr@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "ajocbr@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "fcanufpa@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "irland1000@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "msfigueira@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "msfigueira@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "rozi@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "vlourencocosta@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "vanessacosta@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
     ]
+
 }
