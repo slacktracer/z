@@ -32,6 +32,7 @@
     );
     router.post(
         '/',
+        middleware.submissionsEnded,
         middleware.parseUpload,
         middleware.denyUpload,
         function (request, response, next) {
@@ -164,7 +165,8 @@
         denyUpload: require('./middleware').denyUpload,
         denyEvaluate: require('./middleware').denyEvaluate,
         denyViewPapers: require('./middleware').denyViewPapers,
-        parseUpload: require('./middleware').parseUpload
+        parseUpload: require('./middleware').parseUpload,
+        submissionsEnded: require('./middleware').submissionsEnded,
     },
     { //models
         trabalho: require('../models/trabalho')

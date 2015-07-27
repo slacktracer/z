@@ -13,7 +13,8 @@
         denyUpload: denyUpload,
         guardEmail: guardEmail,
         guardInscricao: guardInscricao,
-        parseUpload: parseUpload
+        parseUpload: parseUpload,
+        submissionsEnded: submissionsEnded
     };
     module.exports = middleware;
     function denyConfirm(request, response, next) {
@@ -153,6 +154,20 @@
                 return next();
             }
         );
+    }
+    function submissionsEnded(request, response, next) {
+        let session = request.session;
+        if (modules.authorizer.mayNot('SUPERUSER', session.permissions)) {
+            response
+                .status(403)
+                .send({
+                    error: 'Submissões Encerradas',
+                    isError: true,
+                    type: 'SUBMISSIONS_ENDED'
+                });
+            return;
+        }
+        return next();
     }
 }(
     { //modules

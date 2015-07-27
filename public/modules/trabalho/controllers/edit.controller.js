@@ -31,6 +31,7 @@
         vm.allowed = true;
         vm.blocked = false;
         vm.devMode = settings.devMode;
+        vm.ended = true;
         vm.examples = {
             'autores': 'FIGUEIREDO, T.C.; ALVES, E.R.'
         };
