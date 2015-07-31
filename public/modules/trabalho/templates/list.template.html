@@ -95,8 +95,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                    <!-- data-ng-repeat="trabalho in list.filtered = (list.trabalhos | filter: list.filterFunction) track by $index" -->
+                                    <!-- data-ng-repeat="trabalho in list.trabalhos | filter: list.filterFunction" -->
                                 <tr
-                                    data-ng-repeat="trabalho in list.filtered = (list.trabalhos | filter: list.filterFunction) track by $index"
+                                    data-ng-repeat="trabalho in list.filtered = (list.trabalhos | filter: list.filterFunction)"
                                     >
                                     <td>
                                         {{::trabalho.id}}
