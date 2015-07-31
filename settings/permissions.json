@@ -191,10 +191,6 @@
         "EVALUATE",
         "VIEW_PAPERS"
     ],
-    "mspovoa@hotmail.com": [
-        "EVALUATE",
-        "VIEW_PAPERS"
-    ],
     "nurse.alinecruz@gmail.com": [
         "EVALUATE",
         "VIEW_PAPERS"
@@ -219,10 +215,22 @@
         "EVALUATE",
         "VIEW_PAPERS"
     ],
+
+
+
+
     "rmspovoa@hotmail.com": [
         "EVALUATE",
         "VIEW_PAPERS"
     ],
+    "rmspovoa@cardiol.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+
+
+
+
     "rozi@ufpa.br": [
         "EVALUATE",
         "VIEW_PAPERS"
@@ -232,10 +240,6 @@
         "VIEW_PAPERS"
     ],
     "rtorres@ufpa.br": [
-        "EVALUATE",
-        "VIEW_PAPERS"
-    ],
-    "ruipovoa@cardiol.br": [
         "EVALUATE",
         "VIEW_PAPERS"
     ],
@@ -347,6 +351,32 @@
         "VIEW_PAPERS"
     ],
     "vanessacosta@hotmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+
+
+    "daianef@ufpa.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "daissf@yahoo.com.br": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "clariceg.silva@gmail.com": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "carlacarvalhovet@gmail.com ": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "moyses@ufpa.br ": [
+        "EVALUATE",
+        "VIEW_PAPERS"
+    ],
+    "moyses_m@yahoo.com": [
         "EVALUATE",
         "VIEW_PAPERS"
     ]
